@@ -36,8 +36,8 @@ library(tidyverse)
 # loading data
 lon_dims_imd_2019 <- read.csv("../data/CDRC/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
 # Commenting out as not used in this version
-#library(lubridate)
-#library(gapminder)
+# library(lubridate)
+library(gapminder)
 # create a binary membership variable for europe (for later examples)
 #gapminder <- gapminder %>%
 #  mutate(european = continent == "Europe")
