@@ -1,0 +1,544 @@
+---
+title: "Basic Statistics: describing, modelling and reporting"
+teaching: 60
+exercises: 20
+source: Rmd
+---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- To be able to describe the different types of data
+- To be able to do basic data exploration of a real dataset
+- To be able to calculate descriptive statistics
+- To be able to perform statistical inference on a dataset
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can I detect the type of data I have?
+- How can I make meaningful summaries of my data?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Content
+
+-   Types of Data
+-   Exploring your dataset
+-   Descriptive Statistics
+-   Inferential Statistics
+
+## Data
+
+
+``` r
+# We will need these libraries and this data later.
+library(tidyverse)
+# loading data
+lon_dims_imd_2019 <- read.csv("../data/CDRC/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
+```
+
+``` error
+Error in file(file, "rt"): cannot open the connection
+```
+
+``` r
+# Commenting out as not used in this version
+# library(lubridate)
+library(gapminder)
+# create a binary membership variable for europe (for later examples)
+gapminder <- gapminder %>%
+  mutate(european = continent == "Europe")
+```
+
+We are going to use the data from the gapminder package.  We have added a variable *European* indicating if a country is in Europe.
+
+## The big picture
+
+-   Research often seeks to answer a question about a larger population by collecting data on a small sample
+-   Data collection:
+    -   Many variables
+    -   For each person/unit.
+-   This procedure, *sampling*, must be controlled so as to ensure **representative** data.
+
+## Descriptive and inferential statistics
+
+::: callout
+Just as data in general are of different types - for example numeric vs text data - statistical data are assigned to different *levels of measure*. The level of measure determines how we can describe and model the data.
+:::
+
+# Describing data
+
+-   Continuous variables
+-   Discrete variables
+
+::: callout
+How do we convey information on what your data looks like, using numbers or figures?
+:::
+
+### Describing continuous data.
+
+First establish the distribution of the data. You can visualise this with a histogram.
+
+
+``` r
+ggplot(lon_dims_imd_2019, aes(x = barriers_london_rank)) +
+  geom_histogram()
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+What is the distribution of this data?
+
+### What is the distribution of population?
+
+The raw values are difficult to visualise, so we can take the log of the values and log those.  Try this command
+
+
+``` r
+ggplot(lon_dims_imd_2019, aes(x = log(barriers_london_rank))) +
+  geom_histogram()
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+What is the distribution of this data?
+
+## Parametric vs non-parametric analysis
+
+-   Parametric analysis assumes that
+    -   The data follows a known distribution
+    -   It can be described using *parameters*
+    -   Examples of distributions include, normal, Poisson, exponential.
+-   Non parametric data
+    -   The data can't be said to follow a known distribution
+
+::::::::::::::::::::::::::::::::::::: instructor
+Emphasise that parametric is not equal to normal.
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Describing parametric and non-parametric data
+
+How do you use numbers to convey what your data looks like.
+
+-   Parametric data
+    -   Use the parameters that describe the distribution.
+    -   For a Gaussian (normal) distribution - use mean and standard deviation
+    -   For a Poisson distribution - use average event rate
+    -   etc.
+-   Non Parametric data
+    -   Use the median (the middle number when they are ranked from lowest to highest) and the interquartile range (the number 75% of the way up the list when ranked minus the number 25% of the way)
+-   You can use the command `summary(data_frame_name)` to get these numbers for each variable.
+
+## Mean versus standard deviation
+
+-   What does standard deviation mean?
+-   Both graphs have the same mean (center), but the second one has data which is more spread out.
+
+
+``` r
+# small standard deviation
+dummy_1 <- rnorm(1000, mean = 10, sd = 0.5)
+dummy_1 <- as.data.frame(dummy_1)
+ggplot(dummy_1, aes(x = dummy_1)) +
+  geom_histogram()
+```
+
+``` output
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="fig/23-statistics-rendered-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+
+``` r
+# larger standard deviation
+dummy_2 <- rnorm(1000, mean = 10, sd = 200)
+dummy_2 <- as.data.frame(dummy_2)
+ggplot(dummy_2, aes(x = dummy_2)) +
+  geom_histogram()
+```
+
+``` output
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="fig/23-statistics-rendered-unnamed-chunk-3-2.png" style="display: block; margin: auto;" />
+
+::::::::::::::::::::::::::::::::::::: instructor
+Get them to plot the graphs. Explain that we are generating random data from different distributions and plotting them.
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Calculating mean and standard deviation
+
+
+``` r
+mean(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+Calculate the standard deviation and confirm that it is the square root of the variance:
+
+
+``` r
+sdbarriers <- sd(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+``` r
+print(sdbarriers)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'sdbarriers' not found
+```
+
+``` r
+varbarriers <- var(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+``` r
+print(varbarriers)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'varbarriers' not found
+```
+
+``` r
+sqrt(varbarriers) == sdbarriers
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'varbarriers' not found
+```
+
+The `na.rm` argument tells R to ignore missing values in the variable.
+
+### Calculating median and interquartile range
+
+
+``` r
+median(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+
+``` r
+IQR(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+Again, we ignore the missing values.
+
+## Describing discrete data
+
+-   Frequencies
+
+
+``` r
+table(lon_dims_imd_2019$la19nm)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+-   Proportions
+
+
+``` r
+areastable <- table(lon_dims_imd_2019$la19nm)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+``` r
+prop.table(areastable)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'areastable' not found
+```
+
+Contingency tables of frequencies can also be tabulated with **table()**. For example:
+
+
+``` r
+table(
+  lon_dims_imd_2019$la19nm,
+  lon_dims_imd_2019$IDAOP_london_decile
+)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+Which leads quite naturally to the consideration of any association between the observed frequencies.
+
+# Inferential statistics
+
+## Meaningful analysis
+
+-   What is your hypothesis - what is your null hypothesis?
+
+::: callout
+Always: the level of the independent variable has no effect on the level of the dependent variable.
+:::
+
+-   What type of variables (data type) do you have?
+
+-   What are the assumptions of the test you are using?
+
+-   Interpreting the result
+
+## Testing significance
+
+-   p-value
+
+-   \<0.05
+
+-   0.03-0.049
+
+    -   Would benefit from further testing.
+
+**0.05** is not a magic number.
+
+## Comparing means
+
+It all starts with a hypothesis
+
+-   Null hypothesis
+    -   "There is no difference in mean height between men and women" $$mean\_height\_men - mean\_height\_women = 0$$
+-   Alternate hypothesis
+    -   "There is a difference in mean height between men and women"
+
+## More on hypothesis testing
+
+-   The null hypothesis (H0) assumes that the true mean difference (μd) is equal to zero.
+
+-   The two-tailed alternative hypothesis (H1) assumes that μd is not equal to zero.
+
+-   The upper-tailed alternative hypothesis (H1) assumes that μd is greater than zero.
+
+-   The lower-tailed alternative hypothesis (H1) assumes that μd is less than zero.
+
+-   Remember: hypotheses are never about data, they are about the processes which produce the data. The value of μd is unknown. The goal of hypothesis testing is to determine the hypothesis (null or alternative) with which the data are more consistent.
+
+## Comparing means
+
+Is there an absolute difference between the income ranks of the Lower-layer Super Output Areas
+
+
+``` r
+lon_dims_imd_2019 %>%
+  group_by(la19nm) %>%
+  summarise(avg = mean(Income_london_rank)) %>%
+  arrange(la19nm, .locale = "en")
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+
+Is the difference between heights statistically significant?
+
+## t-test
+
+### Assumptions of a t-test
+
+-   One independent categorical variable with 2 groups and one dependent continuous variable
+
+-   The dependent variable is approximately normally distributed in each group
+
+-   The observations are independent of each other
+
+-   For students' original t-statistic, that the variances in both groups are more or less equal. This constraint should probably be abandoned in favour of always using a conservative test.
+
+## Doing a t-test
+
+
+``` r
+# Example to be changed
+# t.test(pop ~ european, data = gapminder)$statistic
+# t.test(pop ~ european, data = gapminder)$parameter
+```
+
+Notice that the summary()** of the test contains more data than is output by default.
+
+
+Write a paragraph in markdown format reporting this test result including the t-statistic, the degrees of freedom, the confidence interval and the p-value to 4 places.  To do this include your r code **inline** with your text, rather than in an R code chunk.
+
+### t-test result
+
+Testing supported the rejection of the null hypothesis that there is no difference between mean populations of European and non-European participants (**t**=4.6119, **df**= 1585.1044,
+**p**= 0).
+
+(Can you get p to display to four places?  Cf *format()*.)
+
+## More than two levels of IV
+
+While the t-test is sufficient where there are two levels of the IV, for situations where there are more than two, we use the **ANOVA** family of procedures. To show this, we will create a variable that subsets our data by *per capita GDP* levels. If the ANOVA result is statistically significant, we will use a post-hoc test method to do pairwise comparisons (here Tukey's Honest Significant Differences.)
+
+
+``` r
+# quantile(gapminder$gdpPercap)
+# IQR(gapminder$gdpPercap)
+
+# gapminder$gdpGroup <- cut(gapminder$gdpPercap, breaks = c(241.1659, 1202.0603, 3531.8470, 9325.4623, 113523.1329), labels = FALSE)
+
+# gapminder$gdpGroup <- factor(gapminder$gdpGroup)
+
+# anovamodel <- aov(gapminder$pop ~ gapminder$gdpGroup)
+anovamodel <- aov(lon_dims_imd_2019$health_london_rank ~ lon_dims_imd_2019$la19nm)
+```
+
+``` error
+Error in eval(predvars, data, env): object 'lon_dims_imd_2019' not found
+```
+
+``` r
+summary(anovamodel)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'anovamodel' not found
+```
+
+``` r
+TukeyHSD(anovamodel)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'anovamodel' not found
+```
+
+# Regression Modelling
+
+The most common use of regression modelling is to explore the relationship between two continuous variables, for example between `Income_london_rank` and `health_london_rank` in our data. We can first determine whether there is any significant correlation between the values, and if there is, plot the relationship.
+
+
+``` r
+# cor.test(gapminder$gdpPercap, gapminder$lifeExp)
+cor.test(lon_dims_imd_2019$Income_london_rank, lon_dims_imd_2019$health_london_rank)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+``` r
+# ggplot(gapminder, aes(gdpPercap, log(lifeExp))) +
+ggplot(lon_dims_imd_2019, aes(Income_london_rank, health_london_rank)) +
+  geom_point() +
+  geom_smooth()
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'lon_dims_imd_2019' not found
+```
+
+Having decided that a further investigation of this relationship is worthwhile, we can create a linear model with the function `lm()`.
+
+
+``` r
+modelone <- lm(lon_dims_imd_2019$Income_london_rank ~ lon_dims_imd_2019$health_london_rank)
+```
+
+``` error
+Error in eval(predvars, data, env): object 'lon_dims_imd_2019' not found
+```
+
+``` r
+summary(modelone)
+```
+
+``` error
+Error in eval(expr, envir, enclos): object 'modelone' not found
+```
+
+## Regression with a categorical IV (the t-test)
+
+Run the following code chunk and compare the results to the t test conducted earlier.
+
+
+``` r
+gapminder %>%
+  mutate(european = factor(european))
+```
+
+``` output
+# A tibble: 1,704 × 7
+   country     continent  year lifeExp      pop gdpPercap european
+   <fct>       <fct>     <int>   <dbl>    <int>     <dbl> <fct>   
+ 1 Afghanistan Asia       1952    28.8  8425333      779. FALSE   
+ 2 Afghanistan Asia       1957    30.3  9240934      821. FALSE   
+ 3 Afghanistan Asia       1962    32.0 10267083      853. FALSE   
+ 4 Afghanistan Asia       1967    34.0 11537966      836. FALSE   
+ 5 Afghanistan Asia       1972    36.1 13079460      740. FALSE   
+ 6 Afghanistan Asia       1977    38.4 14880372      786. FALSE   
+ 7 Afghanistan Asia       1982    39.9 12881816      978. FALSE   
+ 8 Afghanistan Asia       1987    40.8 13867957      852. FALSE   
+ 9 Afghanistan Asia       1992    41.7 16317921      649. FALSE   
+10 Afghanistan Asia       1997    41.8 22227415      635. FALSE   
+# ℹ 1,694 more rows
+```
+
+``` r
+modelttest <- lm(gapminder$pop ~ gapminder$european)
+
+summary(modelttest)
+```
+
+``` output
+
+Call:
+lm(formula = gapminder$pop ~ gapminder$european)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+ -32871053  -29780936  -22066032   -7948269 1285752032 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             32931064    2891217  11.390   <2e-16 ***
+gapminder$europeanTRUE -15761300    6290196  -2.506   0.0123 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.06e+08 on 1702 degrees of freedom
+Multiple R-squared:  0.003675,	Adjusted R-squared:  0.00309 
+F-statistic: 6.278 on 1 and 1702 DF,  p-value: 0.01231
+```
+
+## Regression with a categorical IV (ANOVA)
+
+Use the `lm()` function to model the relationship between `gapminder$gdpGroup`
+and `gapminder$pop`. Compare the results with the ANOVA carried out earlier.
+
+## Break
+
+-   We will explore regression models in more detail during the rest of the day
