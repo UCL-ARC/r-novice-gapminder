@@ -1,0 +1,1693 @@
+---
+title: "Basic Statistics: describing, modelling and reporting"
+teaching: 60
+exercises: 20
+source: Rmd
+---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- To be able to describe the different types of data
+- To be able to do basic data exploration of a real dataset
+- To be able to calculate descriptive statistics
+- To be able to perform statistical inference on a dataset
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can I detect the type of data I have?
+- How can I make meaningful summaries of my data?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Content
+
+-   Types of Data
+-   Exploring your dataset
+-   Descriptive Statistics
+-   Inferential Statistics
+
+## Data
+
+
+``` r
+# We will need these libraries and this data later.
+library(tidyverse)
+# loading data
+lon_dims_imd_2019 <- read.csv("data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
+# Commenting out as not used in this version
+# library(lubridate)
+library(gapminder)
+# create a binary membership variable for europe (for later examples)
+gapminder <- gapminder %>%
+  mutate(european = continent == "Europe")
+```
+
+We are going to use the data from the gapminder package.  We have added a variable *European* indicating if a country is in Europe.
+
+## The big picture
+
+-   Research often seeks to answer a question about a larger population by collecting data on a small sample
+-   Data collection:
+    -   Many variables
+    -   For each person/unit.
+-   This procedure, *sampling*, must be controlled so as to ensure **representative** data.
+
+## Descriptive and inferential statistics
+
+::: callout
+Just as data in general are of different types - for example numeric vs text data - statistical data are assigned to different *levels of measure*. The level of measure determines how we can describe and model the data.
+:::
+
+# Describing data
+
+-   Continuous variables
+-   Discrete variables
+
+::: callout
+How do we convey information on what your data looks like, using numbers or figures?
+:::
+
+### Describing continuous data.
+
+First establish the distribution of the data. You can visualise this with a histogram.
+
+
+``` r
+ggplot(lon_dims_imd_2019, aes(x = barriers_london_rank)) +
+  geom_histogram()
+```
+
+``` output
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="fig/23-statistics-rendered-unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+
+What is the distribution of this data?
+
+### What is the distribution of population?
+
+The raw values are difficult to visualise, so we can take the log of the values and log those.  Try this command
+
+
+``` r
+ggplot(lon_dims_imd_2019, aes(x = log(barriers_london_rank))) +
+  geom_histogram()
+```
+
+``` output
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="fig/23-statistics-rendered-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+
+What is the distribution of this data?
+
+## Parametric vs non-parametric analysis
+
+-   Parametric analysis assumes that
+    -   The data follows a known distribution
+    -   It can be described using *parameters*
+    -   Examples of distributions include, normal, Poisson, exponential.
+-   Non parametric data
+    -   The data can't be said to follow a known distribution
+
+::::::::::::::::::::::::::::::::::::: instructor
+Emphasise that parametric is not equal to normal.
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Describing parametric and non-parametric data
+
+How do you use numbers to convey what your data looks like.
+
+-   Parametric data
+    -   Use the parameters that describe the distribution.
+    -   For a Gaussian (normal) distribution - use mean and standard deviation
+    -   For a Poisson distribution - use average event rate
+    -   etc.
+-   Non Parametric data
+    -   Use the median (the middle number when they are ranked from lowest to highest) and the interquartile range (the number 75% of the way up the list when ranked minus the number 25% of the way)
+-   You can use the command `summary(data_frame_name)` to get these numbers for each variable.
+
+## Mean versus standard deviation
+
+-   What does standard deviation mean?
+-   Both graphs have the same mean (center), but the second one has data which is more spread out.
+
+
+``` r
+# small standard deviation
+dummy_1 <- rnorm(1000, mean = 10, sd = 0.5)
+dummy_1 <- as.data.frame(dummy_1)
+ggplot(dummy_1, aes(x = dummy_1)) +
+  geom_histogram()
+```
+
+``` output
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="fig/23-statistics-rendered-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+
+``` r
+# larger standard deviation
+dummy_2 <- rnorm(1000, mean = 10, sd = 200)
+dummy_2 <- as.data.frame(dummy_2)
+ggplot(dummy_2, aes(x = dummy_2)) +
+  geom_histogram()
+```
+
+``` output
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+<img src="fig/23-statistics-rendered-unnamed-chunk-3-2.png" style="display: block; margin: auto;" />
+
+::::::::::::::::::::::::::::::::::::: instructor
+Get them to plot the graphs. Explain that we are generating random data from different distributions and plotting them.
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Calculating mean and standard deviation
+
+
+``` r
+mean(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` output
+[1] 2418
+```
+
+Calculate the standard deviation and confirm that it is the square root of the variance:
+
+
+``` r
+sdbarriers <- sd(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+print(sdbarriers)
+```
+
+``` output
+[1] 1395.889
+```
+
+``` r
+varbarriers <- var(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+print(varbarriers)
+```
+
+``` output
+[1] 1948505
+```
+
+``` r
+sqrt(varbarriers) == sdbarriers
+```
+
+``` output
+[1] TRUE
+```
+
+The `na.rm` argument tells R to ignore missing values in the variable.
+
+### Calculating median and interquartile range
+
+
+``` r
+median(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` output
+[1] 2418
+```
+
+
+``` r
+IQR(lon_dims_imd_2019$barriers_london_rank, na.rm = TRUE)
+```
+
+``` output
+[1] 2417
+```
+
+Again, we ignore the missing values.
+
+## Describing discrete data
+
+-   Frequencies
+
+
+``` r
+table(lon_dims_imd_2019$la19nm)
+```
+
+``` output
+
+  Barking and Dagenham                 Barnet                 Bexley 
+                   110                    211                    146 
+                 Brent                Bromley                 Camden 
+                   173                    197                    133 
+        City of London                Croydon                 Ealing 
+                     6                    220                    196 
+               Enfield              Greenwich                Hackney 
+                   183                    151                    144 
+Hammersmith and Fulham               Haringey                 Harrow 
+                   113                    145                    137 
+              Havering             Hillingdon               Hounslow 
+                   150                    161                    142 
+             Islington Kensington and Chelsea   Kingston upon Thames 
+                   123                    103                     98 
+               Lambeth               Lewisham                 Merton 
+                   178                    169                    124 
+                Newham              Redbridge   Richmond upon Thames 
+                   164                    161                    115 
+             Southwark                 Sutton          Tower Hamlets 
+                   166                    121                    144 
+        Waltham Forest             Wandsworth            Westminster 
+                   144                    179                    128 
+```
+
+-   Proportions
+
+
+``` r
+areastable <- table(lon_dims_imd_2019$la19nm)
+prop.table(areastable)
+```
+
+``` output
+
+  Barking and Dagenham                 Barnet                 Bexley 
+           0.022750776            0.043640124            0.030196484 
+                 Brent                Bromley                 Camden 
+           0.035780765            0.040744571            0.027507756 
+        City of London                Croydon                 Ealing 
+           0.001240951            0.045501551            0.040537746 
+               Enfield              Greenwich                Hackney 
+           0.037849018            0.031230610            0.029782834 
+Hammersmith and Fulham               Haringey                 Harrow 
+           0.023371251            0.029989659            0.028335057 
+              Havering             Hillingdon               Hounslow 
+           0.031023785            0.033298862            0.029369183 
+             Islington Kensington and Chelsea   Kingston upon Thames 
+           0.025439504            0.021302999            0.020268873 
+               Lambeth               Lewisham                 Merton 
+           0.036814891            0.034953464            0.025646329 
+                Newham              Redbridge   Richmond upon Thames 
+           0.033919338            0.033298862            0.023784902 
+             Southwark                 Sutton          Tower Hamlets 
+           0.034332989            0.025025853            0.029782834 
+        Waltham Forest             Wandsworth            Westminster 
+           0.029782834            0.037021717            0.026473630 
+```
+
+Contingency tables of frequencies can also be tabulated with **table()**. For example:
+
+
+``` r
+table(
+  lon_dims_imd_2019$la19nm,
+  lon_dims_imd_2019$IDAOP_london_decile
+)
+```
+
+``` output
+                        
+                          1  2  3  4  5  6  7  8  9 10
+  Barking and Dagenham    6 11 23 25 22 12  7  4  0  0
+  Barnet                  6  7 13 15 18 32 29 37 29 25
+  Bexley                  0  3  2  5 11 11 15 24 30 45
+  Brent                  12 19 24 28 43 18 17 11  1  0
+  Bromley                 2  3  6  9 10 12 20 19 41 75
+  Camden                 12 19 14 18 14 10  9 16 11 10
+  City of London          0  0  1  0  0  0  0  1  0  4
+  Croydon                 8  7 16 25 23 20 29 24 29 39
+  Ealing                 11 18 22 23 24 23 31 21 18  5
+  Enfield                 9 19 27 22 26 17 16 22 18  7
+  Greenwich              19 20 11 19 17 14 20 14 12  5
+  Hackney                65 44 17 13  3  0  2  0  0  0
+  Hammersmith and Fulham 13 10 22 14 12 14 10 11  6  1
+  Haringey               30 32 25 14  8  5 12  9  8  2
+  Harrow                  2  6  8  8 20 24 26 17 15 11
+  Havering                0  2  4  8  7 16 17 21 37 38
+  Hillingdon              1  5  6  9 13 26 28 24 20 29
+  Hounslow                2  8 12 16 19 25 23 21 14  2
+  Islington              29 27 26 17  8  7  6  3  0  0
+  Kensington and Chelsea 13  9  9  5  5 11  5 10 15 21
+  Kingston upon Thames    1  1  2  3  2  8 12 19 22 28
+  Lambeth                34 33 26 26 22 16  9  9  3  0
+  Lewisham               14 17 21 25 31 20 14 17 10  0
+  Merton                  1  2  7 10 10 19 14 21 25 15
+  Newham                 44 57 30 17  8  7  1  0  0  0
+  Redbridge               3  5 19 23 24 25 19 20 13 10
+  Richmond upon Thames    0  0  0  3  2  5 11 16 32 46
+  Southwark              37 39 21 18 15 12  7  5  6  6
+  Sutton                  0  1  5  6  5  8 11 22 30 33
+  Tower Hamlets          83 17 16  6  7  4  5  4  1  1
+  Waltham Forest          8 16 21 20 19 23 14 12  7  4
+  Wandsworth              3 17 12 24 24 27 32 18 15  7
+  Westminster            15 10 15 10 11 13 12 12 15 15
+```
+
+Which leads quite naturally to the consideration of any association between the observed frequencies.
+
+# Inferential statistics
+
+## Meaningful analysis
+
+-   What is your hypothesis - what is your null hypothesis?
+
+::: callout
+Always: the level of the independent variable has no effect on the level of the dependent variable.
+:::
+
+-   What type of variables (data type) do you have?
+
+-   What are the assumptions of the test you are using?
+
+-   Interpreting the result
+
+## Testing significance
+
+-   p-value
+
+-   \<0.05
+
+-   0.03-0.049
+
+    -   Would benefit from further testing.
+
+**0.05** is not a magic number.
+
+## Comparing means
+
+It all starts with a hypothesis
+
+-   Null hypothesis
+    -   "There is no difference in mean height between men and women" $$mean\_height\_men - mean\_height\_women = 0$$
+-   Alternate hypothesis
+    -   "There is a difference in mean height between men and women"
+
+## More on hypothesis testing
+
+-   The null hypothesis (H0) assumes that the true mean difference (μd) is equal to zero.
+
+-   The two-tailed alternative hypothesis (H1) assumes that μd is not equal to zero.
+
+-   The upper-tailed alternative hypothesis (H1) assumes that μd is greater than zero.
+
+-   The lower-tailed alternative hypothesis (H1) assumes that μd is less than zero.
+
+-   Remember: hypotheses are never about data, they are about the processes which produce the data. The value of μd is unknown. The goal of hypothesis testing is to determine the hypothesis (null or alternative) with which the data are more consistent.
+
+## Comparing means
+
+Is there an absolute difference between the income ranks of the Lower-layer Super Output Areas
+
+
+``` r
+lon_dims_imd_2019 %>%
+  group_by(la19nm) %>%
+  summarise(avg = mean(Income_london_rank)) %>%
+  arrange(la19nm, .locale = "en")
+```
+
+``` output
+# A tibble: 33 × 2
+   la19nm                  avg
+   <chr>                 <dbl>
+ 1 Barking and Dagenham  7786.
+ 2 Barnet               17049.
+ 3 Bexley               18592.
+ 4 Brent                11500.
+ 5 Bromley              20826.
+ 6 Camden               14359.
+ 7 City of London       19800.
+ 8 Croydon              14686.
+ 9 Ealing               13718.
+10 Enfield              11403.
+# ℹ 23 more rows
+```
+
+
+Is the difference between heights statistically significant?
+
+## t-test
+
+### Assumptions of a t-test
+
+-   One independent categorical variable with 2 groups and one dependent continuous variable
+
+-   The dependent variable is approximately normally distributed in each group
+
+-   The observations are independent of each other
+
+-   For students' original t-statistic, that the variances in both groups are more or less equal. This constraint should probably be abandoned in favour of always using a conservative test.
+
+## Doing a t-test
+
+
+``` r
+# Example to be changed
+# t.test(pop ~ european, data = gapminder)$statistic
+# t.test(pop ~ european, data = gapminder)$parameter
+```
+
+Notice that the summary()** of the test contains more data than is output by default.
+
+
+Write a paragraph in markdown format reporting this test result including the t-statistic, the degrees of freedom, the confidence interval and the p-value to 4 places.  To do this include your r code **inline** with your text, rather than in an R code chunk.
+
+### t-test result
+
+Testing supported the rejection of the null hypothesis that there is no difference between mean populations of European and non-European participants (**t**=4.6119, **df**= 1585.1044,
+**p**= 0).
+
+(Can you get p to display to four places?  Cf *format()*.)
+
+## More than two levels of IV
+
+While the t-test is sufficient where there are two levels of the IV, for situations where there are more than two, we use the **ANOVA** family of procedures. To show this, we will create a variable that subsets our data by *per capita GDP* levels. If the ANOVA result is statistically significant, we will use a post-hoc test method to do pairwise comparisons (here Tukey's Honest Significant Differences.)
+
+
+``` r
+# quantile(gapminder$gdpPercap)
+# IQR(gapminder$gdpPercap)
+
+# gapminder$gdpGroup <- cut(gapminder$gdpPercap, breaks = c(241.1659, 1202.0603, 3531.8470, 9325.4623, 113523.1329), labels = FALSE)
+
+# gapminder$gdpGroup <- factor(gapminder$gdpGroup)
+
+# anovamodel <- aov(gapminder$pop ~ gapminder$gdpGroup)
+anovamodel <- aov(lon_dims_imd_2019$health_london_rank ~ lon_dims_imd_2019$la19nm)
+summary(anovamodel)
+```
+
+``` output
+                           Df    Sum Sq   Mean Sq F value Pr(>F)    
+lon_dims_imd_2019$la19nm   32 1.156e+11 3.614e+09    94.3 <2e-16 ***
+Residuals                4802 1.840e+11 3.832e+07                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+``` r
+TukeyHSD(anovamodel)
+```
+
+``` output
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = lon_dims_imd_2019$health_london_rank ~ lon_dims_imd_2019$la19nm)
+
+$`lon_dims_imd_2019$la19nm`
+                                                      diff           lwr
+Barnet-Barking and Dagenham                    14629.43408  11864.704458
+Bexley-Barking and Dagenham                    10324.16189   7356.018133
+Brent-Barking and Dagenham                      8976.53678   6109.643394
+Bromley-Barking and Dagenham                   13160.91347  10362.721854
+Camden-Barking and Dagenham                     8842.99282   5813.159809
+City of London-Barking and Dagenham             8728.87879  -1126.986222
+Croydon-Barking and Dagenham                    5472.01364   2726.731357
+Ealing-Barking and Dagenham                     7444.55056   4643.802426
+Enfield-Barking and Dagenham                    9856.81595   7020.532420
+Greenwich-Barking and Dagenham                  3308.37658    361.423935
+Hackney-Barking and Dagenham                   -2303.09343  -5280.080786
+Hammersmith and Fulham-Barking and Dagenham     3374.21360    225.344643
+Haringey-Barking and Dagenham                   4977.28683   2004.748485
+Harrow-Barking and Dagenham                    14760.22064  11750.476548
+Havering-Barking and Dagenham                   9781.09212   6830.002345
+Hillingdon-Barking and Dagenham                 7988.28148   5080.156381
+Hounslow-Barking and Dagenham                   6633.44686   3647.394114
+Islington-Barking and Dagenham                  -824.36918  -3909.451677
+Kensington and Chelsea-Barking and Dagenham    12368.11342   9144.725551
+Kingston upon Thames-Barking and Dagenham      14113.29035  10847.712764
+Lambeth-Barking and Dagenham                     672.68029  -2178.519304
+Lewisham-Barking and Dagenham                   2032.14605   -847.904610
+Merton-Barking and Dagenham                    10555.97287   7476.768867
+Newham-Barking and Dagenham                     3111.49058    214.182117
+Redbridge-Barking and Dagenham                 12151.31254   9243.187437
+Richmond upon Thames-Barking and Dagenham      16323.63676  13188.303452
+Southwark-Barking and Dagenham                  1514.92497  -1375.368048
+Sutton-Barking and Dagenham                     9931.89669   6834.800590
+Tower Hamlets-Barking and Dagenham               213.70518  -2763.282174
+Waltham Forest-Barking and Dagenham             5217.66351   2240.676159
+Wandsworth-Barking and Dagenham                 7836.77730   4988.621232
+Westminster-Barking and Dagenham               10411.40483   7354.901517
+Bexley-Barnet                                  -4305.27219  -6836.050897
+Brent-Barnet                                   -5652.89730  -8064.129596
+Bromley-Barnet                                 -1468.52061  -3797.649164
+Camden-Barnet                                  -5786.44126  -8389.295764
+City of London-Barnet                          -5900.55529 -15633.645171
+Croydon-Barnet                                 -9157.42044 -11422.710334
+Ealing-Barnet                                  -7184.88352  -9517.082825
+Enfield-Barnet                                 -4772.61813  -7147.374486
+Greenwich-Barnet                              -11321.05750 -13826.949235
+Hackney-Barnet                                -16932.52751 -19473.672372
+Hammersmith and Fulham-Barnet                 -11255.22048 -13995.720289
+Haringey-Barnet                                -9652.14725 -12188.078581
+Harrow-Barnet                                    130.78656  -2448.655820
+Havering-Barnet                                -4848.34196  -7359.097695
+Hillingdon-Barnet                              -6641.15260  -9101.265420
+Hounslow-Barnet                                -7995.98722 -10547.746319
+Islington-Barnet                              -15453.80326 -18120.767360
+Kensington and Chelsea-Barnet                  -2261.32066  -5087.129012
+Kingston upon Thames-Barnet                     -516.14373  -3389.984447
+Lambeth-Barnet                                -13956.75379 -16349.305276
+Lewisham-Barnet                               -12597.28803 -15024.149232
+Merton-Barnet                                  -4073.46121  -6733.623008
+Newham-Barnet                                 -11517.94350 -13965.260362
+Redbridge-Barnet                               -2478.12154  -4938.234364
+Richmond upon Thames-Barnet                     1694.20268  -1030.733731
+Southwark-Barnet                              -13114.50911 -15553.516537
+Sutton-Barnet                                  -4697.53739  -7378.389447
+Tower Hamlets-Barnet                          -14415.72890 -16956.873760
+Waltham Forest-Barnet                          -9411.77057 -11952.915427
+Wandsworth-Barnet                              -6792.65678  -9181.580488
+Westminster-Barnet                             -4218.02925  -6851.881182
+Brent-Bexley                                   -1347.62511  -3989.629784
+Bromley-Bexley                                  2836.75158    269.459752
+Camden-Bexley                                  -1481.16907  -4299.146906
+City of London-Bexley                          -1595.28311 -11388.096086
+Croydon-Bexley                                 -4852.14826  -7361.667291
+Ealing-Bexley                                  -2879.61134  -5449.689367
+Enfield-Bexley                                  -467.34595  -3076.103358
+Greenwich-Bexley                               -7015.78531  -9744.455480
+Hackney-Bexley                                -12627.25533 -15388.335674
+Hammersmith and Fulham-Bexley                  -6949.94830  -9895.535959
+Haringey-Bexley                                -5346.87506  -8103.157924
+Harrow-Bexley                                   4436.05874   1639.691373
+Havering-Bexley                                 -543.06977  -3276.207504
+Hillingdon-Bexley                              -2335.88041  -5022.570306
+Hounslow-Bexley                                -3690.71503  -6461.567248
+Islington-Bexley                              -11148.53107 -14025.829286
+Kensington and Chelsea-Bexley                   2043.95152   -981.166709
+Kingston upon Thames-Bexley                     3789.12846    719.094587
+Lambeth-Bexley                                 -9651.48161 -12276.448291
+Lewisham-Bexley                                -8292.01585 -10948.291957
+Merton-Bexley                                    231.81098  -2639.183326
+Newham-Bexley                                  -7212.67132  -9887.649317
+Redbridge-Bexley                                1827.15064   -859.539251
+Richmond upon Thames-Bexley                     5999.47487   3068.361436
+Southwark-Bexley                               -8809.23692 -11476.614797
+Sutton-Bexley                                   -392.26520  -3282.440846
+Tower Hamlets-Bexley                          -10110.45672 -12871.537063
+Waltham Forest-Bexley                          -5106.49838  -7867.578730
+Wandsworth-Bexley                              -2487.38459  -5109.045132
+Westminster-Bexley                                87.24294  -2759.390776
+Bromley-Brent                                   4184.37669   1734.848640
+Camden-Brent                                    -133.54396  -2844.669081
+City of London-Brent                            -247.65800 -10010.259412
+Croydon-Brent                                  -3504.52315  -5893.432127
+Ealing-Brent                                   -1531.98623  -3984.434272
+Enfield-Brent                                    880.27916  -1612.674019
+Greenwich-Brent                                -5668.16020  -8286.335372
+Hackney-Brent                                 -11279.63022 -13931.566306
+Hammersmith and Fulham-Brent                   -5602.32319  -8445.857434
+Haringey-Brent                                 -3999.24995  -6646.190743
+Harrow-Brent                                    5783.68385   3095.027906
+Havering-Brent                                   804.55534  -1818.275613
+Hillingdon-Brent                                -988.25530  -3562.649002
+Hounslow-Brent                                 -2343.08992  -5005.198548
+Islington-Brent                                -9800.90596 -12573.638432
+Kensington and Chelsea-Brent                    3391.57663    465.736471
+Kingston upon Thames-Brent                      5136.75357   2164.497135
+Lambeth-Brent                                  -8303.85650 -10813.766939
+Lewisham-Brent                                 -6944.39074  -9487.027775
+Merton-Brent                                    1579.43609  -1186.754186
+Newham-Brent                                   -5865.04621  -8427.214749
+Redbridge-Brent                                 3174.77575    600.382054
+Richmond upon Thames-Brent                      7347.09997   4518.562143
+Southwark-Brent                                -7461.61181 -10015.844586
+Sutton-Brent                                     955.35991  -1830.733341
+Tower Hamlets-Brent                            -8762.83161 -11414.767695
+Waltham Forest-Brent                           -3758.87327  -6410.809361
+Wandsworth-Brent                               -1139.75949  -3646.212019
+Westminster-Brent                               1434.86805  -1306.030315
+Camden-Bromley                                 -4317.92065  -6956.290992
+City of London-Bromley                         -4432.03469 -14174.682430
+Croydon-Bromley                                -7688.89984  -9994.910409
+Ealing-Bromley                                 -5716.36292  -8088.134418
+Enfield-Bromley                                -3304.09753  -5717.728445
+Greenwich-Bromley                              -9852.53689 -12395.299143
+Hackney-Bromley                               -15464.00691 -18041.518044
+Hammersmith and Fulham-Bromley                 -9786.69988 -12560.953949
+Haringey-Bromley                               -8183.62664 -10755.997959
+Harrow-Bromley                                  1599.30716  -1015.969007
+Havering-Bromley                               -3379.82135  -5927.377208
+Hillingdon-Bromley                             -5172.63200  -7670.291209
+Hounslow-Bromley                               -6527.46661  -9115.442844
+Islington-Bromley                             -13985.28265 -16686.919932
+Kensington and Chelsea-Bromley                  -792.80006  -3651.355513
+Kingston upon Thames-Bromley                     952.37688  -1953.669740
+Lambeth-Bromley                               -12488.23319 -14919.374703
+Lewisham-Bromley                              -11128.76743 -13593.681574
+Merton-Bromley                                 -2604.94060  -5299.863100
+Newham-Bromley                                -10049.42290 -12534.479492
+Redbridge-Bromley                              -1009.60094  -3507.260153
+Richmond upon Thames-Bromley                    3162.72328    403.842187
+Southwark-Bromley                             -11645.98850 -14122.862279
+Sutton-Bromley                                 -3229.01678  -5944.364685
+Tower Hamlets-Bromley                         -12947.20830 -15524.719433
+Waltham Forest-Bromley                         -7943.24996 -10520.761099
+Wandsworth-Bromley                             -5324.13618  -7751.707584
+Westminster-Bromley                            -2749.50865  -5418.463958
+City of London-Camden                           -114.11404  -9925.800780
+Croydon-Camden                                 -3370.97919  -5953.167502
+Ealing-Camden                                  -1398.44227  -4039.523824
+Enfield-Camden                                  1013.82312  -1664.912762
+Greenwich-Camden                               -5534.61624  -8330.264932
+Hackney-Camden                                -11146.08626 -13973.377433
+Hammersmith and Fulham-Camden                  -5468.77923  -8476.518808
+Haringey-Camden                                -3865.70599  -6688.312221
+Harrow-Camden                                   5917.22781   3055.465912
+Havering-Camden                                  938.09930  -1861.910090
+Hillingdon-Camden                               -854.71134  -3609.400671
+Hounslow-Camden                                -2209.54596  -5046.380944
+Islington-Camden                               -9667.36200 -12608.255697
+Kensington and Chelsea-Camden                   3525.12059    439.451941
+Kingston upon Thames-Camden                     5270.29753   2140.582097
+Lambeth-Camden                                 -8170.31254 -10864.836763
+Lewisham-Camden                                -6810.84678  -9535.881361
+Merton-Camden                                   1712.98005  -1221.746345
+Newham-Camden                                  -5731.50225  -8474.770009
+Redbridge-Camden                                3308.31971    553.630385
+Richmond upon Thames-Camden                     7480.64394   4487.078061
+Southwark-Camden                               -7328.06785 -10063.925202
+Sutton-Camden                                   1088.90387  -1864.589989
+Tower Hamlets-Camden                           -8629.28765 -11456.578822
+Waltham Forest-Camden                          -3625.32931  -6452.620489
+Wandsworth-Camden                              -1006.21552  -3697.519053
+Westminster-Camden                              1568.41201  -1342.487202
+Croydon-City of London                         -3256.86515 -12984.448792
+Ealing-City of London                          -1284.32823 -11027.710539
+Enfield-City of London                          1127.93716  -8625.719230
+Greenwich-City of London                       -5420.50221 -15206.913122
+Hackney-City of London                        -11031.97222 -20827.469269
+Hammersmith and Fulham-City of London          -5354.66519 -15203.760804
+Haringey-City of London                        -3751.59195 -13545.737804
+Harrow-City of London                           6031.34185  -3774.160085
+Havering-City of London                         1052.21333  -8735.444178
+Hillingdon-City of London                       -740.59731 -10515.386323
+Hounslow-City of London                        -2095.43192 -11893.687878
+Islington-City of London                       -9553.24797 -19382.136140
+Kensington and Chelsea-City of London           3639.23463  -6233.938014
+Kingston upon Thames-City of London             5384.41156  -4502.615576
+Lambeth-City of London                         -8056.19850 -17814.202796
+Lewisham-City of London                        -6696.73274 -16463.206029
+Merton-City of London                           1827.09409  -7999.950537
+Newham-City of London                          -5617.38821 -15388.964594
+Redbridge-City of London                        3422.43375  -6352.355267
+Richmond upon Thames-City of London             7594.75797  -2250.018494
+Southwark-City of London                       -7213.95382 -16983.452392
+Sutton-City of London                           1203.01791  -8629.647703
+Tower Hamlets-City of London                   -8515.17361 -18310.670658
+Waltham Forest-City of London                  -3511.21528 -13306.712324
+Wandsworth-City of London                       -892.10149 -10649.216928
+Westminster-City of London                      1682.52604  -8137.429213
+Ealing-Croydon                                  1972.53692   -336.575137
+Enfield-Croydon                                 4384.80231   2032.715440
+Greenwich-Croydon                              -2163.63706  -4648.056162
+Hackney-Croydon                                -7775.10707 -10295.079708
+Hammersmith and Fulham-Croydon                 -2097.80004  -4818.679326
+Haringey-Croydon                                -494.72680  -3009.442023
+Harrow-Croydon                                  9288.20700   6729.619913
+Havering-Croydon                                4309.07848   1819.753421
+Hillingdon-Croydon                              2516.26784     78.030777
+Hounslow-Croydon                                1161.43323  -1369.242459
+Islington-Croydon                              -6296.38282  -8943.181339
+Kensington and Chelsea-Croydon                  6896.09978   4089.315547
+Kingston upon Thames-Croydon                    8641.27672   5786.140049
+Lambeth-Croydon                                -4799.33335  -7169.385566
+Lewisham-Croydon                               -3439.86759  -5844.550560
+Merton-Croydon                                  5083.95924   2444.014973
+Newham-Croydon                                 -2360.52306  -4785.848752
+Redbridge-Croydon                               6679.29890   4241.061833
+Richmond upon Thames-Croydon                   10851.62312   8146.420108
+Southwark-Croydon                              -3957.08866  -6374.029322
+Sutton-Croydon                                  4459.88306   1799.091318
+Tower Hamlets-Croydon                          -5258.30846  -7778.281097
+Waltham Forest-Croydon                          -254.35013  -2774.322764
+Wandsworth-Croydon                              2364.76366     -1.626285
+Westminster-Croydon                             4939.39119   2325.960325
+Enfield-Ealing                                  2412.26539     -4.328896
+Greenwich-Ealing                               -4136.17398  -6681.749273
+Hackney-Ealing                                 -9747.64399 -12327.930291
+Hammersmith and Fulham-Ealing                  -4070.33696  -6847.169578
+Haringey-Ealing                                -2467.26372  -5042.415745
+Harrow-Ealing                                   7315.67008   4697.658778
+Havering-Ealing                                 2336.54156   -213.822051
+Hillingdon-Ealing                                543.73092  -1956.792080
+Hounslow-Ealing                                 -811.10369  -3401.843881
+Islington-Ealing                               -8268.91974 -10973.204802
+Kensington and Chelsea-Ealing                   4923.56286   2062.504834
+Kingston upon Thames-Ealing                     6668.73980   3760.231470
+Lambeth-Ealing                                 -6771.87027  -9205.953836
+Lewisham-Ealing                                -5412.40451  -7880.220444
+Merton-Ealing                                   3111.42232    413.845438
+Newham-Ealing                                  -4333.05998  -6820.994869
+Redbridge-Ealing                                4706.76198   2206.238976
+Richmond upon Thames-Ealing                     8879.08620   6117.612204
+Southwark-Ealing                               -5929.62558  -8409.387154
+Sutton-Ealing                                   2487.34614   -230.636199
+Tower Hamlets-Ealing                           -7230.84538  -9811.131680
+Waltham Forest-Ealing                          -2226.88705  -4807.173347
+Wandsworth-Ealing                                392.22674  -2038.291038
+Westminster-Ealing                              2966.85427    295.218781
+Greenwich-Enfield                              -6548.43937  -9133.060759
+Hackney-Enfield                               -12159.90938 -14778.724292
+Hammersmith and Fulham-Enfield                 -6482.60235  -9295.272529
+Haringey-Enfield                               -4879.52911  -7493.285430
+Harrow-Enfield                                  4903.40469   2247.411970
+Havering-Enfield                                 -75.72383  -2665.061331
+Hillingdon-Enfield                             -1868.53447  -4408.796154
+Hounslow-Enfield                               -3223.36908  -5852.484690
+Islington-Enfield                             -10681.18513 -13422.256426
+Kensington and Chelsea-Enfield                  2511.29747   -384.555976
+Kingston upon Thames-Enfield                    4256.47441   1313.731666
+Lambeth-Enfield                                -9184.13566 -11659.024941
+Lewisham-Enfield                               -7824.66990 -10332.742792
+Merton-Enfield                                   699.15693  -2035.296431
+Newham-Enfield                                 -6745.32537  -9273.196839
+Redbridge-Enfield                               2294.49659   -245.765098
+Richmond upon Thames-Enfield                    6466.82081   3669.312493
+Southwark-Enfield                              -8341.89097 -10861.718665
+Sutton-Enfield                                    75.08075  -2679.504907
+Tower Hamlets-Enfield                          -9643.11077 -12261.925681
+Waltham Forest-Enfield                         -4639.15244  -7257.967348
+Wandsworth-Enfield                             -2020.03865  -4491.421020
+Westminster-Enfield                              554.58888  -2154.276258
+Hackney-Greenwich                              -5611.47001  -8349.757288
+Hammersmith and Fulham-Greenwich                  65.83702  -2858.396078
+Haringey-Greenwich                              1668.91025  -1064.539534
+Harrow-Greenwich                               11451.84406   8677.979787
+Havering-Greenwich                              6472.71554   3762.605880
+Hillingdon-Greenwich                            4679.90490   2016.644662
+Hounslow-Greenwich                              3325.07028    576.930089
+Islington-Greenwich                            -4132.74576  -6988.178743
+Kensington and Chelsea-Greenwich                9059.73684   6055.407821
+Kingston upon Thames-Greenwich                 10804.91377   7755.362906
+Lambeth-Greenwich                              -2635.69629  -5236.677379
+Lewisham-Greenwich                             -1276.23053  -3908.806323
+Merton-Greenwich                                7247.59629   4398.515596
+Newham-Greenwich                                -196.88600  -2848.330858
+Redbridge-Greenwich                             8842.93595   6179.675718
+Richmond upon Thames-Greenwich                 13015.26018  10105.607545
+Southwark-Greenwich                            -1793.45161  -4437.228688
+Sutton-Greenwich                                6623.52011   3755.111534
+Tower Hamlets-Greenwich                        -3094.67140  -5832.958677
+Waltham Forest-Greenwich                        1909.28693   -829.000344
+Wandsworth-Greenwich                            4528.40072   1930.756308
+Westminster-Greenwich                           7103.02825   4278.497137
+Hammersmith and Fulham-Hackney                  5677.30703   2722.808260
+Haringey-Hackney                                7280.38027   4514.576309
+Harrow-Hackney                                 17063.31407  14257.561626
+Havering-Hackney                               12084.18556   9341.446383
+Hillingdon-Hackney                             10291.37491   7594.918185
+Hounslow-Hackney                                8936.54030   6156.216877
+Islington-Hackney                               1478.72425  -1407.695902
+Kensington and Chelsea-Hackney                 14671.20685  11637.411105
+Kingston upon Thames-Hackney                   16416.38379  13337.799001
+Lambeth-Hackney                                 2975.77372    340.811405
+Lewisham-Hackney                                4335.23948   1669.085118
+Merton-Hackney                                 12859.06631   9978.930093
+Newham-Hackney                                  5414.58401   2729.796568
+Redbridge-Hackney                              14454.40597  11757.949241
+Richmond upon Thames-Hackney                   18626.73019  15686.661785
+Southwark-Hackney                               3818.01841   1140.803241
+Sutton-Hackney                                 12234.99013   9335.733055
+Tower Hamlets-Hackney                           2516.79861   -253.786344
+Waltham Forest-Hackney                          7520.75694   4750.171990
+Wandsworth-Hackney                             10139.87073   7508.202007
+Westminster-Hackney                            12714.49826   9858.644661
+Haringey-Hammersmith and Fulham                 1603.07324  -1346.942615
+Harrow-Hammersmith and Fulham                  11386.00704   8398.504944
+Havering-Hammersmith and Fulham                 6406.87853   3478.476202
+Hillingdon-Hammersmith and Fulham               4614.06788   1728.968079
+Hounslow-Hammersmith and Fulham                 3259.23327    295.600308
+Islington-Hammersmith and Fulham               -4198.58278  -7261.970331
+Kensington and Chelsea-Hammersmith and Fulham   8993.89982   5791.269866
+Kingston upon Thames-Hammersmith and Fulham    10739.07676   7493.987192
+Lambeth-Hammersmith and Fulham                 -2701.53331  -5529.244115
+Lewisham-Hammersmith and Fulham                -1342.06755  -4198.866646
+Merton-Hammersmith and Fulham                   7181.75928   4124.291925
+Newham-Hammersmith and Fulham                   -262.72302  -3136.919535
+Redbridge-Hammersmith and Fulham                8777.09894   5891.999134
+Richmond upon Thames-Hammersmith and Fulham    12949.42316   9835.434685
+Southwark-Hammersmith and Fulham               -1859.28862  -4726.413148
+Sutton-Hammersmith and Fulham                   6557.68310   3482.197189
+Tower Hamlets-Hammersmith and Fulham           -3160.50842  -6115.007190
+Waltham Forest-Hammersmith and Fulham           1843.44991  -1111.048857
+Wandsworth-Hammersmith and Fulham               4462.56370   1637.921729
+Westminster-Hammersmith and Fulham              7037.19123   4002.587174
+Harrow-Haringey                                 9782.93380   6981.902327
+Havering-Haringey                               4803.80529   2065.895735
+Hillingdon-Haringey                             3010.99465    319.450584
+Hounslow-Haringey                               1656.16003  -1119.399170
+Islington-Haringey                             -5801.65601  -8683.487353
+Kensington and Chelsea-Haringey                 7390.82658   4361.396409
+Kingston upon Thames-Haringey                   9136.00352   6061.720703
+Lambeth-Haringey                               -4304.60655  -6934.541328
+Lewisham-Haringey                              -2945.14079  -5606.326544
+Merton-Haringey                                 5578.68604   2703.148670
+Newham-Haringey                                -1865.79626  -4545.649642
+Redbridge-Haringey                              7174.02570   4482.481640
+Richmond upon Thames-Haringey                  11346.34993   8410.786471
+Southwark-Haringey                             -3462.36186  -6134.628987
+Sutton-Haringey                                 4954.60986   2059.921254
+Tower Hamlets-Haringey                         -4763.58166  -7529.385616
+Waltham Forest-Haringey                          240.37668  -2525.427283
+Wandsworth-Haringey                             2859.49046    232.855578
+Westminster-Haringey                            5434.11800   2582.902404
+Havering-Harrow                                -4979.12852  -7757.387676
+Hillingdon-Harrow                              -6771.93916  -9504.517552
+Hounslow-Harrow                                -8126.77377 -10942.143042
+Islington-Harrow                              -15584.58982 -18504.782809
+Kensington and Chelsea-Harrow                  -2392.10722  -5458.052820
+Kingston upon Thames-Harrow                     -646.93028  -3757.201989
+Lambeth-Harrow                                -14087.54035 -16759.455805
+Lewisham-Harrow                               -12728.07459 -15430.755644
+Merton-Harrow                                  -4204.24776  -7118.229646
+Newham-Harrow                                 -11648.73006 -14369.794081
+Redbridge-Harrow                               -2608.90810  -5341.486496
+Richmond upon Thames-Harrow                     1563.41612  -1409.815796
+Southwark-Harrow                              -13245.29566 -15958.888640
+Sutton-Harrow                                  -4828.32394  -7761.206036
+Tower Hamlets-Harrow                          -14546.51546 -17352.267905
+Waltham Forest-Harrow                          -9542.55713 -12348.309572
+Wandsworth-Harrow                              -6923.44334  -9592.110810
+Westminster-Harrow                             -4348.81581  -7238.799474
+Hillingdon-Havering                            -1792.81064  -4460.647981
+Hounslow-Havering                              -3147.64526  -5900.221416
+Islington-Havering                            -10605.46130 -13465.163820
+Kensington and Chelsea-Havering                 2587.02129   -421.365949
+Kingston upon Thames-Havering                   4332.19823   1278.649236
+Lambeth-Havering                               -9108.41184 -11714.079424
+Lewisham-Havering                              -7748.94607 -10386.152222
+Merton-Havering                                  774.88075  -2078.478986
+Newham-Havering                                -6669.60154  -9325.643862
+Redbridge-Havering                              2370.22041   -297.616925
+Richmond upon Thames-Havering                   6542.54464   3628.701913
+Southwark-Havering                             -8266.16715 -10914.555003
+Sutton-Havering                                  150.80457  -2721.854258
+Tower Hamlets-Havering                         -9567.38694 -12310.126117
+Waltham Forest-Havering                        -4563.42861  -7306.167784
+Wandsworth-Havering                            -1944.31482  -4546.651746
+Westminster-Havering                             630.31271  -2198.534580
+Hounslow-Hillingdon                            -1354.83462  -4061.296554
+Islington-Hillingdon                           -8812.65066 -11627.994194
+Kensington and Chelsea-Hillingdon               4379.83194   1413.579330
+Kingston upon Thames-Hillingdon                 6125.00887   3112.962694
+Lambeth-Hillingdon                             -7315.60119  -9872.506413
+Lewisham-Hillingdon                            -5956.13543  -8545.173282
+Merton-Hillingdon                               2567.69139   -241.209194
+Newham-Hillingdon                              -4876.79090  -7485.012809
+Redbridge-Hillingdon                            4163.03106   1542.798855
+Richmond upon Thames-Hillingdon                 8335.35528   5465.034715
+Southwark-Hillingdon                           -6473.35651  -9073.783192
+Sutton-Hillingdon                               1943.61521   -884.887831
+Tower Hamlets-Hillingdon                       -7774.57630 -10471.033031
+Waltham Forest-Hillingdon                      -2770.61797  -5467.074698
+Wandsworth-Hillingdon                           -151.50418  -2705.015132
+Westminster-Hillingdon                          2423.12335   -360.873363
+Islington-Hounslow                             -7457.81604 -10353.585137
+Kensington and Chelsea-Hounslow                 5734.66655   2691.974660
+Kingston upon Thames-Hounslow                   7479.84349   4392.491612
+Lambeth-Hounslow                               -5960.76658  -8605.966708
+Lewisham-Hounslow                              -4601.30082  -7277.573675
+Merton-Hounslow                                 3922.52601   1033.020525
+Newham-Hounslow                                -3521.95629  -6216.792264
+Redbridge-Hounslow                              5517.86567   2811.403735
+Richmond upon Thames-Hounslow                   9690.18990   6740.942606
+Southwark-Hounslow                             -5118.52189  -7805.813906
+Sutton-Hounslow                                 3298.44983    389.885080
+Tower Hamlets-Hounslow                         -6419.74169  -9200.065107
+Waltham Forest-Hounslow                        -1415.78335  -4196.106773
+Wandsworth-Hounslow                             1203.33044  -1438.588869
+Westminster-Hounslow                            3777.95797    912.655690
+Kensington and Chelsea-Islington               13192.48260  10052.546775
+Kingston upon Thames-Islington                 14937.65953  11754.427745
+Lambeth-Islington                               1497.04947  -1259.453161
+Lewisham-Islington                              2856.51523     70.180822
+Merton-Islington                               11380.34205   8388.609287
+Newham-Islington                                3935.85976   1131.690727
+Redbridge-Islington                            12975.68171  10160.338180
+Richmond upon Thames-Islington                 17148.00594  14098.533431
+Southwark-Islington                             2339.29415   -457.625828
+Sutton-Islington                               10756.26587   7746.121042
+Tower Hamlets-Islington                         1038.07436  -1848.345800
+Waltham Forest-Islington                        6042.03269   3155.612533
+Wandsworth-Islington                            8661.14648   5907.792049
+Westminster-Islington                          11235.77401   8267.410802
+Kingston upon Thames-Kensington and Chelsea     1745.17694  -1572.270865
+Lambeth-Kensington and Chelsea                -11695.43313 -14605.897360
+Lewisham-Kensington and Chelsea               -10335.96737 -13274.700892
+Merton-Kensington and Chelsea                  -1812.14054  -4946.300757
+Newham-Kensington and Chelsea                  -9256.62284 -12212.271541
+Redbridge-Kensington and Chelsea                -216.80088  -3183.053487
+Richmond upon Thames-Kensington and Chelsea     3955.52334    766.200863
+Southwark-Kensington and Chelsea              -10853.18844 -13801.960506
+Sutton-Kensington and Chelsea                  -2436.21672  -5587.957069
+Tower Hamlets-Kensington and Chelsea          -12154.40824 -15188.203984
+Waltham Forest-Kensington and Chelsea          -7150.44991 -10184.245651
+Wandsworth-Kensington and Chelsea              -4531.33612  -7438.818863
+Westminster-Kensington and Chelsea             -1956.70859  -5068.569032
+Lambeth-Kingston upon Thames                  -13440.61007 -16397.731927
+Lewisham-Kingston upon Thames                 -12081.14431 -15066.093615
+Merton-Kingston upon Thames                    -3557.31748  -6734.852359
+Newham-Kingston upon Thames                   -11001.79978 -14003.403832
+Redbridge-Kingston upon Thames                 -1961.97782  -4974.023996
+Richmond upon Thames-Kingston upon Thames       2210.34641  -1021.610515
+Southwark-Kingston upon Thames                -12598.36538 -15593.198320
+Sutton-Kingston upon Thames                    -4181.39366  -7376.270006
+Tower Hamlets-Kingston upon Thames            -13899.58518 -16978.169962
+Waltham Forest-Kingston upon Thames            -8895.62684 -11974.211628
+Wandsworth-Kingston upon Thames                -6276.51305  -9230.700519
+Westminster-Kingston upon Thames               -3701.88552  -6857.427172
+Lewisham-Lambeth                                1359.46576  -1165.462851
+Merton-Lambeth                                  9883.29259   7133.370765
+Newham-Lambeth                                  2438.81029   -105.785753
+Redbridge-Lambeth                              11478.63225   8921.727030
+Richmond upon Thames-Lambeth                   15650.95647  12838.326448
+Southwark-Lambeth                                842.24469  -1694.360615
+Sutton-Lambeth                                  9259.21641   6489.274714
+Tower Hamlets-Lambeth                           -458.97511  -3093.937424
+Waltham Forest-Lambeth                          4544.98322   1910.020909
+Wandsworth-Lambeth                              7164.09701   4675.610386
+Westminster-Lambeth                             9738.72454   7014.245655
+Merton-Lewisham                                 8523.82683   5744.002604
+Newham-Lewisham                                 1079.34453  -1497.537637
+Redbridge-Lewisham                             10119.16649   7530.128640
+Richmond upon Thames-Lewisham                  14291.49071  11449.618031
+Southwark-Lewisham                              -517.22107  -3086.212926
+Sutton-Lewisham                                 7899.75065   5100.120374
+Tower Hamlets-Lewisham                         -1818.44087  -4484.595232
+Waltham Forest-Lewisham                         3185.51746    519.363102
+Wandsworth-Lewisham                             5804.63125   3283.139953
+Westminster-Lewisham                            8379.25878   5624.601292
+Newham-Merton                                  -7444.48230 -10242.182646
+Redbridge-Merton                                1595.33966  -1213.560927
+Richmond upon Thames-Merton                     5767.66388   2724.138647
+Southwark-Merton                               -9041.04790 -11831.482397
+Sutton-Merton                                   -624.07618  -3628.195886
+Tower Hamlets-Merton                          -10342.26770 -13222.403913
+Waltham Forest-Merton                          -5338.30936  -8218.445579
+Wandsworth-Merton                              -2719.19558  -5465.961658
+Westminster-Merton                              -144.56804  -3106.821145
+Redbridge-Newham                                9039.82196   6431.600053
+Richmond upon Thames-Newham                    13212.14618  10352.785263
+Southwark-Newham                               -1596.56560  -4184.890094
+Sutton-Newham                                   6820.40612   4003.025383
+Tower Hamlets-Newham                           -2897.78540  -5582.572843
+Waltham Forest-Newham                           2106.17293   -578.614509
+Wandsworth-Newham                               4725.28672   2184.101388
+Westminster-Newham                              7299.91425   4527.218376
+Richmond upon Thames-Redbridge                  4172.32422   1302.003659
+Southwark-Redbridge                           -10636.38756 -13236.814248
+Sutton-Redbridge                               -2219.41584  -5047.918887
+Tower Hamlets-Redbridge                       -11937.60736 -14634.064087
+Waltham Forest-Redbridge                       -6933.64903  -9630.105754
+Wandsworth-Redbridge                           -4314.53524  -6868.046188
+Westminster-Redbridge                          -1739.90771  -4523.904419
+Southwark-Richmond upon Thames                -14808.71179 -17660.963932
+Sutton-Richmond upon Thames                    -6391.74006  -9453.365913
+Tower Hamlets-Richmond upon Thames            -16109.93158 -19049.999991
+Waltham Forest-Richmond upon Thames           -11105.97325 -14046.041657
+Wandsworth-Richmond upon Thames                -8486.85946 -11296.404181
+Westminster-Richmond upon Thames               -5912.23193  -8932.788345
+Sutton-Southwark                                8416.97172   5606.805955
+Tower Hamlets-Southwark                        -1301.21980  -3978.434962
+Waltham Forest-Southwark                        3702.73854   1025.523371
+Wandsworth-Southwark                            6321.85233   3788.668492
+Westminster-Southwark                           8896.47986   6131.115531
+Tower Hamlets-Sutton                           -9718.19152 -12617.448591
+Waltham Forest-Sutton                          -4714.23318  -7613.490258
+Wandsworth-Sutton                              -2095.11940  -4861.928184
+Westminster-Sutton                               479.50814  -2501.339126
+Waltham Forest-Tower Hamlets                    5003.95833   2233.373379
+Wandsworth-Tower Hamlets                        7623.07212   4991.403396
+Westminster-Tower Hamlets                      10197.69965   7341.846050
+Wandsworth-Waltham Forest                       2619.11379    -12.554937
+Westminster-Waltham Forest                      5193.74132   2337.887716
+Westminster-Wandsworth                          2574.62753   -146.666112
+                                                       upr     p adj
+Barnet-Barking and Dagenham                    17394.16370 0.0000000
+Bexley-Barking and Dagenham                    13292.30565 0.0000000
+Brent-Barking and Dagenham                     11843.43017 0.0000000
+Bromley-Barking and Dagenham                   15959.10510 0.0000000
+Camden-Barking and Dagenham                    11872.82584 0.0000000
+City of London-Barking and Dagenham            18584.74380 0.1877166
+Croydon-Barking and Dagenham                    8217.29592 0.0000000
+Ealing-Barking and Dagenham                    10245.29869 0.0000000
+Enfield-Barking and Dagenham                   12693.09947 0.0000000
+Greenwich-Barking and Dagenham                  6255.32923 0.0085802
+Hackney-Barking and Dagenham                     673.89392 0.4778538
+Hammersmith and Fulham-Barking and Dagenham     6523.08255 0.0185918
+Haringey-Barking and Dagenham                   7949.82518 0.0000001
+Harrow-Barking and Dagenham                    17769.96473 0.0000000
+Havering-Barking and Dagenham                  12732.18190 0.0000000
+Hillingdon-Barking and Dagenham                10896.40658 0.0000000
+Hounslow-Barking and Dagenham                   9619.49961 0.0000000
+Islington-Barking and Dagenham                  2260.71332 1.0000000
+Kensington and Chelsea-Barking and Dagenham    15591.50128 0.0000000
+Kingston upon Thames-Barking and Dagenham      17378.86794 0.0000000
+Lambeth-Barking and Dagenham                    3523.87988 1.0000000
+Lewisham-Barking and Dagenham                   4912.19670 0.6922986
+Merton-Barking and Dagenham                    13635.17688 0.0000000
+Newham-Barking and Dagenham                     6008.79904 0.0179605
+Redbridge-Barking and Dagenham                 15059.43763 0.0000000
+Richmond upon Thames-Barking and Dagenham      19458.97007 0.0000000
+Southwark-Barking and Dagenham                  4405.21799 0.9876697
+Sutton-Barking and Dagenham                    13028.99280 0.0000000
+Tower Hamlets-Barking and Dagenham              3190.69253 1.0000000
+Waltham Forest-Barking and Dagenham             8194.65086 0.0000000
+Wandsworth-Barking and Dagenham                10684.93336 0.0000000
+Westminster-Barking and Dagenham               13467.90814 0.0000000
+Bexley-Barnet                                  -1774.49348 0.0000001
+Brent-Barnet                                   -3241.66500 0.0000000
+Bromley-Barnet                                   860.60795 0.8798815
+Camden-Barnet                                  -3183.58675 0.0000000
+City of London-Barnet                           3832.53459 0.9200976
+Croydon-Barnet                                 -6892.13055 0.0000000
+Ealing-Barnet                                  -4852.68422 0.0000000
+Enfield-Barnet                                 -2397.86178 0.0000000
+Greenwich-Barnet                               -8815.16576 0.0000000
+Hackney-Barnet                                -14391.38266 0.0000000
+Hammersmith and Fulham-Barnet                  -8514.72068 0.0000000
+Haringey-Barnet                                -7116.21591 0.0000000
+Harrow-Barnet                                   2710.22893 1.0000000
+Havering-Barnet                                -2337.58622 0.0000000
+Hillingdon-Barnet                              -4181.03978 0.0000000
+Hounslow-Barnet                                -5444.22812 0.0000000
+Islington-Barnet                              -12786.83916 0.0000000
+Kensington and Chelsea-Barnet                    564.48768 0.3966402
+Kingston upon Thames-Barnet                     2357.69699 1.0000000
+Lambeth-Barnet                                -11564.20231 0.0000000
+Lewisham-Barnet                               -10170.42684 0.0000000
+Merton-Barnet                                  -1413.29940 0.0000034
+Newham-Barnet                                  -9070.62664 0.0000000
+Redbridge-Barnet                                 -18.00873 0.0454294
+Richmond upon Thames-Barnet                     4419.13909 0.8956376
+Southwark-Barnet                              -10675.50168 0.0000000
+Sutton-Barnet                                  -2016.68532 0.0000000
+Tower Hamlets-Barnet                          -11874.58405 0.0000000
+Waltham Forest-Barnet                          -6870.62571 0.0000000
+Wandsworth-Barnet                              -4403.73308 0.0000000
+Westminster-Barnet                             -1584.17732 0.0000007
+Brent-Bexley                                    1294.37957 0.9918164
+Bromley-Bexley                                  5404.04341 0.0112818
+Camden-Bexley                                   1336.80877 0.9871511
+City of London-Bexley                           8197.52988 1.0000000
+Croydon-Bexley                                 -2342.62922 0.0000000
+Ealing-Bexley                                   -309.53331 0.0088812
+Enfield-Bexley                                  2141.41147 1.0000000
+Greenwich-Bexley                               -4287.11514 0.0000000
+Hackney-Bexley                                 -9866.17498 0.0000000
+Hammersmith and Fulham-Bexley                  -4004.36063 0.0000000
+Haringey-Bexley                                -2590.59219 0.0000000
+Harrow-Bexley                                   7232.42612 0.0000010
+Havering-Bexley                                 2190.06796 1.0000000
+Hillingdon-Bexley                                350.80948 0.2200713
+Hounslow-Bexley                                 -919.86281 0.0002166
+Islington-Bexley                               -8271.23286 0.0000000
+Kensington and Chelsea-Bexley                   5069.06975 0.7771768
+Kingston upon Thames-Bexley                     6859.16233 0.0013290
+Lambeth-Bexley                                 -7026.51492 0.0000000
+Lewisham-Bexley                                -5635.73974 0.0000000
+Merton-Bexley                                   3102.80529 1.0000000
+Newham-Bexley                                  -4537.69332 0.0000000
+Redbridge-Bexley                                4513.84054 0.7653718
+Richmond upon Thames-Bexley                     8930.58830 0.0000000
+Southwark-Bexley                               -6141.85904 0.0000000
+Sutton-Bexley                                   2497.91045 1.0000000
+Tower Hamlets-Bexley                           -7349.37637 0.0000000
+Waltham Forest-Bexley                          -2345.41804 0.0000000
+Wandsworth-Bexley                                134.27594 0.0942990
+Westminster-Bexley                              2933.87665 1.0000000
+Bromley-Brent                                   6633.90474 0.0000001
+Camden-Brent                                    2577.58116 1.0000000
+City of London-Brent                            9514.94342 1.0000000
+Croydon-Brent                                  -1115.61417 0.0000137
+Ealing-Brent                                     920.46182 0.8905142
+Enfield-Brent                                   3373.23234 0.9999936
+Greenwich-Brent                                -3049.98503 0.0000000
+Hackney-Brent                                  -8627.69413 0.0000000
+Hammersmith and Fulham-Brent                   -2758.78894 0.0000000
+Haringey-Brent                                 -1352.30916 0.0000053
+Harrow-Brent                                    8472.33980 0.0000000
+Havering-Brent                                  3427.38629 0.9999998
+Hillingdon-Brent                                1586.13839 0.9999588
+Hounslow-Brent                                   319.01871 0.1982619
+Islington-Brent                                -7028.17350 0.0000000
+Kensington and Chelsea-Brent                    6317.41679 0.0047799
+Kingston upon Thames-Brent                      8109.01000 0.0000001
+Lambeth-Brent                                  -5793.94606 0.0000000
+Lewisham-Brent                                 -4401.75370 0.0000000
+Merton-Brent                                    4345.62637 0.9604043
+Newham-Brent                                   -3302.87767 0.0000000
+Redbridge-Brent                                 5749.16945 0.0013532
+Richmond upon Thames-Brent                     10175.63781 0.0000000
+Southwark-Brent                                -4907.37904 0.0000000
+Sutton-Brent                                    3741.45316 0.9999967
+Tower Hamlets-Brent                            -6110.89552 0.0000000
+Waltham Forest-Brent                           -1106.93719 0.0000391
+Wandsworth-Brent                                1366.69305 0.9988089
+Westminster-Brent                               4175.76641 0.9878897
+Camden-Bromley                                 -1679.55031 0.0000003
+City of London-Bromley                          5310.61306 0.9988003
+Croydon-Bromley                                -5382.88927 0.0000000
+Ealing-Bromley                                 -3344.59142 0.0000000
+Enfield-Bromley                                 -890.46661 0.0001047
+Greenwich-Bromley                              -7309.77465 0.0000000
+Hackney-Bromley                               -12886.49577 0.0000000
+Hammersmith and Fulham-Bromley                 -7012.44581 0.0000000
+Haringey-Bromley                               -5611.25532 0.0000000
+Harrow-Bromley                                  4214.58333 0.9122404
+Havering-Bromley                                -832.26550 0.0002399
+Hillingdon-Bromley                             -2674.97278 0.0000000
+Hounslow-Bromley                               -3939.49038 0.0000000
+Islington-Bromley                             -11283.64538 0.0000000
+Kensington and Chelsea-Bromley                  2065.75539 1.0000000
+Kingston upon Thames-Bromley                    3858.42350 0.9999989
+Lambeth-Bromley                               -10057.09167 0.0000000
+Lewisham-Bromley                               -8663.85328 0.0000000
+Merton-Bromley                                    89.98190 0.0761718
+Newham-Bromley                                 -7564.36631 0.0000000
+Redbridge-Bromley                               1488.05827 0.9998780
+Richmond upon Thames-Bromley                    5921.60438 0.0058846
+Southwark-Bromley                              -9169.11473 0.0000000
+Sutton-Bromley                                  -513.66888 0.0029015
+Tower Hamlets-Bromley                         -10369.69716 0.0000000
+Waltham Forest-Bromley                         -5365.73883 0.0000000
+Wandsworth-Bromley                             -2896.56477 0.0000000
+Westminster-Bromley                              -80.55333 0.0334077
+City of London-Camden                           9697.57271 1.0000000
+Croydon-Camden                                  -788.79087 0.0003598
+Ealing-Camden                                   1242.63929 0.9856975
+Enfield-Camden                                  3692.55901 0.9999697
+Greenwich-Camden                               -2738.96755 0.0000000
+Hackney-Camden                                 -8318.79508 0.0000000
+Hammersmith and Fulham-Camden                  -2461.03965 0.0000000
+Haringey-Camden                                -1043.09976 0.0001034
+Harrow-Camden                                   8778.98972 0.0000000
+Havering-Camden                                 3738.10869 0.9999981
+Hillingdon-Camden                               1899.97798 0.9999997
+Hounslow-Camden                                  627.28902 0.4614657
+Islington-Camden                               -6726.46831 0.0000000
+Kensington and Chelsea-Camden                   6610.78924 0.0062717
+Kingston upon Thames-Camden                     8400.01296 0.0000001
+Lambeth-Camden                                 -5475.78831 0.0000000
+Lewisham-Camden                                -4085.81219 0.0000000
+Merton-Camden                                   4647.70645 0.9481729
+Newham-Camden                                  -2988.23448 0.0000000
+Redbridge-Camden                                6063.00904 0.0023731
+Richmond upon Thames-Camden                    10474.20981 0.0000000
+Southwark-Camden                               -4592.21050 0.0000000
+Sutton-Camden                                   4042.39773 0.9999830
+Tower Hamlets-Camden                           -5801.99647 0.0000000
+Waltham Forest-Camden                           -798.03814 0.0005560
+Wandsworth-Camden                               1685.08800 0.9999768
+Westminster-Camden                              4479.31122 0.9816646
+Croydon-City of London                          6470.71849 0.9999981
+Ealing-City of London                           8459.05408 1.0000000
+Enfield-City of London                         10881.59355 1.0000000
+Greenwich-City of London                        4365.90871 0.9732629
+Hackney-City of London                         -1236.47518 0.0081108
+Hammersmith and Fulham-City of London           4494.43042 0.9792228
+Haringey-City of London                         6042.55390 0.9999607
+Harrow-City of London                          15836.84378 0.9066489
+Havering-City of London                        10839.87085 1.0000000
+Hillingdon-City of London                       9034.19171 1.0000000
+Hounslow-City of London                         7702.82403 1.0000000
+Islington-City of London                         275.64021 0.0713378
+Kensington and Chelsea-City of London          13512.40727 0.9999830
+Kingston upon Thames-City of London            15271.43871 0.9787317
+Lambeth-City of London                          1701.80579 0.3251591
+Lewisham-City of London                         3069.74055 0.7499808
+Merton-City of London                          11654.13871 1.0000000
+Newham-City of London                           4154.18817 0.9569176
+Redbridge-City of London                       13197.22276 0.9999947
+Richmond upon Thames-City of London            17439.53444 0.4847123
+Southwark-City of London                        2555.54476 0.5900357
+Sutton-City of London                          11035.68352 1.0000000
+Tower Hamlets-City of London                    1280.32344 0.2203497
+Waltham Forest-City of London                   6284.28177 0.9999909
+Wandsworth-City of London                       8865.01395 1.0000000
+Westminster-City of London                     11502.48130 1.0000000
+Ealing-Croydon                                  4281.64898 0.2536067
+Enfield-Croydon                                 6736.88918 0.0000000
+Greenwich-Croydon                                320.78205 0.2170221
+Hackney-Croydon                                -5255.13443 0.0000000
+Hammersmith and Fulham-Croydon                   623.07925 0.4861289
+Haringey-Croydon                                2019.98842 1.0000000
+Harrow-Croydon                                 11846.79409 0.0000000
+Havering-Croydon                                6798.40355 0.0000001
+Hillingdon-Croydon                              4954.50491 0.0325829
+Hounslow-Croydon                                3692.10891 0.9985939
+Islington-Croydon                              -3649.58429 0.0000000
+Kensington and Chelsea-Croydon                  9702.88401 0.0000000
+Kingston upon Thames-Croydon                   11496.41338 0.0000000
+Lambeth-Croydon                                -2429.28114 0.0000000
+Lewisham-Croydon                               -1035.18462 0.0000298
+Merton-Croydon                                  7723.90350 0.0000000
+Newham-Croydon                                    64.80263 0.0701804
+Redbridge-Croydon                               9117.53597 0.0000000
+Richmond upon Thames-Croydon                   13556.82614 0.0000000
+Southwark-Croydon                              -1540.14801 0.0000003
+Sutton-Croydon                                  7120.67480 0.0000001
+Tower Hamlets-Croydon                          -2738.33582 0.0000000
+Waltham Forest-Croydon                          2265.62251 1.0000000
+Wandsworth-Croydon                              4731.15361 0.0504488
+Westminster-Croydon                             7552.82206 0.0000000
+Enfield-Ealing                                  4828.85968 0.0511769
+Greenwich-Ealing                               -1590.59868 0.0000004
+Hackney-Ealing                                 -7167.35769 0.0000000
+Hammersmith and Fulham-Ealing                  -1293.50434 0.0000141
+Haringey-Ealing                                  107.88830 0.0844240
+Harrow-Ealing                                   9933.68138 0.0000000
+Havering-Ealing                                 4886.90518 0.1364208
+Hillingdon-Ealing                               3044.25393 1.0000000
+Hounslow-Ealing                                 1779.63649 0.9999996
+Islington-Ealing                               -5564.63467 0.0000000
+Kensington and Chelsea-Ealing                   7784.62088 0.0000001
+Kingston upon Thames-Ealing                     9577.24812 0.0000000
+Lambeth-Ealing                                 -4337.78671 0.0000000
+Lewisham-Ealing                                -2944.58858 0.0000000
+Merton-Ealing                                   5808.99920 0.0052513
+Newham-Ealing                                  -1845.12509 0.0000000
+Redbridge-Ealing                                7207.28498 0.0000000
+Richmond upon Thames-Ealing                    11640.56020 0.0000000
+Southwark-Ealing                               -3449.86401 0.0000000
+Sutton-Ealing                                   5205.32847 0.1379356
+Tower Hamlets-Ealing                           -4650.55908 0.0000000
+Waltham Forest-Ealing                            353.39925 0.2337955
+Wandsworth-Ealing                               2822.74452 1.0000000
+Westminster-Ealing                              5638.48976 0.0103613
+Greenwich-Enfield                              -3963.81797 0.0000000
+Hackney-Enfield                                -9541.09447 0.0000000
+Hammersmith and Fulham-Enfield                 -3669.93217 0.0000000
+Haringey-Enfield                               -2265.77279 0.0000000
+Harrow-Enfield                                  7559.39741 0.0000000
+Havering-Enfield                                2513.61368 1.0000000
+Hillingdon-Enfield                               671.72722 0.5991137
+Hounslow-Enfield                                -594.25348 0.0015362
+Islington-Enfield                              -7940.11383 0.0000000
+Kensington and Chelsea-Enfield                  5407.15091 0.2247824
+Kingston upon Thames-Enfield                    7199.21715 0.0000213
+Lambeth-Enfield                                -6709.24638 0.0000000
+Lewisham-Enfield                               -5316.59701 0.0000000
+Merton-Enfield                                  3433.61029 1.0000000
+Newham-Enfield                                 -4217.45390 0.0000000
+Redbridge-Enfield                               4834.75828 0.1566419
+Richmond upon Thames-Enfield                    9264.32913 0.0000000
+Southwark-Enfield                              -5822.06328 0.0000000
+Sutton-Enfield                                  2829.66640 1.0000000
+Tower Hamlets-Enfield                          -7024.29586 0.0000000
+Waltham Forest-Enfield                         -2020.33752 0.0000000
+Wandsworth-Enfield                               451.34372 0.3475849
+Westminster-Enfield                             3263.45402 1.0000000
+Hackney-Greenwich                              -2873.18274 0.0000000
+Hammersmith and Fulham-Greenwich                2990.07011 1.0000000
+Haringey-Greenwich                              4402.36004 0.9137253
+Harrow-Greenwich                               14225.70833 0.0000000
+Havering-Greenwich                              9182.82520 0.0000000
+Hillingdon-Greenwich                            7343.16514 0.0000000
+Hounslow-Greenwich                              6073.21048 0.0020340
+Islington-Greenwich                            -1277.31278 0.0000209
+Kensington and Chelsea-Greenwich               12064.06585 0.0000000
+Kingston upon Thames-Greenwich                 13854.46464 0.0000000
+Lambeth-Greenwich                                -34.71521 0.0419424
+Lewisham-Greenwich                              1356.34526 0.9963780
+Merton-Greenwich                               10096.67699 0.0000000
+Newham-Greenwich                                2454.55885 1.0000000
+Redbridge-Greenwich                            11506.19619 0.0000000
+Richmond upon Thames-Greenwich                 15924.91281 0.0000000
+Southwark-Greenwich                              850.32547 0.7699711
+Sutton-Greenwich                                9491.92869 0.0000000
+Tower Hamlets-Greenwich                         -356.38413 0.0076247
+Waltham Forest-Greenwich                        4647.57420 0.7169906
+Wandsworth-Greenwich                            7126.04513 0.0000000
+Westminster-Greenwich                           9927.55936 0.0000000
+Hammersmith and Fulham-Hackney                  8631.80580 0.0000000
+Haringey-Hackney                               10046.18423 0.0000000
+Harrow-Hackney                                 19869.06652 0.0000000
+Havering-Hackney                               14826.92473 0.0000000
+Hillingdon-Hackney                             12987.83164 0.0000000
+Hounslow-Hackney                               11716.86372 0.0000000
+Islington-Hackney                               4365.14441 0.9912503
+Kensington and Chelsea-Hackney                 17705.00260 0.0000000
+Kingston upon Thames-Hackney                   19494.96857 0.0000000
+Lambeth-Hackney                                 5610.73604 0.0077225
+Lewisham-Hackney                                7001.39384 0.0000004
+Merton-Hackney                                 15739.20252 0.0000000
+Newham-Hackney                                  8099.37145 0.0000000
+Redbridge-Hackney                              17150.86270 0.0000000
+Richmond upon Thames-Hackney                   21566.79860 0.0000000
+Southwark-Hackney                               6495.23357 0.0000326
+Sutton-Hackney                                 15134.24720 0.0000000
+Tower Hamlets-Hackney                           5287.38357 0.1483228
+Waltham Forest-Hackney                         10291.34190 0.0000000
+Wandsworth-Hackney                             12771.53946 0.0000000
+Westminster-Hackney                            15570.35187 0.0000000
+Haringey-Hammersmith and Fulham                 4553.08909 0.9793590
+Harrow-Hammersmith and Fulham                  14373.50914 0.0000000
+Havering-Hammersmith and Fulham                 9335.28085 0.0000000
+Hillingdon-Hammersmith and Fulham               7499.16769 0.0000007
+Hounslow-Hammersmith and Fulham                 6222.86623 0.0122158
+Islington-Hammersmith and Fulham               -1135.19522 0.0001013
+Kensington and Chelsea-Hammersmith and Fulham  12196.52977 0.0000000
+Kingston upon Thames-Hammersmith and Fulham    13984.16632 0.0000000
+Lambeth-Hammersmith and Fulham                   126.17749 0.0872195
+Lewisham-Hammersmith and Fulham                 1514.73155 0.9978778
+Merton-Hammersmith and Fulham                  10239.22663 0.0000000
+Newham-Hammersmith and Fulham                   2611.47350 1.0000000
+Redbridge-Hammersmith and Fulham               11662.19874 0.0000000
+Richmond upon Thames-Hammersmith and Fulham    16063.41164 0.0000000
+Southwark-Hammersmith and Fulham                1007.83590 0.8431757
+Sutton-Hammersmith and Fulham                   9633.16901 0.0000000
+Tower Hamlets-Hammersmith and Fulham            -206.00965 0.0190967
+Waltham Forest-Hammersmith and Fulham           4797.94868 0.8918020
+Wandsworth-Hammersmith and Fulham               7287.20567 0.0000011
+Westminster-Hammersmith and Fulham             10071.79529 0.0000000
+Harrow-Haringey                                12583.96528 0.0000000
+Havering-Haringey                               7541.71484 0.0000000
+Hillingdon-Haringey                             5702.53871 0.0091270
+Hounslow-Haringey                               4431.71923 0.9330299
+Islington-Haringey                             -2919.82467 0.0000000
+Kensington and Chelsea-Haringey                10420.25675 0.0000000
+Kingston upon Thames-Haringey                  12210.28633 0.0000000
+Lambeth-Haringey                               -1674.67177 0.0000003
+Lewisham-Haringey                               -283.95503 0.0109845
+Merton-Haringey                                 8454.22341 0.0000000
+Newham-Haringey                                  814.05713 0.7199767
+Redbridge-Haringey                              9865.56976 0.0000000
+Richmond upon Thames-Haringey                  14281.91338 0.0000000
+Southwark-Haringey                              -790.09473 0.0004329
+Sutton-Haringey                                 7849.29847 0.0000001
+Tower Hamlets-Haringey                         -1997.77770 0.0000001
+Waltham Forest-Haringey                         3006.18064 1.0000000
+Wandsworth-Haringey                             5486.12535 0.0144400
+Westminster-Haringey                            8285.33359 0.0000000
+Havering-Harrow                                -2200.86936 0.0000000
+Hillingdon-Harrow                              -4039.36076 0.0000000
+Hounslow-Harrow                                -5311.40451 0.0000000
+Islington-Harrow                              -12664.39682 0.0000000
+Kensington and Chelsea-Harrow                    673.83838 0.4572998
+Kingston upon Thames-Harrow                     2463.34142 1.0000000
+Lambeth-Harrow                                -11415.62490 0.0000000
+Lewisham-Harrow                               -10025.39354 0.0000000
+Merton-Harrow                                  -1290.26588 0.0000230
+Newham-Harrow                                  -8927.66604 0.0000000
+Redbridge-Harrow                                 123.67029 0.0878825
+Richmond upon Thames-Harrow                     4536.64804 0.9870734
+Southwark-Harrow                              -10531.70269 0.0000000
+Sutton-Harrow                                  -1895.44185 0.0000003
+Tower Hamlets-Harrow                          -11740.76302 0.0000000
+Waltham Forest-Harrow                          -6736.80468 0.0000000
+Wandsworth-Harrow                              -4254.77587 0.0000000
+Westminster-Harrow                             -1458.83214 0.0000061
+Hillingdon-Havering                              875.02670 0.7867256
+Hounslow-Havering                               -395.06910 0.0061609
+Islington-Havering                             -7745.75878 0.0000000
+Kensington and Chelsea-Havering                 5595.40854 0.2406616
+Kingston upon Thames-Havering                   7385.74723 0.0000380
+Lambeth-Havering                               -6502.74425 0.0000000
+Lewisham-Havering                              -5111.73993 0.0000000
+Merton-Havering                                 3628.24049 1.0000000
+Newham-Havering                                -4013.55923 0.0000000
+Redbridge-Havering                              5038.05775 0.1825153
+Richmond upon Thames-Havering                   9456.38736 0.0000000
+Southwark-Havering                             -5617.77929 0.0000000
+Sutton-Havering                                 3023.46340 1.0000000
+Tower Hamlets-Havering                         -6824.64777 0.0000000
+Waltham Forest-Havering                        -1820.68944 0.0000002
+Wandsworth-Havering                              658.02210 0.5621354
+Westminster-Havering                            3459.16000 1.0000000
+Hounslow-Hillingdon                             1351.62732 0.9938980
+Islington-Hillingdon                           -5997.30712 0.0000000
+Kensington and Chelsea-Hillingdon               7346.08454 0.0000112
+Kingston upon Thames-Hillingdon                 9137.05505 0.0000000
+Lambeth-Hillingdon                             -4758.69597 0.0000000
+Lewisham-Hillingdon                            -3367.09758 0.0000000
+Merton-Hillingdon                               5376.59198 0.1394658
+Newham-Hillingdon                              -2268.56900 0.0000000
+Redbridge-Hillingdon                            6783.26326 0.0000009
+Richmond upon Thames-Hillingdon                11205.67584 0.0000000
+Southwark-Hillingdon                           -3872.92982 0.0000000
+Sutton-Hillingdon                               4772.11826 0.7458870
+Tower Hamlets-Hillingdon                       -5078.11957 0.0000000
+Waltham Forest-Hillingdon                        -74.16124 0.0346541
+Wandsworth-Hillingdon                           2402.00677 1.0000000
+Westminster-Hillingdon                          5207.12006 0.2180802
+Islington-Hounslow                             -4562.04695 0.0000000
+Kensington and Chelsea-Hounslow                 8777.35845 0.0000000
+Kingston upon Thames-Hounslow                  10567.19537 0.0000000
+Lambeth-Hounslow                               -3315.56645 0.0000000
+Lewisham-Hounslow                              -1925.02796 0.0000001
+Merton-Hounslow                                 6812.03150 0.0001314
+Newham-Hounslow                                 -827.12031 0.0003500
+Redbridge-Hounslow                              8224.32761 0.0000000
+Richmond upon Thames-Hounslow                  12639.43719 0.0000000
+Southwark-Hounslow                             -2431.22987 0.0000000
+Sutton-Hounslow                                 6207.01458 0.0071681
+Tower Hamlets-Hounslow                         -3639.41827 0.0000000
+Waltham Forest-Hounslow                         1364.54007 0.9920271
+Wandsworth-Hounslow                             3845.24974 0.9987731
+Westminster-Hounslow                            6643.26024 0.0002807
+Kensington and Chelsea-Islington               16332.41842 0.0000000
+Kingston upon Thames-Islington                 18120.89132 0.0000000
+Lambeth-Islington                               4253.55209 0.9795233
+Lewisham-Islington                              5642.84963 0.0357644
+Merton-Islington                               14372.07482 0.0000000
+Newham-Islington                                6740.02878 0.0000520
+Redbridge-Islington                            15791.02525 0.0000000
+Richmond upon Thames-Islington                 20197.47845 0.0000000
+Southwark-Islington                             5136.21413 0.2969907
+Sutton-Islington                               13766.41071 0.0000000
+Tower Hamlets-Islington                         3924.49451 0.9999902
+Waltham Forest-Islington                        8928.45285 0.0000000
+Wandsworth-Islington                           11414.50091 0.0000000
+Westminster-Islington                          14204.13722 0.0000000
+Kingston upon Thames-Kensington and Chelsea     5062.62474 0.9869905
+Lambeth-Kensington and Chelsea                 -8784.96890 0.0000000
+Lewisham-Kensington and Chelsea                -7397.23385 0.0000000
+Merton-Kensington and Chelsea                   1322.01967 0.9537664
+Newham-Kensington and Chelsea                  -6300.97414 0.0000000
+Redbridge-Kensington and Chelsea                2749.45173 1.0000000
+Richmond upon Thames-Kensington and Chelsea     7144.84582 0.0011944
+Southwark-Kensington and Chelsea               -7904.41638 0.0000000
+Sutton-Kensington and Chelsea                    715.52363 0.4799173
+Tower Hamlets-Kensington and Chelsea           -9120.61249 0.0000000
+Waltham Forest-Kensington and Chelsea          -4116.65416 0.0000000
+Wandsworth-Kensington and Chelsea              -1623.85337 0.0000018
+Westminster-Kensington and Chelsea              1155.15186 0.8830696
+Lambeth-Kingston upon Thames                  -10483.48821 0.0000000
+Lewisham-Kingston upon Thames                  -9096.19500 0.0000000
+Merton-Kingston upon Thames                     -379.78260 0.0090091
+Newham-Kingston upon Thames                    -8000.19572 0.0000000
+Redbridge-Kingston upon Thames                  1050.06836 0.8367364
+Richmond upon Thames-Kingston upon Thames       5442.30333 0.7549158
+Southwark-Kingston upon Thames                 -9603.53244 0.0000000
+Sutton-Kingston upon Thames                     -986.51731 0.0003380
+Tower Hamlets-Kingston upon Thames            -10821.00039 0.0000000
+Waltham Forest-Kingston upon Thames            -5817.04206 0.0000000
+Wandsworth-Kingston upon Thames                -3322.32559 0.0000000
+Westminster-Kingston upon Thames                -546.34387 0.0037970
+Lewisham-Lambeth                                3884.39437 0.9818497
+Merton-Lambeth                                 12633.21441 0.0000000
+Newham-Lambeth                                  4983.40633 0.0840976
+Redbridge-Lambeth                              14035.53747 0.0000000
+Richmond upon Thames-Lambeth                   18463.58650 0.0000000
+Southwark-Lambeth                               3378.84999 0.9999985
+Sutton-Lambeth                                 12029.15810 0.0000000
+Tower Hamlets-Lambeth                           2175.98721 1.0000000
+Waltham Forest-Lambeth                          7179.94554 0.0000001
+Wandsworth-Lambeth                              9652.58364 0.0000000
+Westminster-Lambeth                            12463.20343 0.0000000
+Merton-Lewisham                                11303.65105 0.0000000
+Newham-Lewisham                                 3656.22670 0.9997498
+Redbridge-Lewisham                             12708.20434 0.0000000
+Richmond upon Thames-Lewisham                  17133.36339 0.0000000
+Southwark-Lewisham                              2051.77078 1.0000000
+Sutton-Lewisham                                10699.38092 0.0000000
+Tower Hamlets-Lewisham                           847.71349 0.7600126
+Waltham Forest-Lewisham                         5851.67183 0.0026373
+Wandsworth-Lewisham                             8326.12255 0.0000000
+Westminster-Lewisham                           11133.91627 0.0000000
+Newham-Merton                                  -4646.78195 0.0000000
+Redbridge-Merton                                4404.24025 0.9629607
+Richmond upon Thames-Merton                     8811.18912 0.0000000
+Southwark-Merton                               -6250.61341 0.0000000
+Sutton-Merton                                   2380.04353 1.0000000
+Tower Hamlets-Merton                           -7462.13148 0.0000000
+Waltham Forest-Merton                          -2458.17315 0.0000000
+Wandsworth-Merton                                 27.57051 0.0569064
+Westminster-Merton                              2817.68506 1.0000000
+Redbridge-Newham                               11648.04386 0.0000000
+Richmond upon Thames-Newham                    16071.50710 0.0000000
+Southwark-Newham                                 991.75889 0.9038487
+Sutton-Newham                                   9637.78685 0.0000000
+Tower Hamlets-Newham                            -212.99796 0.0165858
+Waltham Forest-Newham                           4790.96038 0.4441260
+Wandsworth-Newham                               7266.47206 0.0000000
+Westminster-Newham                             10072.61013 0.0000000
+Richmond upon Thames-Redbridge                  7042.64479 0.0000183
+Southwark-Redbridge                            -8035.96088 0.0000000
+Sutton-Redbridge                                 609.08720 0.4435823
+Tower Hamlets-Redbridge                        -9241.15063 0.0000000
+Waltham Forest-Redbridge                       -4237.19230 0.0000000
+Wandsworth-Redbridge                           -1761.02429 0.0000001
+Westminster-Redbridge                           1044.08901 0.8899974
+Southwark-Richmond upon Thames                -11956.45964 0.0000000
+Sutton-Richmond upon Thames                    -3330.11422 0.0000000
+Tower Hamlets-Richmond upon Thames            -13169.86317 0.0000000
+Waltham Forest-Richmond upon Thames            -8165.90484 0.0000000
+Wandsworth-Richmond upon Thames                -5677.31474 0.0000000
+Westminster-Richmond upon Thames               -2891.67551 0.0000000
+Sutton-Southwark                               11227.13749 0.0000000
+Tower Hamlets-Southwark                         1375.99537 0.9962196
+Waltham Forest-Southwark                        6379.95370 0.0000789
+Wandsworth-Southwark                            8855.03616 0.0000000
+Westminster-Southwark                          11661.84418 0.0000000
+Tower Hamlets-Sutton                           -6818.93444 0.0000000
+Waltham Forest-Sutton                          -1814.97611 0.0000004
+Wandsworth-Sutton                                671.68939 0.5298477
+Westminster-Sutton                              3460.35540 1.0000000
+Waltham Forest-Tower Hamlets                    7774.54329 0.0000000
+Wandsworth-Tower Hamlets                       10254.74085 0.0000000
+Westminster-Tower Hamlets                      13053.55326 0.0000000
+Wandsworth-Waltham Forest                       5250.78251 0.0531872
+Westminster-Waltham Forest                      8049.59492 0.0000000
+Westminster-Wandsworth                          5295.92117 0.0973035
+```
+
+# Regression Modelling
+
+The most common use of regression modelling is to explore the relationship between two continuous variables, for example between `Income_london_rank` and `health_london_rank` in our data. We can first determine whether there is any significant correlation between the values, and if there is, plot the relationship.
+
+
+``` r
+# cor.test(gapminder$gdpPercap, gapminder$lifeExp)
+cor.test(lon_dims_imd_2019$Income_london_rank, lon_dims_imd_2019$health_london_rank)
+```
+
+``` output
+
+	Pearson's product-moment correlation
+
+data:  lon_dims_imd_2019$Income_london_rank and lon_dims_imd_2019$health_london_rank
+t = 92.907, df = 4833, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.7903110 0.8105571
+sample estimates:
+      cor 
+0.8006626 
+```
+
+``` r
+# ggplot(gapminder, aes(gdpPercap, log(lifeExp))) +
+ggplot(lon_dims_imd_2019, aes(Income_london_rank, health_london_rank)) +
+  geom_point() +
+  geom_smooth()
+```
+
+``` output
+`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
+```
+
+<img src="fig/23-statistics-rendered-unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+
+Having decided that a further investigation of this relationship is worthwhile, we can create a linear model with the function `lm()`.
+
+
+``` r
+modelone <- lm(lon_dims_imd_2019$Income_london_rank ~ lon_dims_imd_2019$health_london_rank)
+summary(modelone)
+```
+
+``` output
+
+Call:
+lm(formula = lon_dims_imd_2019$Income_london_rank ~ lon_dims_imd_2019$health_london_rank)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-15354  -3547   -102   3458  24528 
+
+Coefficients:
+                                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                          -3.223e+03  2.039e+02  -15.80   <2e-16 ***
+lon_dims_imd_2019$health_london_rank  8.634e-01  9.293e-03   92.91   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5087 on 4833 degrees of freedom
+Multiple R-squared:  0.6411,	Adjusted R-squared:  0.641 
+F-statistic:  8632 on 1 and 4833 DF,  p-value: < 2.2e-16
+```
+
+## Regression with a categorical IV (the t-test)
+
+Run the following code chunk and compare the results to the t test conducted earlier.
+
+
+``` r
+gapminder %>%
+  mutate(european = factor(european))
+```
+
+``` output
+# A tibble: 1,704 × 7
+   country     continent  year lifeExp      pop gdpPercap european
+   <fct>       <fct>     <int>   <dbl>    <int>     <dbl> <fct>   
+ 1 Afghanistan Asia       1952    28.8  8425333      779. FALSE   
+ 2 Afghanistan Asia       1957    30.3  9240934      821. FALSE   
+ 3 Afghanistan Asia       1962    32.0 10267083      853. FALSE   
+ 4 Afghanistan Asia       1967    34.0 11537966      836. FALSE   
+ 5 Afghanistan Asia       1972    36.1 13079460      740. FALSE   
+ 6 Afghanistan Asia       1977    38.4 14880372      786. FALSE   
+ 7 Afghanistan Asia       1982    39.9 12881816      978. FALSE   
+ 8 Afghanistan Asia       1987    40.8 13867957      852. FALSE   
+ 9 Afghanistan Asia       1992    41.7 16317921      649. FALSE   
+10 Afghanistan Asia       1997    41.8 22227415      635. FALSE   
+# ℹ 1,694 more rows
+```
+
+``` r
+modelttest <- lm(gapminder$pop ~ gapminder$european)
+
+summary(modelttest)
+```
+
+``` output
+
+Call:
+lm(formula = gapminder$pop ~ gapminder$european)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+ -32871053  -29780936  -22066032   -7948269 1285752032 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             32931064    2891217  11.390   <2e-16 ***
+gapminder$europeanTRUE -15761300    6290196  -2.506   0.0123 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.06e+08 on 1702 degrees of freedom
+Multiple R-squared:  0.003675,	Adjusted R-squared:  0.00309 
+F-statistic: 6.278 on 1 and 1702 DF,  p-value: 0.01231
+```
+
+## Regression with a categorical IV (ANOVA)
+
+Use the `lm()` function to model the relationship between `gapminder$gdpGroup`
+and `gapminder$pop`. Compare the results with the ANOVA carried out earlier.
+
+## Break
+
+-   We will explore regression models in more detail during the rest of the day
