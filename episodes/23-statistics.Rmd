@@ -285,7 +285,7 @@ Write a paragraph in markdown format reporting this test result including the t-
 
 ### t-test result
 
-Testing supported the rejection of the null hypothesis that there is no difference between mean health rank of City of London and non-City of London areas (**t**=`r round(tt.test(health_london_rank ~ city, data = lon_dims_imd_2019)$statistic,4)`, **df**= `r round(t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$parameter,4)`,
+Testing supported the rejection of the null hypothesis that there is no difference between mean health rank of City of London and non-City of London areas (**t**=`r round(t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$statistic,4)`, **df**= `r round(t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$parameter,4)`,
 **p**= `r round( t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$p.value,4)`).
 
 (Can you get p to display to four places?  Cf *format()*.)
