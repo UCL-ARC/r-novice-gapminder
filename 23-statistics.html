@@ -481,7 +481,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Basic Statistics: describing, modelling and reporting</h1>
-        <p>Last updated on 2024-08-07 |
+        <p>Last updated on 2024-08-08 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/23-statistics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -532,17 +532,24 @@
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># We will need these libraries and this data later.</span></span>
 <span><span class="kw">library</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span>
+<span></span>
 <span><span class="co"># loading data</span></span>
 <span><span class="va">lon_dims_imd_2019</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv"</span><span class="op">)</span></span>
-<span><span class="co"># Commenting out as not used in this version</span></span>
-<span><span class="co"># library(lubridate)</span></span>
-<span><span class="co">#library(gapminder)</span></span>
+<span></span>
 <span><span class="co"># create a binary membership variable for City of London (for later examples)</span></span>
 <span><span class="va">lon_dims_imd_2019</span> <span class="op">&lt;-</span> <span class="va">lon_dims_imd_2019</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>city <span class="op">=</span> <span class="va">la19nm</span> <span class="op">==</span> <span class="st">"City of London"</span><span class="op">)</span></span></code></pre>
 </div>
-<p>We are going to use the data from the gapminder package. We have
-added a variable <em>European</em> indicating if a country is in
-Europe.</p>
+<p>We are going to use the data from the Consumer Data Research Centre,
+specifically the London IMD 2019 (English IMD 2019 Domains rebased)
+data. Atribution: Data provided by the Consumer Data Research Centre, an
+ESRC Data Investment: ES/L011840/1, ES/L011891/1</p>
+<p>The statistical unit areas used to provide indices of relative
+deprivation across the country are Lower layer Super Output Areas
+(LSOAs), dimensions of depravation include income, employment,
+education, health, crime, barriers to housing and services, and the
+living environment. We have added a variable <em>city</em> indicating if
+an LSOA is within the City of London, or not.</p>
 </section><section><h2 class="section-heading" id="the-big-picture">The big picture<a class="anchor" aria-label="anchor" href="#the-big-picture"></a>
 <a class="anchor" aria-label="anchor" href="#the-big-picture"></a></h2>
 <hr class="half-width"><ul><li>Research often seeks to answer a question about a larger population
@@ -956,7 +963,7 @@ alternative) with which the data are more consistent.</p></li>
 <div class="section level2">
 <h2 id="comparing-means-1">Comparing means<a class="anchor" aria-label="anchor" href="#comparing-means-1"></a></h2>
 <p>Is there an absolute difference between the income ranks of the
-Lower-layer Super Output Areas</p>
+Lower-layer Super Output Areas?</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -1056,15 +1063,7 @@ Significant Differences.)</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># quantile(gapminder$gdpPercap)</span></span>
-<span><span class="co"># IQR(gapminder$gdpPercap)</span></span>
-<span></span>
-<span><span class="co"># gapminder$gdpGroup &lt;- cut(gapminder$gdpPercap, breaks = c(241.1659, 1202.0603, 3531.8470, 9325.4623, 113523.1329), labels = FALSE)</span></span>
-<span></span>
-<span><span class="co"># gapminder$gdpGroup &lt;- factor(gapminder$gdpGroup)</span></span>
-<span></span>
-<span><span class="co"># anovamodel &lt;- aov(gapminder$pop ~ gapminder$gdpGroup)</span></span>
-<span><span class="va">anovamodel</span> <span class="op">&lt;-</span> <span class="fu">aov</span><span class="op">(</span><span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">la19nm</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">anovamodel</span> <span class="op">&lt;-</span> <span class="fu">aov</span><span class="op">(</span><span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">la19nm</span><span class="op">)</span></span>
 <span><span class="fu">summary</span><span class="op">(</span><span class="va">anovamodel</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
@@ -2164,8 +2163,7 @@ relationship.</p>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># cor.test(gapminder$gdpPercap, gapminder$lifeExp)</span></span>
-<span><span class="fu">cor.test</span><span class="op">(</span><span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">Income_london_rank</span>, <span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">health_london_rank</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">cor.test</span><span class="op">(</span><span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">Income_london_rank</span>, <span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">health_london_rank</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2186,8 +2184,7 @@ sample estimates:
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># ggplot(gapminder, aes(gdpPercap, log(lifeExp))) +</span></span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">lon_dims_imd_2019</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">Income_london_rank</span>, <span class="va">health_london_rank</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<code class="sourceCode R"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">lon_dims_imd_2019</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">Income_london_rank</span>, <span class="va">health_london_rank</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">geom_smooth</span><span class="op">(</span><span class="op">)</span></span></code></pre>
 </div>
@@ -2230,7 +2227,7 @@ F-statistic:  8632 on 1 and 4833 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="section level2">
 <h2 id="regression-with-a-categorical-iv-the-t-test">Regression with a categorical IV (the t-test)<a class="anchor" aria-label="anchor" href="#regression-with-a-categorical-iv-the-t-test"></a></h2>
-<p>Run the following code chunk and compare the results to the t test
+<p>Run the following code chunk and compare the results to the t-test
 conducted earlier.</p>
 <div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -35683,8 +35680,8 @@ the day</li>
   "url": "https://UCL-ARC.github.io/R-AMR-Epidemiology/23-statistics.html",
   "identifier": "https://UCL-ARC.github.io/R-AMR-Epidemiology/23-statistics.html",
   "dateCreated": "2015-04-18",
-  "dateModified": "2024-08-07",
-  "datePublished": "2024-08-07"
+  "dateModified": "2024-08-08",
+  "datePublished": "2024-08-08"
 }
 
   </script><script>
