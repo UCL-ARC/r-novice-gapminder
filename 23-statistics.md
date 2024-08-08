@@ -34,16 +34,20 @@ source: Rmd
 ``` r
 # We will need these libraries and this data later.
 library(tidyverse)
+library(ggplot2)
+
 # loading data
 lon_dims_imd_2019 <- read.csv("data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
-# Commenting out as not used in this version
-# library(lubridate)
-#library(gapminder)
+
 # create a binary membership variable for City of London (for later examples)
 lon_dims_imd_2019 <- lon_dims_imd_2019 %>% mutate(city = la19nm == "City of London")
 ```
 
-We are going to use the data from the gapminder package.  We have added a variable *European* indicating if a country is in Europe.
+We are going to use the data from the Consumer Data Research Centre, specifically the London IMD 2019 (English IMD 2019 Domains rebased) data.
+Atribution: Data provided by the Consumer Data Research Centre, an ESRC Data Investment: ES/L011840/1, ES/L011891/1
+
+The statistical unit areas used to provide indices of relative deprivation across the country are Lower layer Super Output Areas (LSOAs), dimensions of depravation include income, employment, education, health, crime, barriers to housing and services, and the living environment.
+We have added a variable *city* indicating if an LSOA is within the City of London, or not.
 
 ## The big picture
 
@@ -402,7 +406,7 @@ It all starts with a hypothesis
 
 ## Comparing means
 
-Is there an absolute difference between the income ranks of the Lower-layer Super Output Areas
+Is there an absolute difference between the income ranks of the Lower-layer Super Output Areas?
 
 
 ``` r
@@ -483,14 +487,6 @@ While the t-test is sufficient where there are two levels of the IV, for situati
 
 
 ``` r
-# quantile(gapminder$gdpPercap)
-# IQR(gapminder$gdpPercap)
-
-# gapminder$gdpGroup <- cut(gapminder$gdpPercap, breaks = c(241.1659, 1202.0603, 3531.8470, 9325.4623, 113523.1329), labels = FALSE)
-
-# gapminder$gdpGroup <- factor(gapminder$gdpGroup)
-
-# anovamodel <- aov(gapminder$pop ~ gapminder$gdpGroup)
 anovamodel <- aov(lon_dims_imd_2019$health_london_rank ~ lon_dims_imd_2019$la19nm)
 summary(anovamodel)
 ```
@@ -1580,7 +1576,6 @@ The most common use of regression modelling is to explore the relationship betwe
 
 
 ``` r
-# cor.test(gapminder$gdpPercap, gapminder$lifeExp)
 cor.test(lon_dims_imd_2019$Income_london_rank, lon_dims_imd_2019$health_london_rank)
 ```
 
@@ -1599,7 +1594,6 @@ sample estimates:
 ```
 
 ``` r
-# ggplot(gapminder, aes(gdpPercap, log(lifeExp))) +
 ggplot(lon_dims_imd_2019, aes(Income_london_rank, health_london_rank)) +
   geom_point() +
   geom_smooth()
@@ -1642,7 +1636,7 @@ F-statistic:  8632 on 1 and 4833 DF,  p-value: < 2.2e-16
 
 ## Regression with a categorical IV (the t-test)
 
-Run the following code chunk and compare the results to the t test conducted earlier.
+Run the following code chunk and compare the results to the t-test conducted earlier.
 
 
 ``` r
