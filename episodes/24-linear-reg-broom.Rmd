@@ -1,1 +1,33 @@
+---
+title: "Linear Regression and Broom"
+teaching: 60
+exercises: 20
+source: Rmd
+---
 
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- To be able to explore relationships between variables
+- To be able to calculate predicted variables and residuals 
+- To be able to construct linear regression models
+- To be able to check assumptions for linear regressiona models
+- To be able to present model outcomes using Broom
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can I explore relationships between variables in my data?
+- How can I check that my data is suitable for use in a linear regression model?
+- How can I present model outputs in an easier to read way?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Content
+
+-   Linear Regression Models
+-   Use of Logit
+-   Assumption Diagnostics and Regression Troubleshooting 
+-   Use of Broom
+
+## Data
