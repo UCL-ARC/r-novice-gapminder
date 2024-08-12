@@ -20,22 +20,6 @@ exercises: 0
 Once Git is configured,
 we can start using it.
 
-We will continue with the story of Wolfman and Dracula who are investigating if it
-is possible to send a planetary lander to Mars.
-
-![](fig/motivatingexample.png){alt='The main elements of the story: Dracula, Wolfman, the Mummy, Mars, Pluto and The Moon'}
-[Werewolf vs dracula](https://www.deviantart.com/b-maze/art/Werewolf-vs-Dracula-124893530)
-by [b-maze](https://www.deviantart.com/b-maze) / [Deviant Art](https://www.deviantart.com/).
-[Mars](https://en.wikipedia.org/wiki/File:OSIRIS_Mars_true_color.jpg) by European Space Agency /
-[CC-BY-SA 3.0 IGO](https://creativecommons.org/licenses/by/3.0/deed.en).
-[Pluto](https://commons.wikimedia.org/wiki/File:PIA19873-Pluto-NewHorizons-FlyingPastImage-20150714-transparent.png) /
-Courtesy NASA/JPL-Caltech.
-[Mummy](https://commons.wikimedia.org/wiki/File:Mummy_icon_-_Noun_Project_4070.svg)
-© Gilad Fried / [The Noun Project](https://thenounproject.com/) /
-[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
-[Moon](https://commons.wikimedia.org/wiki/File:Lune_ico.png)
-© Luc Viatour / [https://lucnix.be](https://lucnix.be/) /
-[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
 
 First, let's create a new directory in the `Desktop` folder for our work and then change the current working directory to the newly created one:
 
