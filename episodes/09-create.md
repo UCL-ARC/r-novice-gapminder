@@ -20,16 +20,17 @@ exercises: 0
 Once Git is configured,
 we can start using it.
 
+To demonstrate the use of `git`, we will build a data dictionary.
 
 First, let's create a new directory in the `Desktop` folder for our work and then change the current working directory to the newly created one:
 
 ```bash
 $ cd ~/Desktop
-$ mkdir planets
-$ cd planets
+$ mkdir data-dictionary
+$ cd data-dictionary
 ```
 
-Then we tell Git to make `planets` a [repository](../learners/reference.md#repository)
+Then we tell Git to make `data-dictionary` a [repository](../learners/reference.md#repository)
 \-- a place where Git can store versions of our files:
 
 ```bash
@@ -38,9 +39,9 @@ $ git init
 
 It is important to note that `git init` will create a repository that
 can include subdirectories and their files---there is no need to create
-separate repositories nested within the `planets` repository, whether
+separate repositories nested within the `data-dictionary` repository, whether
 subdirectories are present from the beginning or added later. Also, note
-that the creation of the `planets` directory and its initialization as a
+that the creation of the `data-dictionary` directory and its initialization as a
 repository are completely separate processes.
 
 If we use `ls` to show the directory's contents,
@@ -51,7 +52,7 @@ $ ls
 ```
 
 But if we add the `-a` flag to show everything,
-we can see that Git has created a hidden directory within `planets` called `.git`:
+we can see that Git has created a hidden directory within `data-dictionary` called `.git`:
 
 ```bash
 $ ls -a
@@ -100,16 +101,16 @@ wording of the output might be slightly different.
 
 ## Places to Create Git Repositories
 
-Along with tracking information about planets (the project we have already created),
+Along with tracking information about the data dictionary (the project we have already created),
 Dracula would also like to track information about moons.
-Despite Wolfman's concerns, Dracula creates a `moons` project inside his `planets`
+Despite Wolfman's concerns, Dracula creates a `moons` project inside his `data-dictionary`
 project with the following sequence of commands:
 
 ```bash
 $ cd ~/Desktop   # return to Desktop directory
-$ cd planets     # go into planets directory, which is already a Git repository
-$ ls -a          # ensure the .git subdirectory is still present in the planets directory
-$ mkdir moons    # make a subdirectory planets/moons
+$ cd data-dictionary     # go into data-dictionary directory, which is already a Git repository
+$ ls -a          # ensure the .git subdirectory is still present in the data-dictionary directory
+$ mkdir moons    # make a subdirectory data-dictionary/moons
 $ cd moons       # go into moons subdirectory
 $ git init       # make the moons subdirectory a Git repository
 $ ls -a          # ensure the .git subdirectory is present indicating we have created a new Git repository
@@ -123,10 +124,10 @@ tracking files stored in the `moons` subdirectory?
 ## Solution
 
 No. Dracula does not need to make the `moons` subdirectory a Git repository
-because the `planets` repository can track any files, sub-directories, and
-subdirectory files under the `planets` directory.  Thus, in order to track
+because the `data-dictionary` repository can track any files, sub-directories, and
+subdirectory files under the `data-dictionary` directory.  Thus, in order to track
 all information about moons, Dracula only needed to add the `moons` subdirectory
-to the `planets` directory.
+to the `data-dictionary` directory.
 
 Additionally, Git repositories can interfere with each other if they are "nested":
 the outer repository will try to version-control
@@ -174,7 +175,7 @@ becomes another change that we will need to track, as we will see in the next ep
 
 Git keeps all of its files in the `.git` directory.
 To recover from this little mistake, Dracula can remove the `.git`
-folder in the moons subdirectory by running the following command from inside the `planets` directory:
+folder in the moons subdirectory by running the following command from inside the `data-dictionary` directory:
 
 ```bash
 $ rm -rf moons/.git
