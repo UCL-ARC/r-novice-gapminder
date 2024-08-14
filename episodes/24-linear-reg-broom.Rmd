@@ -47,3 +47,34 @@ Atribution: Data provided by the Consumer Data Research Centre, an ESRC Data Inv
 
 The statistical unit areas across the country are Lower layer Super Output Areas (LSOAs). We will explore the relationships between the different dimensions of the Indices of Multiple Deprivation.
 
+## Linear Regression
+
+Linear Regression enables use to to explore the the linear relationship of the dependent variable Y and independent variable(s) X(s). 
+We are going to explore the linear relationship between the Health Deprivation and Disability Domain and the Living Environment Deprivation Domain.
+
+The Health Deprivation and Disability Domain measures the risk of premature death and the impairment of quality of life through poor physical or mental health. The domain measures morbidity, disability and premature mortality but not aspects of behaviour or environment that may be predictive of future health deprivation.
+
+The Living Environment Deprivation Domain measures the quality of the local environment. The indicators fall into two sub-domains. The ‘indoors’ living environment measures the quality of housing; while the ‘outdoors’ living environment contains measures of air quality and road traffic accidents.
+
+Reference: 
+  McLennan, David et al. The English Indices of Deprivation 2019 : Technical Report. Ministry of Housing, Communities and Local Government, 2019. Print.
+
+
+### Simple Linear Regression
+In the simple linear regression example we have only one dependent variable (health_london_rank) and one independent variable (livingEnv_london_rank).
+
+```{r}
+
+reg_LivEnv_health <- lm(health_london_rank ~ livingEnv_london_rank, data = lon_dims_imd_2019)
+# We put the dependent variable to the left of the '~' and the independent variable(s) to the right 
+# and we tell R which dataset we are referring to.
+
+summary(reg_LivEnv_health)
+
+```
+
+From the result of this analysis, we can see that the Living Environment Deprivation Domain rank has a significant(small p-value, general rule of thumb <0.05) and positive relationship(positive coefficient) with the Health Deprivation and Disability Domain rank.
+
+One way of interpreting the result is: One unit increase in the Living Environment rank is related to around 0.343 (3.430e-01) points increase of the Health Deprivation and Disability rank. 
+
+R-square shows the amount of variance of Y explained by X. In this case the Living Environment rank explains 6.225% of the variance in the Health Deprivation and Disability rank. Adj R2(6.205%) shows the same as R2 but adjusted by the # of cases and # of variables. When the # of variables is small and the # of cases is very large then Adj R2 is closer to R2.
