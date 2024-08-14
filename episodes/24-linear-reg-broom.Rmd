@@ -81,7 +81,7 @@ One way of interpreting the result is: One unit increase in the Living Environme
 
 R-square shows the amount of variance of Y explained by X. In this case the Living Environment rank explains 6.225% of the variance in the Health Deprivation and Disability rank. Adj R2(6.205%) shows the same as R2 but adjusted by the # of cases and # of variables. When the # of variables is small and the # of cases is very large then Adj R2 is closer to R2.
 
-### Logit
+### Log transform
 
 Don't know what to put here yet
 
@@ -129,3 +129,25 @@ In addition,  we can access the cluster-robust standard errors regression result
 coeftest(reg_LivEnv_barriers_health, reg_LivEnv_barriers_health$clse) 
 ```
 
+### Regression with Categorical independent variables
+
+We will explore the use of categorical independent variables in linear regression in this episode.
+When the dependent variable is a categorical variable, you may consider the alternatives of linear regression like logit regression and multinomial regression.
+
+```{r}
+# As a categorical variable we have added la19nm, these are the names of the London boroughs
+reg_cat_var <- lm(health_london_rank ~ livingEnv_london_rank + barriers_london_rank + la19nm, data = lon_dims_imd_2019)
+
+summary(reg_cat_var)
+```
+
+R automatically recognizes la19nm as a factor and treats it accordingly. 
+The missing one in the coefficient summary (Barking and Dagenham) is treated as a base line, therefore the value is 0.
+However, we can also modify our model to show for all:
+
+```{r}
+reg_cat_var_showall <- lm(health_london_rank ~ 0 + livingEnv_london_rank + barriers_london_rank + la19nm, data = lon_dims_imd_2019)
+
+summary(reg_cat_var_showall)
+
+```
