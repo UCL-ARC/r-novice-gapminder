@@ -34,8 +34,10 @@ source: Rmd
 
 ```{r libraries, message=FALSE, warning=FALSE}
 
-# We will need this library and this data later.
+# We will need these libraries and this data later.
 library(ggplot2)
+library(lmtest)
+library(sandwich)
 
 lon_dims_imd_2019 <- read.csv(".data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
 
@@ -112,4 +114,18 @@ View(health_rank_pred)
 ```
 
 ### Robust Regression
+
+We can run the robust standard error regressions(control for heteroskedasticity, meaning unequal variances):
+
+```{r}
+reg_LivEnv_barriers_health$robse <- vcovHC(reg_LivEnv_barriers_health, type="HC1")
+coeftest(reg_LivEnv_barriers_health,reg_LivEnv_barriers_health$robse) 
+```
+
+In addition,  we can access the cluster-robust standard errors regression results:
+
+```{r}
+#cluster-robust standard errors
+coeftest(reg_LivEnv_barriers_health, reg_LivEnv_barriers_health$clse) 
+```
 
