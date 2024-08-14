@@ -26,7 +26,7 @@ source: Rmd
 ## Content
 
 -   Linear Regression Models
--   Use of Logit
+-   Use of Log transform
 -   Assumption Diagnostics and Regression Troubleshooting 
 -   Use of Broom
 
