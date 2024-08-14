@@ -31,3 +31,19 @@ source: Rmd
 -   Use of Broom
 
 ## Data
+
+'''R
+lon_dims_imd_2019 <- read.csv(".data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
+ahah_2022 <- read.csv('data/AHAH_V3_0.csv')
+
+#add London Dims to AHA data
+combinedLondonDims <- merge(ahah_2022,lon_dims_imd_2019,by.x="lsoa19",by.y="ls11cd",all.y
+
+'''
+
+We are going to use the data from the Consumer Data Research Centre, specifically the London IMD 2019 (English IMD 2019 Domains rebased) and the Access to Healthy Assets & Hazards (AHAH) 2022 data.
+
+Atribution: Data provided by the Consumer Data Research Centre, an ESRC Data Investment: ES/L011840/1, ES/L011891/1 
+
+The statistical unit areas across the country are Lower layer Super Output Areas (LSOAs). We have combined the data using a right join to focus on London.
+
