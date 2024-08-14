@@ -78,3 +78,38 @@ From the result of this analysis, we can see that the Living Environment Depriva
 One way of interpreting the result is: One unit increase in the Living Environment rank is related to around 0.343 (3.430e-01) points increase of the Health Deprivation and Disability rank. 
 
 R-square shows the amount of variance of Y explained by X. In this case the Living Environment rank explains 6.225% of the variance in the Health Deprivation and Disability rank. Adj R2(6.205%) shows the same as R2 but adjusted by the # of cases and # of variables. When the # of variables is small and the # of cases is very large then Adj R2 is closer to R2.
+
+### Logit
+
+Don't know what to put here yet
+
+### Predicted values and Residuals
+
+We can expand our simple linear regression example to incorporate the Barriers to Housing and Services Domain rank.
+The Barriers to Housing and Services Domain measures the physical and financial accessibility of housing and local services. The indicators fall into two sub-domains: ‘geographical barriers’, which relate to the physical proximity of local services, and ‘wider barriers’ which includes issues relating to access to housing, such as affordability.
+
+```{r}
+
+reg_LivEnv_barriers_health <- lm(health_london_rank ~ livingEnv_london_rank + barriers_london_rank, data = lon_dims_imd_2019)
+
+summary(reg_LivEnv_barriers_health)
+
+```
+
+After running the regression model, we can access the model predicted values and the residuals compared to the real observations.
+
+```{r}
+#first we fit the predictions
+health_rank_pred<-fitted(reg_LivEnv_barriers_health)
+health_rank_pred<-as.data.frame(health_rank_pred)
+
+#now we add the residual values too
+health_rank_resid<-residuals(reg_LivEnv_barriers_health)
+health_rank_pred$resid<-health_rank_resid
+
+#We can thenview the predictions and residuals
+View(health_rank_pred)
+```
+
+### Robust Regression
+
