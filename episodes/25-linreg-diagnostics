@@ -1,0 +1,72 @@
+
+
+
+
+## Assumption Diagnostics and Regression Trouble Shooting
+
+For accurate model interpretation and prediction, there are a number of assumptions about linear regression models that need to be verified.
+These are:
+* Linear Relationship: The core premise of multiple linear regression is the existence of a linear relationship between the dependent (outcome) variable and the independent variables. T
+* Multivariate Normality: The analysis assumes that the residuals (the differences between observed and predicted values) are normally distributed. This assumption can be assessed by examining histograms or Q-Q plots of the residuals, or through statistical tests such as the Kolmogorov-Smirnov test.
+* No Multicollinearity: It is essential that the independent variables are not too highly correlated with each other, a condition known as multicollinearity. This can be checked using:
+  + Correlation matrices, where correlation coefficients should ideally be below 0.80.
+  + Variance Inflation Factor (VIF), with VIF values above 10 indicating problematic multicollinearity.
+* Homoscedasticity: The variance of error terms (residuals) should be consistent across all levels of the independent variables. 
+
+We can perform a number of tests to see if the assumptions are met. 
+
+We will first undertake some residual diagnostics using the package 'olsrr'.
+
+### Residual Diagnostics
+
+#### Residual QQ Plot
+Plot for detecting violation of normality assumption.
+```{r}
+library(olsrr)
+
+model1 <- lm(health_london_rank ~ livingEnv_london_rank + barriers_london_rank + la19nm, data = lon_dims_imd_2019)
+
+ols_plot_resid_qq(model1)
+```
+
+#### Residual Normality Test
+Test for detecting violation of normality assumption.
+```{r}
+
+ols_test_normality(model1)
+
+```
+
+Correlation between observed residuals and expected residuals under normality.
+```{r}
+
+ols_test_correlation(model1)
+
+```
+From these tests we can see that our assumptions are seemingly correct.
+
+#### Residual vs Fitted Values Plot
+We can create a scatter plot of residuals on the y axis and fitted values on the x axis to detect non-linearity, unequal error variances, and outliers.
+
+Characteristics of a well behaved residual vs fitted plot:
+* The residuals spread randomly around the 0 line indicating that the relationship is linear.
+* The residuals form an approximate horizontal band around the 0 line indicating homogeneity of error variance.
+* No one residual is visibly away from the random pattern of the residuals indicating that there are no outliers.
+
+```{r}
+
+ols_plot_resid_fit(model1)
+
+```
+
+#### Residual Histogram
+Additionally, we can create a histogram of residuals for detecting violation of normality assumption.
+
+```{r}
+
+ols_plot_resid_hist(model1)
+
+```
+
+### Additional Diagnostics
+In addition the residual diagnostics, we can also assess our model for Heteroskedasticity and Multicollinearity
