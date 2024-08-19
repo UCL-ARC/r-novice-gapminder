@@ -1,8 +1,47 @@
+---
+title: Assumption Diagnostics and Regression Trouble Shooting
+teaching: 40
+exercises: 20
+source: Rmd
+---
 
+::::::::::::::::::::::::::::::::::::::: objectives
 
+- To be able to explore relationships between variables
+- To be able to calculate predicted variables and residuals 
+- To be able to construct linear regression models
+- To be able to check assumptions for linear regressiona models
+- To be able to present model outcomes using Broom
 
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Assumption Diagnostics and Regression Trouble Shooting
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can I explore relationships between variables in my data?
+- How can I check that my data is suitable for use in a linear regression model?
+- How can I present model outputs in an easier to read way?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Content
+
+-   Linear Regression Models
+-   Use of Log transform
+-   Assumption Diagnostics and Regression Troubleshooting 
+-   Use of Broom
+
+## Data
+
+```{r libraries, message=FALSE, warning=FALSE}
+
+# We will need these libraries and this data later.
+library(ggplot2)
+library(lmtest)
+library(sandwich)
+
+lon_dims_imd_2019 <- read.csv(".data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
+
+```
 
 For accurate model interpretation and prediction, there are a number of assumptions about linear regression models that need to be verified.
 These are:
