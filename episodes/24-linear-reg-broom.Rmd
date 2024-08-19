@@ -10,7 +10,6 @@ source: Rmd
 - To be able to explore relationships between variables
 - To be able to calculate predicted variables and residuals 
 - To be able to construct linear regression models
-- To be able to check assumptions for linear regressiona models
 - To be able to present model outcomes using Broom
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -18,7 +17,6 @@ source: Rmd
 :::::::::::::::::::::::::::::::::::::::: questions
 
 - How can I explore relationships between variables in my data?
-- How can I check that my data is suitable for use in a linear regression model?
 - How can I present model outputs in an easier to read way?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -27,7 +25,7 @@ source: Rmd
 
 -   Linear Regression Models
 -   Use of Log transform
--   Assumption Diagnostics and Regression Troubleshooting 
+-   Use of Categorical Variables
 -   Use of Broom
 
 ## Data
