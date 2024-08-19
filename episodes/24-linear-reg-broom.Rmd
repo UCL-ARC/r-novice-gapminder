@@ -34,6 +34,7 @@ source: Rmd
 
 # We will need these libraries and this data later.
 library(ggplot2)
+library(tidyverse)
 library(lmtest)
 library(sandwich)
 library(broom)
@@ -211,3 +212,94 @@ Summary statistics are computed for the entire regression, such as R^2 and the F
 glance(reg_LivEnv_health)
 
 ```
+### Generalised linear models
+
+We can also use the 'broom' functions to present data from Generalised linear and non-linear models.
+For example, if we wanted to explore the Income Rank in relation to whether or not an area was within the City of London.
+
+```{r}
+
+# add a variable to indicate whether or not an area is within the City of London
+lon_dims_imd_2019 <- lon_dims_imd_2019 %>% mutate(city = la19nm == "City of London")
+
+# create a Generalised Linear Model
+glmlondims <- glm(city ~ Income_london_rank, lon_dims_imd_2019, family = "binomial")
+summary(glmlondims)
+
+```
+
+Use of 'tidy':
+```{r}
+
+tidy(glmlondims)
+
+```
+
+Use of 'augment':
+```{r}
+
+augment(glmlondims)
+
+```
+
+Use of 'glance':
+```{r}
+
+glance(glmlondims)
+
+```
+You will notice that the statistics computed by 'glance' are different for glm objects than for lm (e.g. deviance rather than R^2).
+
+### Hypothesis Testing
+
+The tidy function can also be applied a range of hypotheses tests, such as built-in functions like t.test, cor.test, and wilcox.test.
+
+### t-test
+```{r}
+
+tt <- t.test(Income_london_rank ~ city, lon_dims_imd_2019)
+tidy(tt)
+
+```
+Some cases might have fewer columns (for example, no confidence interval).
+
+Wilcox test:
+```{r}
+
+wt <- wilcox.test(Income_london_rank ~ city, lon_dims_imd_2019)
+tidy(wt)
+
+```
+
+Since the 'tidy' output is already only one row, glance returns the same output:
+```{r}
+#t-test
+glance(tt)
+
+#Wilcox test
+glance(wt)
+
+```
+
+The 'augment' method is defined only for chi-squared tests, since there is no meaningful sense, for other tests, 
+in which a hypothesis test produces output about each initial data point.
+
+```{r}
+# xtabs creates a frequency table of IMD deciles within London borooughs
+chit <- chisq.test(xtabs(~la19nm + IDAOP_london_decile,data = lon_dims_imd_2019))
+
+tidy(chit)
+
+```
+
+```{r}
+
+augment(chit)
+
+```
+
+### Conventions
+There are some conventions that enable consistency across the broom functions, these are:
+* The output of the tidy, augment and glance functions is always a tibble.
+* The output never has rownames. This ensures that you can combine it with other tidy outputs without fear of losing information (since rownames in R cannot contain duplicates).
+* Some column names are kept consistent, so that they can be combined across different models and so that you know what to expect (in contrast to asking “is it pval or PValue?” every time). 
