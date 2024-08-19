@@ -151,3 +151,15 @@ reg_cat_var_showall <- lm(health_london_rank ~ 0 + livingEnv_london_rank + barri
 summary(reg_cat_var_showall)
 
 ```
+### Categorical variables with interaction terms
+
+Sometimes we are interested in how a variable interacts with another variable.
+We can explore any interactions between locations (la19nm) and the living environment and barrier ranks.
+
+```{r}
+reg_cat_var_int <- lm(health_london_rank ~ la19nm*(livingEnv_london_rank + barriers_london_rank), data = lon_dims_imd_2019)
+
+summary(reg_cat_var_int)
+```
+
+## Assumption Diagnostics and Regression Trouble Shooting
