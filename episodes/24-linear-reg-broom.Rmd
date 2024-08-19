@@ -36,6 +36,7 @@ source: Rmd
 library(ggplot2)
 library(lmtest)
 library(sandwich)
+library(broom)
 
 lon_dims_imd_2019 <- read.csv(".data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
 
@@ -160,3 +161,53 @@ reg_cat_var_int <- lm(health_london_rank ~ la19nm*(livingEnv_london_rank + barri
 summary(reg_cat_var_int)
 ```
 
+## Broom
+
+The 'broom' package offers an alternative way of presenting the output of statistical analysis.
+It centers around three S3 methods, each of which take common objects produced by R statistical functions (lm, t.test, nls, etc) and convert them into a tibble.
+
+These are:
+* tidy: constructs a tibble that summarizes the model’s statistical findings. This includes coefficients and p-values for each term in a regression, per-cluster information in clustering applications, or per-test information for multtest functions.
+* augment: add columns to the original data that was modeled. This includes predictions, residuals, and cluster assignments.
+* glance: construct a concise one-row summary of the model. This typically contains values such as R^2, adjusted R^2, and residual standard error that are computed once for the entire model.
+
+
+Let's revisit our initial linear model:
+```{r}
+
+reg_LivEnv_health <- lm(health_london_rank ~ livingEnv_london_rank, data = lon_dims_imd_2019)
+
+summary(reg_LivEnv_health)
+
+```
+
+There is a lot of useful information, but it not available in a way so that you can combine it with other models or do further analysis.
+We can convert this to tabular data using the 'tidy' function.
+
+```{r}
+
+tidy(reg_LivEnv_health)
+
+```
+The row names have been moved into a column called term, and the column names are simple and consistent (and can be accessed using $).
+
+Information about the model can be explored with 'augment'. The function augments the original data with information from the model, 
+such as the fitted values and residuals for each of the original points in the regression. 
+
+
+```{r}
+
+augment(reg_LivEnv_health)
+
+```
+
+Some of the data presented by 'augment' will be discussed in the episode Linear Regression Diagnostics.
+
+Summary statistics are computed for the entire regression, such as R^2 and the F-statistic can be accessed with the 'glance' function:
+
+
+```{r}
+
+glance(reg_LivEnv_health)
+
+```
