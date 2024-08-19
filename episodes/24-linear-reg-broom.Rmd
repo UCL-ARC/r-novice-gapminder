@@ -1,6 +1,6 @@
 ---
 title: "Linear Regression and Broom"
-teaching: 60
+teaching: 80
 exercises: 20
 source: Rmd
 ---
@@ -163,3 +163,16 @@ summary(reg_cat_var_int)
 ```
 
 ## Assumption Diagnostics and Regression Trouble Shooting
+
+For accurate model interpretation and prediction, there are a number of assumptions about linear regression models that need to be verified.
+These are:
+* Linear Relationship: The core premise of multiple linear regression is the existence of a linear relationship between the dependent (outcome) variable and the independent variables. T
+* Multivariate Normality: The analysis assumes that the residuals (the differences between observed and predicted values) are normally distributed. This assumption can be assessed by examining histograms or Q-Q plots of the residuals, or through statistical tests such as the Kolmogorov-Smirnov test.
+* No Multicollinearity: It is essential that the independent variables are not too highly correlated with each other, a condition known as multicollinearity. This can be checked using:
+  + Correlation matrices, where correlation coefficients should ideally be below 0.80.
+  + Variance Inflation Factor (VIF), with VIF values above 10 indicating problematic multicollinearity.
+* Homoscedasticity: The variance of error terms (residuals) should be consistent across all levels of the independent variables. 
+
+We can perform a number of tests to see if the assumptions are met.
+
+### Normality Check
