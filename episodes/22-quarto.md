@@ -21,8 +21,6 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-```{r chunk_options, include=FALSE}
-```
 
 ## Data analysis reports
 
