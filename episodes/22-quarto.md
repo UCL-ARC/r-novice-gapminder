@@ -559,7 +559,7 @@ code:
 ```r
 # render-report.R
 library(quarto)
-quart_render("life_expectancy_report.qmd", execute_params = list(country = "Afghanistan"))
+quarto_render("life_expectancy_report.qmd", execute_params = list(country = "Afghanistan"))
 ```
 
 And now for the real magic, we can modify our script to render a report for a list of countries
