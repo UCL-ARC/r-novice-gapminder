@@ -470,6 +470,145 @@ Change the `format: ` field in the YAML header to `pdf` or `docx`.
 For an overview of all the available output formats, see the
 [Quarto documentation](https://quarto.org/docs/output-formats/all-formats.html)
 
+## Parameterised reports
+
+Literate programming with tools like Quarto and R Markdown is very powerful in
+that it allows you to generate analysis reports in a reproducible manner.
+This makes it very easy to update your work and alter the input parameters within the report
+You can take this one step further, by parametrising the reports themselves.
+This is very useful in a number of cases, for example:
+
+* Running the same analysis on different datasets
+* Generating multiple reports for different groups of the data (e.g. geographic location or time periods)
+* Controlling the `knitr` options; e.g. you might want to show the code in some reports but not in others
+
+### Including parameters in a Quarto document
+
+Including parameters in a Quarto document (or R Markdown, which follows the same syntax) can be done
+by adding the `params` field to they YAML header. This field can hold a list of multiple parameters.
+
+For example, imagine we want to analyse the life expectancy of different countries, using the
+`gapminder` dataset, but we want a separate report for each country. To achieve this, we set
+the YAML header for our Quarto document as follows:
+
+```yaml
+---
+title: "Life Expectancy Report"
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
+params:
+  country: "Afghanistan"
+---
+```
+
+We can then reference this parameter anywhere in the R code in our report by accessing the
+`params` object. To calculate the life expectancy for just the country defined by the `params`,
+we can do:
+
+````{verbatim}
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+```{r}
+life_expectancy <-
+  gapminder |>
+  select(country, year, lifeExp) |>
+  filter(country == params$country)
+```
+````
+
+The last line in the code chunk above uses the `params` object to filter the `gapminder` dataset.
+Note that we can also `params` in inline R code snippets. So we can generate a heading that will
+change based on the country parameter:
+
+````{verbatim}
+## Life Expectancy in `r params$country`
+
+```{r}
+#| label: !expr paste0("life-expectancy-plot", params$country)
+ggplot(life_expectancy, aes(year, lifeExp)) +
+  geom_line() +
+  theme_minimal()
+```
+````
+
+In fact, we can even use this in the main document title in the YAML header, as it also accepts
+R code expressions:
+
+```yaml
+---
+title: "Life Expectancy Report for `r params$country`"
+...
+```
+
+### Rendering Quarto documents from within R
+
+Of course, manually editing the YAML header every time you want to generate a report
+isn't much better than manually editing the report itself. The real power of parameterised
+reports is when we render them *programmatically*. This can be done using the
+[`{quarto}` R package](https://github.com/quarto-dev/quarto-r), which provides
+the `quarto_render()` function. This function takes a Quarto file and any execution parameters
+as input.
+
+So to generate the life expectancy report for Afghanistan, we can write a script with the following
+code:
+
+```r
+# render-report.R
+library(quarto)
+quart_render("life_expectancy_report.qmd", execute_params = list(country = "Afghanistan"))
+```
+
+And now for the real magic, we can modify our script to render a report for a list of countries
+of interest from the `gapminder` dataset.
+
+```{r}
+# render-all-reports.R
+library(quarto)
+countries <- c("Afghanistan", "Belgium", "India", "United Kingdom")
+for (country in countries) {
+  quarto_render(
+    input = "life_expectancy_report.qmd",
+    output_file = paste0("life_expectancy_", country, ".html"),
+    execute_params = list(country = country)
+  )
+}
+```
+
+After running this script, we should have the following files in our working directory:
+
+```
+.
+├── life_expectancy_Afghanistan.html
+├── life_expectancy_Belgium.html
+├── life_expectancy_India.html
+├── life_expectancy_United Kingdom.html
+├── life_expectancy_report.qmd
+└── life_expectancy_report_files
+```
+
+::: callout
+**WARNING**: although this will work and generate the correct output files,
+you might notice that each report will show the _exact same plot_, which is unexpected.
+This is an [issue](https://github.com/quarto-dev/quarto-r/issues/205) with the Quarto R package.
+
+With R Markdown we don't have this issue, to render we would use the following code:
+
+```r
+rmarkdown::render(
+  input = "life_expectency_report.Rmd",
+  output_file = paste0("life_expectancy_", country, ".html"),
+  params = list(country = country)
+)
+```
+
+:::
+
 :::::::::::::::::::::::::::::::::::::::::  callout
 
 ## Tip: Creating PDF documents
