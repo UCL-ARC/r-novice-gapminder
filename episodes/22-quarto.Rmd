@@ -1,5 +1,5 @@
 ---
-title: Producing Reports With knitr
+title: Producing Reports With Quarto
 teaching: 60
 exercises: 15
 source: Rmd
@@ -8,10 +8,10 @@ source: Rmd
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Understand the value of writing reproducible reports
-- Learn how to recognise and compile the basic components of an R Markdown file
+- Learn how to recognise and compile the basic components of an Quarto file
 - Become familiar with R code chunks, and understand their purpose, structure and options
 - Demonstrate the use of inline chunks for weaving R outputs into text blocks, for example when discussing the results of some calculations
-- Be aware of alternative output formats to which an R Markdown file can be exported
+- Be aware of alternative output formats to which a Quarto file can be exported
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -41,11 +41,23 @@ into a single document. But tweaking formatting to make figures look correct
 and fixing obnoxious page breaks can be tedious and lead to a lengthy "whack-a-mole"
 game of fixing new mistakes resulting from a single formatting change.
 
-Creating a report as a web page (which is an html file) using R Markdown makes things easier.
+Creating a report as a web page (which is an html file) using [Quarto](https://quarto.org/docs/get-started/hello/rstudio.html)
+makes things easier.
 The report can be one long stream, so tall figures that wouldn't ordinarily fit on
 one page can be kept at full size and easier to read, since the reader can simply
-keep scrolling. Additionally, the formatting of and R Markdown document is simple and easy to modify, allowing you to spend
-more time on your analyses instead of writing reports.
+keep scrolling. Additionally, the formatting of a Quarto document is simple and easy to modify,
+allowing you to spend more time on your analyses instead of writing reports.
+
+::: callout
+You might also have heard about [R Markdown](https://rmarkdown.rstudio.com/) as a literate
+programming tool. In a lot of ways, Quarto is the
+[next-generation version of R Markdown](https://quarto.org/docs/faq/rmarkdown.html)
+with more advanced features and multi-language support. However, at its core, Quarto still
+works the same as R Markdown when it comes to R-based documents and R Markdown files (`.Rmd`)
+are still compatible with Quarto. Much of what we cover in this episode is thus also valid
+for traditional R Markdown files.
+:::
+
 
 ## Literate programming
 
@@ -62,30 +74,32 @@ be executed, and graphs or other results will be inserted into the final documen
 
 This sort of idea has been called "literate programming".
 
-`knitr` allows you to mix basically any type of text with code from different programming languages, but we recommend that you use `R Markdown`, which mixes Markdown
-with R. [Markdown](https://www.markdownguide.org/) is a light-weight mark-up language for creating web
-pages.
+When rendering a document, `knitr` will execute the R code in each chunk and
+creates a new markdown (`.md`) document, which will include both the regular text
+and output from the executed code chunks. This markdown file is then converted to the final
+output format with [pandoc](http://pandoc.org/). This whole process is handled for you
+by the *Render* button in the RStudio IDE.
 
-## Creating an R Markdown file
+## Creating a Quarto document
 
-Within RStudio, click File → New File → R Markdown and
+Within RStudio, click `File → New File → Quarto document...` and
 you'll get a dialog box like this:
 
-![](fig/New_R_Markdown.png){alt='Screenshot of the New R Markdown file dialogue box in RStudio'}
+![](fig/New_Quarto_Document.png){alt='Screenshot of the New Quarto Document dialogue box in RStudio'}
 
 You can stick with the default (HTML output), but give it a title.
 
 ## Basic components of R Markdown
 
-The initial chunk of text (header) contains instructions for R to specify what kind of document will be created, and the options chosen. You can use the header to give your document a title, author, date, and tell it what type of output you want
-to produce. In this case, we're creating an html document.
+The initial chunk of text (header) contains instructions for Quarto to specify what kind of document will be created, and the options chosen. You can use the header to give your document a title, author, date, and tell it what type of output you want
+to produce. In this case, we're creating an `html` document.
 
-```
+```yaml
 ---
-title: "Initial R Markdown document"
-author: "Karl Broman"
-date: "April 23, 2015"
-output: html_document
+title: "My Quarto document"
+author: "John Doe"
+format: html
+editor: visual
 ---
 ```
 
@@ -96,11 +110,11 @@ They're mostly needed if you want to include a colon in the title.
 RStudio creates the document with some example text to get you
 started. Note below that there are chunks like
 
-<pre>
-&#96;&#96;&#96;{r}
-summary(cars)
-&#96;&#96;&#96;
-</pre>
+````{verbatim}
+```{r}
+1 + 1
+```
+````
 
 These are chunks of R code that will be executed by `knitr` and replaced
 by their results. More on this later.
@@ -122,7 +136,7 @@ and you make things *italics* by using underscores, like this:
 You can make a bulleted list by writing a list with hyphens or
 asterisks with a space between the list and other text, like this:
 
-```
+```markdown
 A list:
 
 * bold with double-asterisks
@@ -132,7 +146,7 @@ A list:
 
 or like this:
 
-```
+```markdown
 A second list:
 
 - bold with double-asterisks
@@ -152,7 +166,7 @@ readability of your code.
 You can make a numbered list by just using numbers. You can even use the
 same number over and over if you want:
 
-```
+```markdown
 1. bold with double-asterisks
 1. italics with underscores
 1. code-type font with backticks
@@ -167,21 +181,26 @@ This will appear as:
 You can make section headers of different sizes by initiating a line
 with some number of `#` symbols:
 
-```
+```markdown
 # Title
+
 ## Main section
+
 ### Sub-section
+
 #### Sub-sub section
 ```
 
 You *compile* the R Markdown document to an html webpage by clicking
-the "Knit" button in the upper-left.
+the "Render" button in the upper-left. Or using the keyboard shortcut
+<kbd>Shift</kbd>\+<kbd>Ctrl</kbd>\+<kbd>K</kbd> on Windows and Linux,
+or <kbd>Shift</kbd>\+<kbd>Cmd</kbd>\+<kbd>K</kbd> on Mac.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Challenge 1
 
-Create a new R Markdown document. Delete all of the R code chunks
+Create a new Quarto document. Delete all of the R code chunks
 and write a bit of Markdown (some sections, some italicized
 text, and an itemized list).
 
@@ -191,11 +210,11 @@ Convert the document to a webpage.
 
 ## Solution to Challenge 1
 
-In RStudio, select File > New file > R Markdown...
+In RStudio, select `File > New file > Quarto Document...`
 
 Delete the placeholder text and add the following:
 
-```
+```markdown
 # Introduction
 
 ## Background on Data
@@ -213,8 +232,7 @@ This report uses the *gapminder* dataset, which has columns that include:
 
 ```
 
-Then click the 'Knit' button on the toolbar to generate an html document (webpage).
-
+Then click the 'Render' button on the toolbar to generate an html document (webpage).
 
 
 :::::::::::::::::::::::::
@@ -239,31 +257,50 @@ If you know how to write equations in
 $$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$
 ```
 
+which will show as
+
+$$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$
+
+
 You can review Markdown syntax by navigating to the
 "Markdown Quick Reference" under the "Help" field in the
 toolbar at the top of RStudio.
 
 ## R code chunks
 
-The real power of Markdown comes from
-mixing markdown with chunks of code. This is R Markdown. When
+The real power of Quarto comes from
+mixing markdown with chunks of code. When
 processed, the R code will be executed; if they produce figures, the
 figures will be inserted in the final document.
 
 The main code chunks look like this:
 
-<pre>
-&#96;&#96;&#96;{r load_data}
+````{verbatim}
+```{r}
+#| label: load_data
 gapminder <- read.csv("gapminder.csv")
-&#96;&#96;&#96;
-</pre>
+```
+````
 
-That is, you place a chunk of R code between <code>\`\`\`{r chunk\_name}</code>
+That is, you place a chunk of R code between <code>\`\`\`{r}</code>
 and <code>\`\`\`</code>. You should give each chunk
-a unique name, as they will help you to fix errors and, if any graphs are
+a unique name, by inserting the line `#| label: label_name`
+as they will help you to fix errors and, if any graphs are
 produced, the file names are based on the name of the code chunk that
 produced them. You can create code chunks quickly in RStudio using the shortcuts
-<kbd>Ctrl</kbd>\+<kbd>Alt</kbd>\+<kbd>I</kbd> on Windows and Linux, or <kbd>Cmd</kbd>\+<kbd>Option</kbd>\+<kbd>I</kbd> on Mac.
+<kbd>Ctrl</kbd>\+<kbd>Alt</kbd>\+<kbd>I</kbd> on Windows and Linux,
+or <kbd>Cmd</kbd>\+<kbd>Option</kbd>\+<kbd>I</kbd> on Mac.
+
+::: spoiler
+### Code chunk options in R Markdown
+In R Markdown, you add chunk labels by including them within the <code>\`\`\`{r}</code> line like so:
+
+````{verbatim}
+```{r label_data}
+gapminder <- read.csv("gapminder.csv")
+```
+````
+:::
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -279,31 +316,33 @@ Add code chunks to:
 
 ## Solution to Challenge 2
 
-<pre>
-&#96;&#96;&#96;{r load-ggplot2}
-library("ggplot2")
-&#96;&#96;&#96;
-</pre>
+````{verbatim}
+```{r}
+#| label: libraries
+library(ggplot2)
+```
+````
 
-<pre>
-&#96;&#96;&#96;{r read-gapminder-data}
+````{verbatim}
+```{r}
+#| label: load-gapminder-data
 gapminder <- read.csv("gapminder.csv")
-&#96;&#96;&#96;
-</pre>
+```
+````
 
-<pre>
-&#96;&#96;&#96;{r make-plot}
+````{verbatim}
+```{r}
+#| label: make-plot
 plot(lifeExp ~ year, data = gapminder)
-&#96;&#96;&#96;
-</pre>
-
+```
+````
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## How things get compiled
 
-When you press the "Knit" button, the R Markdown document is
+When you press the "Render" button, the Quarto document is
 processed by [`knitr`](https://yihui.name/knitr) and a plain Markdown
 document is produced (as well as, potentially, a set of figure files): the R code is executed
 and replaced by both the input and the output; if figures are
@@ -313,38 +352,7 @@ The Markdown and figure documents are then processed by the tool
 [`pandoc`](https://pandoc.org/), which converts the Markdown file into an
 html file, with the figures embedded.
 
-```{r rmd_to_html_fig, fig.width=8, fig.height=3, fig.align="left", echo=FALSE}
-par(mar=rep(0, 4), bty="n", cex=1.5)
-plot(0, 0, type="n", xlab="", ylab="", xaxt="n", yaxt="n",
-     xlim=c(0, 100), ylim=c(0, 100))
-xw <- 10
-yh <- 35
-xm <- 12
-ym <- 50
-rect(xm-xw/2, ym-yh/2, xm+xw/2, ym+yh/2, lwd=2)
-text(xm, ym, ".Rmd")
-
-xm <- 50
-ym <- 80
-rect(xm-xw/2, ym-yh/2, xm+xw/2, ym+yh/2, lwd=2)
-text(xm, ym, ".md")
-xm <- 50; ym <- 25
-for(i in c(2, 0, -2))
-    rect(xm-xw/2+i, ym-yh/2+i, xm+xw/2+i, ym+yh/2+i, lwd=2,
-         border="black", col="white")
-text(xm-2, ym-2, "figs/")
-
-xm <- 100-12
-ym <- 50
-rect(xm-xw/2, ym-yh/2, xm+xw/2, ym+yh/2, lwd=2)
-text(xm, ym, ".html")
-
-arrows(22, 50, 38, 50, lwd=2, col="slateblue", len=0.1)
-text((22+38)/2, 60, "knitr", col="darkslateblue", cex=1.3)
-
-arrows(62, 50, 78, 50, lwd=2, col="slateblue", len=0.1)
-text((62+78)/2, 60, "pandoc", col="darkslateblue", cex=1.3)
-```
+![](https://quarto.org/docs/get-started/hello/images/rstudio-qmd-how-it-works.png){alt='Schematic of the Quarto rendering process'}
 
 ## Chunk options
 
@@ -361,22 +369,32 @@ treated. Here are some examples:
 
 So you might write:
 
-<pre>
-&#96;&#96;&#96;{r load_libraries, echo=FALSE, message=FALSE}
-library("dplyr")
-library("ggplot2")
-&#96;&#96;&#96;
-</pre>
+````{verbatim}
+```{r}
+#| label: load_libraries
+#| echo: false
+#| message: false
+library(dplyr)
+library(ggplot2)
+```
+````
 
 Often there will be particular options that you'll want to use
-repeatedly; for this, you can set *global* chunk options, like so:
+repeatedly; for this, you can set *global* chunk options in the files YAML header like so:
 
-<pre>
-&#96;&#96;&#96;{r global_options, echo=FALSE}
-knitr::opts_chunk$set(fig.path="Figs/", message=FALSE, warning=FALSE,
-                      echo=FALSE, results="hide", fig.width=11)
-&#96;&#96;&#96;
-</pre>
+```yaml
+---
+...
+knitr:
+  opts_chunk:
+    message: false
+    warning: false
+    echo: false
+    results: "hide"
+    fig.path: "Figs/
+    fig.width: 11
+---
+```
 
 The `fig.path` option defines where the figures will be saved. The `/`
 here is really important; without it, the figures would be saved in
@@ -397,12 +415,14 @@ code.
 
 ## Solution to Challenge 3
 
-<pre>
-&#96;&#96;&#96;{r echo = FALSE, fig.width = 3}
-plot(faithful)
-&#96;&#96;&#96;
-</pre>
-
+````{verbatim}
+```{r}
+#| label: faitful-plot
+#| echo: false
+#| fig.width: 3
+plot(faitful)
+```
+````
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -424,14 +444,6 @@ Perhaps precede the paragraph with a larger code chunk that does
 calculations and defines variables, with `include=FALSE` for that larger
 chunk (which is the same as `echo=FALSE` and `results="hide"`).
 
-Rounding can produce differences in output in such situations. You may want
-`2.0`, but `round(2.03, 1)` will give just `2`.
-
-The
-[`myround`](https://github.com/kbroman/broman/blob/master/R/myround.R)
-function in the [R/broman](https://github.com/kbroman/broman) package handles
-this.
-
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Challenge 4
@@ -442,18 +454,21 @@ Try out a bit of in-line R code.
 
 ## Solution to Challenge 4
 
-Here's some inline code to determine that 2 + 2 = ```r 2+2```.
+Here's some inline code to determine that 2 + 2 = `r 2+2`:
 
+```{verbatim}
+Here's some inline code to determine that 2 + 2 = `r 2+2`:
+```
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Other output options
 
-You can also convert R Markdown to a PDF or a Word document. Click the
-little triangle next to the "Knit" button to get a drop-down
-menu. Or you could put `pdf_document` or `word_document` in the initial header
-of the file.
+You can also convert R Markdown to a PDF or a Word document.
+Change the `format: ` field in the YAML header to `pdf` or `docx`.
+For an overview of all the available output formats, see the
+[Quarto documentation](https://quarto.org/docs/output-formats/all-formats.html)
 
 :::::::::::::::::::::::::::::::::::::::::  callout
 
