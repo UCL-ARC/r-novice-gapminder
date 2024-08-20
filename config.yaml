@@ -84,7 +84,7 @@ episodes:
 - 20-dplyr.Rmd
 - 21-tidyr.Rmd
 # basic stats
-- 22-knitr-markdown.Rmd 
+- 22-quarto.Rmd 
 - 23-statistics.Rmd
 # 23-regression
 # 24-logregression
