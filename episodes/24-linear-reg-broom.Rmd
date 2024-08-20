@@ -83,7 +83,22 @@ R-square shows the amount of variance of Y explained by X. In this case the Livi
 
 ### Log transform
 
-Don't know what to put here yet
+If your data is skwewed, it can be useful to transform a variable to it's log form when doing the regression. 
+You can either transform the variable beforehand or do so in the equation.
+
+```{r}
+
+reg_logbarriers_health <- lm(health_london_rank ~ log (barriers_london_rank), data = lon_dims_imd_2019)
+
+summary(reg_logbarriers_health)
+
+```
+The interpretation of the log-transformed variable is a bit different. 
+In this example only the predictor variable is log tranformed, therefore to interpret the slope coefficient we divide it by 100 (2917.0/100=29.170).
+
+If the dependent/response variable is solely log-transformed. Exponentiate the coefficient. This gives the multiplicative factor for every one-unit increase in the independent variable. Example: the coefficient is 0.198. exp(0.198) = 1.218962. For every one-unit increase in the independent variable, our dependent variable increases by a factor of about 1.22, or 22%. Recall that multiplying a number by 1.22 is the same as increasing the number by 22%. Likewise, multiplying a number by, say 0.84, is the same as decreasing the number by 1 – 0.84 = 0.16, or 16%.
+
+If both are transformed. nterpret the coefficient as the percent increase in the dependent variable for every 1% increase in the independent variable. Example: the coefficient is 0.198. For every 1% increase in the independent variable, our dependent variable increases by about 0.20%. For x percent increase, calculate 1.x to the power of the coefficient, subtract 1, and multiply by 100. Example: For every 20% increase in the independent variable, our dependent variable increases by about (1.20 0.198 - 1) * 100 = 3.7 percent.
 
 ### Predicted values and Residuals
 
