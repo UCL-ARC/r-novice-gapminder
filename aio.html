@@ -487,7 +487,7 @@
 <div class="accordion accordion-flush" id="accordionFlush23">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading23">
-        <a href="22-knitr-markdown.html">22. Producing Reports With knitr</a>
+        <a href="22-quarto.html">22. Producing Reports With Quarto</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -1899,7 +1899,7 @@ questions:</p>
   Solution to Challenge 4
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>By running these commands in the shell:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -2303,7 +2303,7 @@ vector do you expect will be created if you evaluate the following:</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The <code>c()</code> function creates a vector, in which all elements
 are of the same type. In the first case, the elements are numeric, in
@@ -2334,7 +2334,7 @@ to use it later. What’s the difference between the <code>sep</code> and
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>To look at the help for the <code>paste()</code> function, use:</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -2444,7 +2444,7 @@ reading in tabular data.</p>
   Solution to Challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The standard R function for reading tab-delimited files with a period
 decimal separator is read.delim(). You can also do this with
@@ -2952,7 +2952,7 @@ does this help us?</p>
   Discussion 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>By keeping everything in a column the same, we allow ourselves to
 make simple assumptions about our data; if you can interpret one entry
@@ -3184,7 +3184,7 @@ the data to the console</p>
   Tip 1.1
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Show the content of any variable by typing its name.</p>
 <div class="section level3">
@@ -3219,7 +3219,7 @@ the <code>cats</code> table.</p>
   Tip 1.2
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>In the chapter “Data types” we saw two functions that can show data
 types. One printed just a single word, the data type name. The other
@@ -3263,7 +3263,7 @@ weight!</li>
   Tip 1.3
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>Scroll up to the section about the <a href="#the-type-hierarchy">type
 hierarchy</a> to review the available data types</p>
@@ -3278,7 +3278,7 @@ hierarchy</a> to review the available data types</p>
   Solution to Challenge 1.3
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <ul>
 <li>Weight is expressed on a continuous scale (real numbers). The R data
@@ -3314,7 +3314,7 @@ type after executing to see if you were right.</p>
   Tip 1.4
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>Revisit the hierarchy of data types when two different data types are
 combined.</p>
@@ -3355,7 +3355,7 @@ yet. Coerce the column to floating point numbers.</p>
   Tip 1.5
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>The functions to convert data types start with <code>as.</code>. You
 can look for the function further up in the manuscript or use the
@@ -3548,7 +3548,7 @@ multiply the vector by 2.</p>
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb92">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3781,7 +3781,7 @@ functions.</li>
   Solution to Challenge 3
   </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <p>You get the names of an object by wrapping the object name inside
 <code>names(...)</code>. Similarly, you get the data type of the names
@@ -3828,7 +3828,7 @@ give you the number 2!</li>
   Solution to Challenge 4
   </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <pre><code><span><span class="va">letter_no</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">26</span>   <span class="co"># or seq(1,26)</span></span>
 <span><span class="fu">names</span><span class="op">(</span><span class="va">letter_no</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span></span>
@@ -4022,7 +4022,7 @@ is returned in each case.</p>
   Solution to Challenge 5
   </h4>
 </button>
-<div id="collapseSolution11" class="accordion-collapse collapse" data-bs-parent="#accordionSolution11" aria-labelledby="headingSolution11">
+<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb138">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4285,7 +4285,7 @@ not?</p>
   Solution to Challenge 6
   </h4>
 </button>
-<div id="collapseSolution12" class="accordion-collapse collapse" data-bs-parent="#accordionSolution12" aria-labelledby="headingSolution12">
+<div id="collapseSolution12" class="accordion-collapse collapse" aria-labelledby="headingSolution12" data-bs-parent="#accordionSolution12">
 <div class="accordion-body">
 <p>What do you think will be the result of
 <code>length(matrix_example)</code>?</p>
@@ -4331,7 +4331,7 @@ figure out how to change this. (hint: read the documentation for
   Solution to Challenge 7
   </h4>
 </button>
-<div id="collapseSolution13" class="accordion-collapse collapse" data-bs-parent="#accordionSolution13" aria-labelledby="headingSolution13">
+<div id="collapseSolution13" class="accordion-collapse collapse" aria-labelledby="headingSolution13" data-bs-parent="#accordionSolution13">
 <div class="accordion-body">
 <p>Make another matrix, this time containing the numbers 1:50, with 5
 columns and 10 rows. Did the <code>matrix</code> function fill your
@@ -4375,7 +4375,7 @@ data structures we’ve seen so far.</p>
   Solution to Challenge 8
   </h4>
 </button>
-<div id="collapseSolution14" class="accordion-collapse collapse" data-bs-parent="#accordionSolution14" aria-labelledby="headingSolution14">
+<div id="collapseSolution14" class="accordion-collapse collapse" aria-labelledby="headingSolution14" data-bs-parent="#accordionSolution14">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb173">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4429,7 +4429,7 @@ about what matrices the other commands will produce.</p>
   Solution to Challenge 9
   </h4>
 </button>
-<div id="collapseSolution15" class="accordion-collapse collapse" data-bs-parent="#accordionSolution15" aria-labelledby="headingSolution15">
+<div id="collapseSolution15" class="accordion-collapse collapse" aria-labelledby="headingSolution15" data-bs-parent="#accordionSolution15">
 <div class="accordion-body">
 <p>Consider the R output of the matrix below:</p>
 <div class="codewrapper">
@@ -4790,7 +4790,7 @@ person’s answer to the question, “Is it time for coffee break?”</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5083,7 +5083,7 @@ could ask for a few lines at random. How would you code this?</p>
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>To check the last few lines it’s relatively simple as R already has a
 function for this:</p>
@@ -5145,7 +5145,7 @@ RStudio).</p>
   Solution to Challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>The <code>source</code> function can be used to use a script within a
 script. Assume you would like to load the same type of file over and
@@ -5198,7 +5198,7 @@ neighbors!</p>
   Solution to Challenge 4
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>The object <code>gapminder</code> is a data frame with columns</p>
 <ul>
@@ -5627,7 +5627,7 @@ useful nevertheless.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The <code>-l</code> option makes <code>ls</code> use a
 <strong>l</strong>ong listing format, showing not only the
@@ -5663,7 +5663,7 @@ option to see the last changed dates.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The most recently changed file is listed last when using
 <code>-rt</code>. This can be very useful for finding your most recent
@@ -6014,7 +6014,7 @@ commands could Nelle use to navigate to her home directory, which is
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>No: <code>.</code> stands for the current directory.</li>
@@ -6060,7 +6060,7 @@ display?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>No: there <em>is</em> a directory <code>backup</code> in
@@ -6106,7 +6106,7 @@ following output:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>No: <code>pwd</code> is not the name of a directory.</li>
@@ -6955,7 +6955,7 @@ the <code>moons</code> subdirectory?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>No. Dracula does not need to make the <code>moons</code> subdirectory
 a Git repository because the <code>planets</code> repository can track
@@ -7004,7 +7004,7 @@ single git repository. How can Dracula undo his last
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution – USE WITH CAUTION! </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="section level3">
 <h3 id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
@@ -8293,7 +8293,7 @@ version of her Python script called <code>data_cruncher.py</code>?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The answer is (5)-Both 2 and 4.</p>
 <p>The <code>restore</code> command restores files from the repository,
@@ -8349,7 +8349,7 @@ e.g. 0b1d055).</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The command <code>git log</code> lists project history with commit
 IDs.</p>
@@ -8412,7 +8412,7 @@ changes to the repository.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The answer is 2.</p>
 <p>The command <code>git add venus.txt</code> places the current version
@@ -8476,7 +8476,7 @@ use <code>git restore</code> to see if you can remove your change.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>After adding a change, <code>git restore</code> can not be used
 directly. Let’s look at the output of <code>git status</code>:</p>
@@ -12291,7 +12291,7 @@ shell?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The left-most button (with the picture of a clipboard) copies the
 full identifier of the commit to the clipboard. In the shell,
@@ -12352,7 +12352,7 @@ GitHub record times, and why?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>GitHub displays timestamps in a human readable relative format
 (i.e. “22 hours ago” or “three weeks ago”). However, if you hover over
@@ -12380,7 +12380,7 @@ push” different from “git commit”?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>When we push changes, we’re interacting with a remote repository to
 update it with the changes we’ve made locally (often this corresponds to
@@ -12410,7 +12410,7 @@ happened when you tried to link your local and remote repositories?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>In this case, we’d see a merge conflict due to unrelated histories.
 When GitHub creates a README.md file, it performs a commit in the remote
@@ -12743,7 +12743,7 @@ has changed with command line? And on GitHub?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>On the command line, the Collaborator can use
 <code>git fetch origin main</code> to get the remote changes into the
@@ -13180,7 +13180,7 @@ non-textual file that is stored in version control?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Let’s try it. Suppose Dracula takes a picture of Martian surface and
 calls it <code>mars.jpg</code>.</p>
@@ -13423,7 +13423,7 @@ started.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <table class="table">
 <colgroup>
@@ -14429,7 +14429,7 @@ format?</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The original gapminder data.frame is in an intermediate format. It is
 not purely long since it had multiple observation variables
@@ -14625,7 +14625,7 @@ learned in the <code>dplyr</code> lesson</p>
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -14925,7 +14925,7 @@ frame should only have 5 rows.</p>
   Solution to Challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -15046,11 +15046,11 @@ layout.</li>
 </div>
 </div>
 </div>
-</section></section><section id="aio-22-knitr-markdown"><p>Content from <a href="22-knitr-markdown.html">Producing Reports With knitr</a></p>
+</section></section><section id="aio-22-quarto"><p>Content from <a href="22-quarto.html">Producing Reports With Quarto</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-08-21 |
 
-        <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/22-knitr-markdown.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/22-quarto.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -15073,15 +15073,15 @@ layout.</li>
 <h3 class="card-title">Objectives</h3>
 <ul>
 <li>Understand the value of writing reproducible reports</li>
-<li>Learn how to recognise and compile the basic components of an R
-Markdown file</li>
+<li>Learn how to recognise and compile the basic components of an Quarto
+file</li>
 <li>Become familiar with R code chunks, and understand their purpose,
 structure and options</li>
 <li>Demonstrate the use of inline chunks for weaving R outputs into text
 blocks, for example when discussing the results of some
 calculations</li>
-<li>Be aware of alternative output formats to which an R Markdown file
-can be exported</li>
+<li>Be aware of alternative output formats to which a Quarto file can be
+exported</li>
 </ul>
 </div>
 </div>
@@ -15105,13 +15105,32 @@ a single document. But tweaking formatting to make figures look correct
 and fixing obnoxious page breaks can be tedious and lead to a lengthy
 “whack-a-mole” game of fixing new mistakes resulting from a single
 formatting change.</p>
-<p>Creating a report as a web page (which is an html file) using R
-Markdown makes things easier. The report can be one long stream, so tall
-figures that wouldn’t ordinarily fit on one page can be kept at full
-size and easier to read, since the reader can simply keep scrolling.
-Additionally, the formatting of and R Markdown document is simple and
-easy to modify, allowing you to spend more time on your analyses instead
-of writing reports.</p>
+<p>Creating a report as a web page (which is an html file) using <a href="https://quarto.org/docs/get-started/hello/rstudio.html" class="external-link">Quarto</a>
+makes things easier. The report can be one long stream, so tall figures
+that wouldn’t ordinarily fit on one page can be kept at full size and
+easier to read, since the reader can simply keep scrolling.
+Additionally, the formatting of a Quarto document is simple and easy to
+modify, allowing you to spend more time on your analyses instead of
+writing reports.</p>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
+</h3>
+<div class="callout-content">
+<p>You might also have heard about <a href="https://rmarkdown.rstudio.com/" class="external-link">R Markdown</a> as a literate
+programming tool. In a lot of ways, Quarto is the <a href="https://quarto.org/docs/faq/rmarkdown.html" class="external-link">next-generation
+version of R Markdown</a> with more advanced features and multi-language
+support. However, at its core, Quarto still works the same as R Markdown
+when it comes to R-based documents and R Markdown files
+(<code>.Rmd</code>) are still compatible with Quarto. Much of what we
+cover in this episode is thus also valid for traditional R Markdown
+files.</p>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="literate-programming">Literate programming<a class="anchor" aria-label="anchor" href="#literate-programming"></a>
 <a class="anchor" aria-label="anchor" href="#literate-programming"></a>
 </h2>
@@ -15127,43 +15146,46 @@ the document is processed by <code>knitr</code>, chunks of code will be
 executed, and graphs or other results will be inserted into the final
 document.</p>
 <p>This sort of idea has been called “literate programming”.</p>
-<p><code>knitr</code> allows you to mix basically any type of text with
-code from different programming languages, but we recommend that you use
-<code>R Markdown</code>, which mixes Markdown with R. <a href="https://www.markdownguide.org/" class="external-link">Markdown</a> is a light-weight
-mark-up language for creating web pages.</p>
-</section><section><h2 class="section-heading" id="creating-an-r-markdown-file">Creating an R Markdown file<a class="anchor" aria-label="anchor" href="#creating-an-r-markdown-file"></a>
-<a class="anchor" aria-label="anchor" href="#creating-an-r-markdown-file"></a>
+<p>When rendering a document, <code>knitr</code> will execute the R code
+in each chunk and creates a new markdown (<code>.md</code>) document,
+which will include both the regular text and output from the executed
+code chunks. This markdown file is then converted to the final output
+format with <a href="http://pandoc.org/" class="external-link">pandoc</a>. This whole process
+is handled for you by the <em>Render</em> button in the RStudio IDE.</p>
+</section><section><h2 class="section-heading" id="creating-a-quarto-document">Creating a Quarto document<a class="anchor" aria-label="anchor" href="#creating-a-quarto-document"></a>
+<a class="anchor" aria-label="anchor" href="#creating-a-quarto-document"></a>
 </h2>
 <hr class="half-width">
-<p>Within RStudio, click File → New File → R Markdown and you’ll get a
+<p>Within RStudio, click
+<code>File → New File → Quarto document...</code> and you’ll get a
 dialog box like this:</p>
-<figure><img src="fig/New_R_Markdown.png" alt="Screenshot of the New R Markdown file dialogue box in RStudio" class="figure mx-auto d-block"></figure><p>You can stick with the default (HTML output), but give it a
+<figure><img src="fig/New_Quarto_Document.png" alt="Screenshot of the New Quarto Document dialogue box in RStudio" class="figure mx-auto d-block"></figure><p>You can stick with the default (HTML output), but give it a
 title.</p>
 </section><section><h2 class="section-heading" id="basic-components-of-r-markdown">Basic components of R Markdown<a class="anchor" aria-label="anchor" href="#basic-components-of-r-markdown"></a>
 <a class="anchor" aria-label="anchor" href="#basic-components-of-r-markdown"></a>
 </h2>
 <hr class="half-width">
-<p>The initial chunk of text (header) contains instructions for R to
-specify what kind of document will be created, and the options chosen.
-You can use the header to give your document a title, author, date, and
-tell it what type of output you want to produce. In this case, we’re
-creating an html document.</p>
-<pre><code>---
-title: "Initial R Markdown document"
-author: "Karl Broman"
-date: "April 23, 2015"
-output: html_document
----</code></pre>
+<p>The initial chunk of text (header) contains instructions for Quarto
+to specify what kind of document will be created, and the options
+chosen. You can use the header to give your document a title, author,
+date, and tell it what type of output you want to produce. In this case,
+we’re creating an <code>html</code> document.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Quarto document"</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"John Doe"</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">editor</span><span class="kw">:</span><span class="at"> visual</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="pp">---</span></span></code></pre>
+</div>
 <p>You can delete any of those fields if you don’t want them included.
 The double-quotes aren’t strictly <em>necessary</em> in this case.
 They’re mostly needed if you want to include a colon in the title.</p>
 <p>RStudio creates the document with some example text to get you
 started. Note below that there are chunks like</p>
-<pre>
-```{r}
-summary(cars)
-```
-</pre>
+<p><code>{verbatim} ```{r} 1 + 1 ```</code></p>
 <p>These are chunks of R code that will be executed by
 <code>knitr</code> and replaced by their results. More on this
 later.</p>
@@ -15182,17 +15204,25 @@ of markdown.</p>
 underscores, like this: <code>_italics_</code>.</p>
 <p>You can make a bulleted list by writing a list with hyphens or
 asterisks with a space between the list and other text, like this:</p>
-<pre><code>A list:
-
-* bold with double-asterisks
-* italics with underscores
-* code-type font with backticks</code></pre>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="an">A list:</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ss">* </span>bold with double-asterisks</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ss">* </span>italics with underscores</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="ss">* </span>code-type font with backticks</span></code></pre>
+</div>
 <p>or like this:</p>
-<pre><code>A second list:
-
-- bold with double-asterisks
-- italics with underscores
-- code-type font with backticks</code></pre>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="an">A second list:</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="ss">- </span>bold with double-asterisks</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="ss">- </span>italics with underscores</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="ss">- </span>code-type font with backticks</span></code></pre>
+</div>
 <p>Each will appear as:</p>
 <ul>
 <li>bold with double-asterisks</li>
@@ -15203,9 +15233,13 @@ asterisks with a space between the list and other text, like this:</p>
 This maintains the readability of your code.</p>
 <p>You can make a numbered list by just using numbers. You can even use
 the same number over and over if you want:</p>
-<pre><code>1. bold with double-asterisks
-1. italics with underscores
-1. code-type font with backticks</code></pre>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ss">1. </span>bold with double-asterisks</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ss">1. </span>italics with underscores</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ss">1. </span>code-type font with backticks</span></code></pre>
+</div>
 <p>This will appear as:</p>
 <ol style="list-style-type: decimal">
 <li>bold with double-asterisks</li>
@@ -15214,12 +15248,21 @@ the same number over and over if you want:</p>
 </ol>
 <p>You can make section headers of different sizes by initiating a line
 with some number of <code>#</code> symbols:</p>
-<pre><code><span><span class="co"># Title</span></span>
-<span><span class="co">## Main section</span></span>
-<span><span class="co">### Sub-section</span></span>
-<span><span class="co">#### Sub-sub section</span></span></code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu"># Title</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">## Main section</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="fu">### Sub-section</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="fu">#### Sub-sub section</span></span></code></pre>
+</div>
 <p>You <em>compile</em> the R Markdown document to an html webpage by
-clicking the “Knit” button in the upper-left.</p>
+clicking the “Render” button in the upper-left. Or using the keyboard
+shortcut <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>K</kbd> on Windows and
+Linux, or <kbd>Shift</kbd>+<kbd>Cmd</kbd>+<kbd>K</kbd> on Mac.</p>
 <div id="challenge-1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -15228,7 +15271,7 @@ clicking the “Knit” button in the upper-left.</p>
 <h3 class="callout-title">Challenge 1<a class="anchor" aria-label="anchor" href="#challenge-1"></a>
 </h3>
 <div class="callout-content">
-<p>Create a new R Markdown document. Delete all of the R code chunks and
+<p>Create a new Quarto document. Delete all of the R code chunks and
 write a bit of Markdown (some sections, some italicized text, and an
 itemized list).</p>
 <p>Convert the document to a webpage.</p>
@@ -15242,26 +15285,30 @@ itemized list).</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>In RStudio, select File &gt; New file &gt; R Markdown…</p>
+<p>In RStudio, select
+<code>File &gt; New file &gt; Quarto Document...</code></p>
 <p>Delete the placeholder text and add the following:</p>
-<pre><code># Introduction
-
-## Background on Data
-
-This report uses the *gapminder* dataset, which has columns that include:
-
-* country
-* continent
-* year
-* lifeExp
-* pop
-* gdpPercap
-
-## Background on Methods
-</code></pre>
-<p>Then click the ‘Knit’ button on the toolbar to generate an html
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">## Background on Data</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>This report uses the *gapminder* dataset, which has columns that include:</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="ss">* </span>country</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="ss">* </span>continent</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="ss">* </span>year</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="ss">* </span>lifeExp</span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="ss">* </span>pop</span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="ss">* </span>gdpPercap</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="fu">## Background on Methods</span></span></code></pre>
+</div>
+<p>Then click the ‘Render’ button on the toolbar to generate an html
 document (webpage).</p>
 </div>
 </div>
@@ -15281,6 +15328,9 @@ and superscripts (e.g., F<sup>2</sup>) with <code>F^2^</code>.</p>
 <code>$ $</code> and <code>$$ $$</code> to insert math equations, like
 <code>$E = mc^2$</code> and</p>
 <pre><code>$$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$</code></pre>
+<p>which will show as</p>
+<p><span class="math display">\[y = \mu + \sum_{i=1}^p \beta_i x_i +
+\epsilon\]</span></p>
 <p>You can review Markdown syntax by navigating to the “Markdown Quick
 Reference” under the “Help” field in the toolbar at the top of
 RStudio.</p>
@@ -15288,21 +15338,36 @@ RStudio.</p>
 <a class="anchor" aria-label="anchor" href="#r-code-chunks"></a>
 </h2>
 <hr class="half-width">
-<p>The real power of Markdown comes from mixing markdown with chunks of
-code. This is R Markdown. When processed, the R code will be executed;
-if they produce figures, the figures will be inserted in the final
-document.</p>
+<p>The real power of Quarto comes from mixing markdown with chunks of
+code. When processed, the R code will be executed; if they produce
+figures, the figures will be inserted in the final document.</p>
 <p>The main code chunks look like this:</p>
-<pre>
-```{r load_data}
-gapminder
-<p>That is, you place a chunk of R code between <code>```{r
-chunk_name}</code> and <code>```</code>. You should give each chunk a
-unique name, as they will help you to fix errors and, if any graphs are
-produced, the file names are based on the name of the code chunk that
-produced them. You can create code chunks quickly in RStudio using the
-shortcuts <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and
-Linux, or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.</p>
+<p><code>{verbatim} ```{r} #| label: load_data gapminder &lt;- read.csv("gapminder.csv") ```</code></p>
+<p>That is, you place a chunk of R code between <code>```{r}</code> and
+<code>```</code>. You should give each chunk a unique name, by inserting
+the line <code>#| label: label_name</code> as they will help you to fix
+errors and, if any graphs are produced, the file names are based on the
+name of the code chunk that produced them. You can create code chunks
+quickly in RStudio using the shortcuts
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, or
+<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.</p>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
+  Code chunk options in R Markdown
+  </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>In R Markdown, you add chunk labels by including them within the
+<code>```{r}</code> line like so:</p>
+<p><code>{verbatim} ```{r label_data} gapminder &lt;- read.csv("gapminder.csv") ```</code></p>
+</div>
+</div>
+</div>
+</div>
 <div id="challenge-2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -15327,39 +15392,28 @@ Linux, or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.</p>
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<pre>
-```{r load-ggplot2}
-library("ggplot2")
-```
-</pre>
-<pre>
-```{r read-gapminder-data}
-gapminder
-<pre>
-```{r make-plot}
-plot(lifeExp ~ year, data = gapminder)
-```
-</pre>
-</pre>
+<p><code>{verbatim} ```{r} #| label: libraries library(ggplot2) ```</code></p>
+<p><code>{verbatim} ```{r} #| label: load-gapminder-data gapminder &lt;- read.csv("gapminder.csv") ```</code></p>
+<p><code>{verbatim} ```{r} #| label: make-plot plot(lifeExp ~ year, data = gapminder) ```</code></p>
 </div>
 </div>
 </div>
 </div>
-</pre></section><section><h2 class="section-heading" id="how-things-get-compiled">How things get compiled<a class="anchor" aria-label="anchor" href="#how-things-get-compiled"></a>
+</section><section><h2 class="section-heading" id="how-things-get-compiled">How things get compiled<a class="anchor" aria-label="anchor" href="#how-things-get-compiled"></a>
 <a class="anchor" aria-label="anchor" href="#how-things-get-compiled"></a>
 </h2>
 <hr class="half-width">
-<p>When you press the “Knit” button, the R Markdown document is
-processed by <a href="https://yihui.name/knitr" class="external-link"><code>knitr</code></a>
-and a plain Markdown document is produced (as well as, potentially, a
-set of figure files): the R code is executed and replaced by both the
-input and the output; if figures are produced, links to those figures
-are included.</p>
+<p>When you press the “Render” button, the Quarto document is processed
+by <a href="https://yihui.name/knitr" class="external-link"><code>knitr</code></a> and a plain
+Markdown document is produced (as well as, potentially, a set of figure
+files): the R code is executed and replaced by both the input and the
+output; if figures are produced, links to those figures are
+included.</p>
 <p>The Markdown and figure documents are then processed by the tool <a href="https://pandoc.org/" class="external-link"><code>pandoc</code></a>, which converts the
 Markdown file into an html file, with the figures embedded.</p>
-<figure><img src="fig/22-knitr-markdown-rendered-rmd_to_html_fig-1.png" style="display: block; margin: auto auto auto 0;" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="chunk-options">Chunk options<a class="anchor" aria-label="anchor" href="#chunk-options"></a>
+<figure><img src="https://quarto.org/docs/get-started/hello/images/rstudio-qmd-how-it-works.png" alt="Schematic of the Quarto rendering process" class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="chunk-options">Chunk options<a class="anchor" aria-label="anchor" href="#chunk-options"></a>
 <a class="anchor" aria-label="anchor" href="#chunk-options"></a>
 </h2>
 <hr class="half-width">
@@ -15378,21 +15432,25 @@ hide any warnings or messages produced.</li>
 the size of the figures produced (in inches).</li>
 </ul>
 <p>So you might write:</p>
-<pre>
-```{r load_libraries, echo=FALSE, message=FALSE}
-library("dplyr")
-library("ggplot2")
-```
-</pre>
+<p><code>{verbatim} ```{r} #| label: load_libraries #| echo: false #| message: false library(dplyr) library(ggplot2) ```</code></p>
 <p>Often there will be particular options that you’ll want to use
-repeatedly; for this, you can set <em>global</em> chunk options, like
-so:</p>
-<pre>
-```{r global_options, echo=FALSE}
-knitr::opts_chunk$set(fig.path="Figs/", message=FALSE, warning=FALSE,
-                      echo=FALSE, results="hide", fig.width=11)
-```
-</pre>
+repeatedly; for this, you can set <em>global</em> chunk options in the
+files YAML header like so:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">...</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">knitr:</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">  opts_chunk:</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">    message: false</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">    warning: false</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">    echo: false</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">    results: "hide"</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">    fig.path: "Figs/</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">    fig.width: 11</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">---</span></span></code></pre>
+</div>
 <p>The <code>fig.path</code> option defines where the figures will be
 saved. The <code>/</code> here is really important; without it, the
 figures would be saved in the standard place but just with names that
@@ -15421,13 +15479,9 @@ code.</p>
   Solution to Challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<pre>
-```{r echo = FALSE, fig.width = 3}
-plot(faithful)
-```
-</pre>
+<p><code>{verbatim} ```{r} #| label: faitful-plot #| echo: false #| fig.width: 3 plot(faitful) ```</code></p>
 </div>
 </div>
 </div>
@@ -15441,19 +15495,13 @@ to the “R Markdown Cheat Sheet” under the “Cheatsheets” section of the
 <hr class="half-width">
 <p>You can make <em>every</em> number in your report reproducible. Use
 <code>`r</code> and <code>`</code> for an in-line code chunk, like so:
-<code>`r round(some_value, 2)`</code>. The code will be executed and
-replaced with the <em>value</em> of the result.</p>
+<code>``r "r round(some_value, 2)"``</code>. The code will be executed
+and replaced with the <em>value</em> of the result.</p>
 <p>Don’t let these in-line chunks get split across lines.</p>
 <p>Perhaps precede the paragraph with a larger code chunk that does
 calculations and defines variables, with <code>include=FALSE</code> for
 that larger chunk (which is the same as <code>echo=FALSE</code> and
 <code>results="hide"</code>).</p>
-<p>Rounding can produce differences in output in such situations. You
-may want <code>2.0</code>, but <code>round(2.03, 1)</code> will give
-just <code>2</code>.</p>
-<p>The <a href="https://github.com/kbroman/broman/blob/master/R/myround.R" class="external-link"><code>myround</code></a>
-function in the <a href="https://github.com/kbroman/broman" class="external-link">R/broman</a>
-package handles this.</p>
 <div id="challenge-4" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -15473,9 +15521,11 @@ package handles this.</p>
   Solution to Challenge 4
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<p>Here’s some inline code to determine that 2 + 2 = <code>4</code>.</p>
+<p>Here’s some inline code to determine that 2 + 2 =
+<code>r 2+2</code>:</p>
+<p><code>{verbatim} Here's some inline code to determine that 2 + 2 = `r 2+2`:</code></p>
 </div>
 </div>
 </div>
@@ -15484,10 +15534,148 @@ package handles this.</p>
 <a class="anchor" aria-label="anchor" href="#other-output-options"></a>
 </h2>
 <hr class="half-width">
-<p>You can also convert R Markdown to a PDF or a Word document. Click
-the little triangle next to the “Knit” button to get a drop-down menu.
-Or you could put <code>pdf_document</code> or <code>word_document</code>
-in the initial header of the file.</p>
+<p>You can also convert R Markdown to a PDF or a Word document. Change
+the <code>format:</code> field in the YAML header to <code>pdf</code> or
+<code>docx</code>. For an overview of all the available output formats,
+see the <a href="https://quarto.org/docs/output-formats/all-formats.html" class="external-link">Quarto
+documentation</a></p>
+</section><section><h2 class="section-heading" id="parameterised-reports">Parameterised reports<a class="anchor" aria-label="anchor" href="#parameterised-reports"></a>
+<a class="anchor" aria-label="anchor" href="#parameterised-reports"></a>
+</h2>
+<hr class="half-width">
+<p>Literate programming with tools like Quarto and R Markdown is very
+powerful in that it allows you to generate analysis reports in a
+reproducible manner. This makes it very easy to update your work and
+alter the input parameters within the report You can take this one step
+further, by parametrising the reports themselves. This is very useful in
+a number of cases, for example:</p>
+<ul>
+<li>Running the same analysis on different datasets</li>
+<li>Generating multiple reports for different groups of the data
+(e.g. geographic location or time periods)</li>
+<li>Controlling the <code>knitr</code> options; e.g. you might want to
+show the code in some reports but not in others</li>
+</ul>
+<div class="section level3">
+<h3 id="including-parameters-in-a-quarto-document">Including parameters in a Quarto document<a class="anchor" aria-label="anchor" href="#including-parameters-in-a-quarto-document"></a>
+</h3>
+<p>Including parameters in a Quarto document (or R Markdown, which
+follows the same syntax) can be done by adding the <code>params</code>
+field to they YAML header. This field can hold a list of multiple
+parameters.</p>
+<p>For example, imagine we want to analyse the life expectancy of
+different countries, using the <code>gapminder</code> dataset, but we
+want a separate report for each country. To achieve this, we set the
+YAML header for our Quarto document as follows:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Life Expectancy Report"</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="at">  </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="at">  </span><span class="fu">country</span><span class="kw">:</span><span class="at"> </span><span class="st">"Afghanistan"</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="pp">---</span></span></code></pre>
+</div>
+<p>We can then reference this parameter anywhere in the R code in our
+report by accessing the <code>params</code> object. To calculate the
+life expectancy for just the country defined by the <code>params</code>,
+we can do:</p>
+<p>`<code>{verbatim}</code>{r} library(tidyverse) library(gapminder)</p>
+<pre><code>
+```{r}
+life_expectancy &lt;-
+  gapminder |&gt;
+  select(country, year, lifeExp) |&gt;
+  filter(country == params$country)</code></pre>
+<pre><code>
+The last line in the code chunk above uses the `params` object to filter the `gapminder` dataset.
+Note that we can also `params` in inline R code snippets. So we can generate a heading that will
+change based on the country parameter:
+
+````{verbatim}
+## Life Expectancy in `r params$country`
+
+```{r}
+#| label: !expr paste0("life-expectancy-plot", params$country)
+ggplot(life_expectancy, aes(year, lifeExp)) +
+  geom_line() +
+  theme_minimal()
+```</code></pre>
+<p>In fact, we can even use this in the main document title in the YAML
+header, as it also accepts R code expressions:</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Life Expectancy Report for `r params$country`"</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">...</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="rendering-quarto-documents-from-within-r">Rendering Quarto documents from within R<a class="anchor" aria-label="anchor" href="#rendering-quarto-documents-from-within-r"></a>
+</h3>
+<p>Of course, manually editing the YAML header every time you want to
+generate a report isn’t much better than manually editing the report
+itself. The real power of parameterised reports is when we render them
+<em>programmatically</em>. This can be done using the <a href="https://github.com/quarto-dev/quarto-r" class="external-link"><code>{quarto}</code> R
+package</a>, which provides the <code>quarto_render()</code> function.
+This function takes a Quarto file and any execution parameters as
+input.</p>
+<p>So to generate the life expectancy report for Afghanistan, we can
+write a script with the following code:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># render-report.R</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">quarto</span><span class="op">)</span></span>
+<span><span class="fu">quarto_render</span><span class="op">(</span><span class="st">"life_expectancy_report.qmd"</span>, execute_params <span class="op">=</span> <span class="fu">list</span><span class="op">(</span>country <span class="op">=</span> <span class="st">"Afghanistan"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+</div>
+<p>And now for the real magic, we can modify our script to render a
+report for a list of countries of interest from the
+<code>gapminder</code> dataset.</p>
+<p><code>{r} # render-all-reports.R library(quarto) countries &lt;- c("Afghanistan", "Belgium", "India", "United Kingdom") for (country in countries) {   quarto_render(     input = "life_expectancy_report.qmd",     output_file = paste0("life_expectancy_", country, ".html"),     execute_params = list(country = country)   ) }</code></p>
+<p>After running this script, we should have the following files in our
+working directory:</p>
+<pre><code>.
+├── life_expectancy_Afghanistan.html
+├── life_expectancy_Belgium.html
+├── life_expectancy_India.html
+├── life_expectancy_United Kingdom.html
+├── life_expectancy_report.qmd
+└── life_expectancy_report_files</code></pre>
+<div id="callout2" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout2"></a>
+</h3>
+<div class="callout-content">
+<p><strong>WARNING</strong>: although this will work and generate the
+correct output files, you might notice that each report will show the
+<em>exact same plot</em>, which is unexpected. This is an <a href="https://github.com/quarto-dev/quarto-r/issues/205" class="external-link">issue</a> with
+the Quarto R package.</p>
+<p>With R Markdown we don’t have this issue, to render we would use the
+following code:</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">rmarkdown</span><span class="fu">::</span><span class="fu">render</span><span class="op">(</span></span>
+<span>  input <span class="op">=</span> <span class="st">"life_expectency_report.Rmd"</span>,</span>
+<span>  output_file <span class="op">=</span> <span class="fu">paste0</span><span class="op">(</span><span class="st">"life_expectancy_"</span>, <span class="va">country</span>, <span class="st">".html"</span><span class="op">)</span>,</span>
+<span>  params <span class="op">=</span> <span class="fu">list</span><span class="op">(</span>country <span class="op">=</span> <span class="va">country</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
 <div id="tip-creating-pdf-documents" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -15524,6 +15712,7 @@ toolbar at the top with basic formatting buttons, similar to what you
 might see in common word processing software programs. You can turn
 visual editing on and off by pressing the <img src="fig/visual_mode_icon.png" alt="Icon for turning on and off the visual editing mode in RStudio, which looks like a pair of compasses" class="figure">
 button in the top right corner of your R Markdown document.</p>
+</div>
 </div>
 </div>
 </div>
@@ -50990,8 +51179,8 @@ style.</li>
   "url": "https://UCL-ARC.github.io/R-AMR-Epidemiology/aio.html",
   "identifier": "https://UCL-ARC.github.io/R-AMR-Epidemiology/aio.html",
   "dateCreated": "2015-04-18",
-  "dateModified": "2024-08-20",
-  "datePublished": "2024-08-20"
+  "dateModified": "2024-08-21",
+  "datePublished": "2024-08-21"
 }
 
   </script><script>
