@@ -44,6 +44,58 @@ library(odds.n.ends)
 amrData <- read.csv("data/dig_health_hub_amr.csv")
 
 ```
-The data used in this episode was provided by Simon Thelwell from the UKHSA. 
+The data used in this episode was provided by Simon Thelwall from the UKHSA. 
 It has been created to represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS).
 The data has 100,000 rows of 12 variables.
+
+## Exploratory Data Analysis
+
+We can preview our data by using 'head':
+
+```{r}
+
+head(amrData)
+
+```
+We can also request information about variable names and data types:
+```{r}
+
+sapply(amrData, class)
+
+```
+
+We can see that dates are currently stored as the char data type. We also do not know the age of the participant when the sample was taken.
+
+```{r}
+
+# Calculate age (in years) as of their last birthday and add as an additional variable to our data.
+
+amrData <- amrData %>% 
+  mutate(
+    age_years_sd = (dob %--% spec_date) %/% years(1)
+  )
+
+```
+
+We can also convert 'spec_date', the date the specimen was taken from text to a date:
+```{r}
+
+# Convert char to date and store as additional variable
+amrData <- amrData %>% 
+  mutate(
+    spec_date_YMD = as.Date(amrData$spec_date)
+  )
+
+```
+We can use a histogram to explore the age distribution of the participants:
+
+```{r}
+# histogram of age
+ageHisto <- amrData %>%
+  ggplot(aes(x = age_years_sd)) +
+  geom_histogram(bins = 10, color = 'white') +
+  theme_minimal(base_size = 14, base_family = "sans") +
+  labs(x = "Age when specimen taken (years)", y = "Frequency")
+ageHisto
+
+```
