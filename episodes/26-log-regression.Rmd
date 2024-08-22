@@ -99,3 +99,21 @@ ageHisto <- amrData %>%
 ageHisto
 
 ```
+We can also look at where the specimens were processed:
+```{r}
+
+xtabs(~region, data=amrData)
+
+```
+
+In addition, we can use cross-tabulation to identify if the specimen indicated resistance to one or more of Coamoxiclav, Gentamicin and Ciprofloxacin for the participants:
+
+```{r}
+
+xtabs(~coamox+cipro+gentam, data=amrData)
+
+```
+We can see from our table that only 227 participants indicated reistance to Coamoxiclav, Gentamicin and Ciprofloxacin.
+Coamoxiclav appears to have the highest individual indication of resistance. We will explore indicators to Coamoxiclav first.
+
+
