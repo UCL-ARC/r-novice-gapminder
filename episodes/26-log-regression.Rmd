@@ -44,3 +44,6 @@ library(odds.n.ends)
 amrData <- read.csv("data/dig_health_hub_amr.csv")
 
 ```
+The data used in this episode was provided by Simon Thelwell from the UKHSA. 
+It has been created to represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS).
+The data has 100,000 rows of 12 variables.
