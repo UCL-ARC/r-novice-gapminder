@@ -1,30 +1,46 @@
 ---
 title: "Logistic Regression"
 teaching: 60
-exercises: 20
+exercises: 30
 source: Rmd
 ---
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- To be able to describe the different types of data
-- To be able to do basic data exploration of a real dataset
-- To be able to calculate descriptive statistics
-- To be able to perform statistical inference on a dataset
+- To be able to construct regression models for a binary outcome
+- To be able to calculate predicted variables and residuals 
+- To be able to present model outcomes using Broom
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I detect the type of data I have?
-- How can I make meaningful summaries of my data?
+- How can I identify factors for antibiotic resistance?
+- How can I check the validity of model?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Content
 
--   Types of Data
--   Exploring your dataset
--   Descriptive Statistics
--   Inferential Statistics
+-   Exploratory Data Analysis
+-   Estimate the Models
+-   Assumption Testing
+-   Report the Logistic Regression Results
 
+## Data
+
+```{r libraries, message=FALSE, warning=FALSE}
+
+# We will need these libraries and this data later.
+library(table1)
+library(finalfit)
+library(aod)
+library(ggplot2)
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(odds.n.ends)
+
+amrData <- read.csv("data/dig_health_hub_amr.csv")
+
+```
