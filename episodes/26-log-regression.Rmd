@@ -23,7 +23,7 @@ source: Rmd
 ## Content
 
 -   Exploratory Data Analysis
--   Estimate the Models
+-   Model Creation and Estimation
 -   Assumption Testing
 -   Report the Logistic Regression Results
 
@@ -116,4 +116,51 @@ xtabs(~coamox+cipro+gentam, data=amrData)
 We can see from our table that only 227 participants indicated reistance to Coamoxiclav, Gentamicin and Ciprofloxacin.
 Coamoxiclav appears to have the highest individual indication of resistance. We will explore indicators to Coamoxiclav first.
 
+##  Model Creation and Estimation
 
+As the dependent variable we want to explore is binary (0,1), we will use a binomial generalised linear model.
+
+
+```{r}
+
+coamox_logit <- glm(coamox ~ age_years_sd + sex_male, data = amrData, family= 'binomial')
+
+summary(coamox_logit)
+
+```
+In this initial model focusing on demographic indicators, age at time of sample being taken and whether or not the participant is male both seem to be statistically significant.
+
+age_years_sd: For every unit increase in age_years_sd the log-odds of Coamoxiclav resistance increase by 0.0404280.
+
+sex_male: The difference in the log-odds of Coamoxiclav resistance between males and non-males is 0.0540494.
+
+Older participants and male participants have higher log-odds of Coamoxicalv resistance.
+
+We can check to see that our indicators sex_male and age_years_sd are independent:
+```{r}
+# check VIF for no perfect multicollinearity assumption
+car::vif(coamox4_logit)
+```
+We can also check the linearity of the variable age_years_sd
+
+```{r}
+# make a variable of the logit of the predicted values
+logit.use <- log(coamox_logit$fitted.values/(1-coamox_logit$fitted.values))
+
+# make a small data frame with the logit variable and the age predictor
+linearity.data <- data.frame(logit.use, age = coamox_logit$model$age_years_sd)
+
+# create a plot with linear and actual relationships shown
+linearPlot <- linearity.data %>%
+  ggplot(aes(x = age, y = logit.use))+
+  geom_point(aes(size = "Observation"), color = "blue", alpha = .6) +
+  geom_smooth(se = FALSE, aes(color = "Loess curve")) + 
+  geom_smooth(method = lm, se = FALSE, aes(color = "linear")) + 
+  theme_minimal(base_size = 14, base_family = "serif") +
+  labs(x = "Age in years on sample date", y = "Log-odds of coamox resistance predicted probability") +
+  scale_color_manual(name="Type of fit line", values=c("red", "black")) +
+  scale_size_manual(values = 1.5, name = "")
+
+linearPlot
+
+```
