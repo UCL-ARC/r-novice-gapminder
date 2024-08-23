@@ -88,7 +88,7 @@ episodes:
   - 22-quarto.md
   - 23-statistics.Rmd
   # 23-regression
-  - 26-log-regression
+  - 26-log-regression.Rmd
   # 25-broom
   # 26-r-sql
   - 27-wrap-up.Rmd
