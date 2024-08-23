@@ -11,7 +11,7 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::: question
+:::::::::::::::::::::::::::::::::::::::: questions
 
 - How can I check that my data is suitable for use in a linear regression model?
 
