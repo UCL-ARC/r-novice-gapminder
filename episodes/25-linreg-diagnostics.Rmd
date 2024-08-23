@@ -5,7 +5,7 @@ exercises: 20 minutes
 source: Rmd
 ---
 
-::::::::::::::::::::::::::::::::::::::: objective
+::::::::::::::::::::::::::::::::::::::: objectives
 
 - To be able to check assumptions for linear regression models
 
