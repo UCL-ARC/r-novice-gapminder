@@ -87,9 +87,8 @@ episodes:
   # basic stats
   - 22-quarto.md
   - 23-statistics.Rmd
-  # 23-regression
-  # 24-logregression
-  # 25-broom
+  - 24-linear-reg-broom.Rmd
+  - 25-linreg-diagnostics.Rmd
   # 26-r-sql
   - 27-wrap-up.Rmd
 
