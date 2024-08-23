@@ -221,7 +221,8 @@ We can use the Wald test to explore the overall effect of region. We will use th
 ```{r}
 # model with just the regions added
 wald.test(b = coef(coamox_region_logit), Sigma = vcov(coamox_region_logit), Terms = 3:11)
-'''
+```
+
 The chi-squared test statistic of 12815.9, with nine degrees of freedom is associated with a p-value of 0.00 indicating that the overall effect of region is statistically significant.
 
 ::::::::::::::::::::::::::::::::::::::  challenge
