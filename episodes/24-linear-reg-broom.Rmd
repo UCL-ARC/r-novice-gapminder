@@ -8,7 +8,7 @@ source: Rmd
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - To be able to explore relationships between variables
-- To be able to calculate predicted variables and residuals 
+- To be able to calculate predicted variables and residuals
 - To be able to construct linear regression models
 - To be able to present model outcomes using Broom
 
@@ -31,7 +31,6 @@ source: Rmd
 ## Data
 
 ```{r libraries, message=FALSE, warning=FALSE}
-
 # We will need these libraries and this data later.
 library(ggplot2)
 library(tidyverse)
@@ -40,25 +39,24 @@ library(sandwich)
 library(broom)
 
 lon_dims_imd_2019 <- read.csv(".data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv")
-
 ```
 
 We are going to use the data from the Consumer Data Research Centre, specifically the London IMD 2019 (English IMD 2019 Domains rebased).
 
-Atribution: Data provided by the Consumer Data Research Centre, an ESRC Data Investment: ES/L011840/1, ES/L011891/1 
+Atribution: Data provided by the Consumer Data Research Centre, an ESRC Data Investment: ES/L011840/1, ES/L011891/1
 
 The statistical unit areas across the country are Lower layer Super Output Areas (LSOAs). We will explore the relationships between the different dimensions of the Indices of Multiple Deprivation.
 
 ## Linear Regression
 
-Linear Regression enables use to to explore the the linear relationship of the dependent variable Y and independent variable(s) X(s). 
+Linear Regression enables use to to explore the the linear relationship of the dependent variable Y and independent variable(s) X(s).
 We are going to explore the linear relationship between the Health Deprivation and Disability Domain and the Living Environment Deprivation Domain.
 
 The Health Deprivation and Disability Domain measures the risk of premature death and the impairment of quality of life through poor physical or mental health. The domain measures morbidity, disability and premature mortality but not aspects of behaviour or environment that may be predictive of future health deprivation.
 
 The Living Environment Deprivation Domain measures the quality of the local environment. The indicators fall into two sub-domains. The ‘indoors’ living environment measures the quality of housing; while the ‘outdoors’ living environment contains measures of air quality and road traffic accidents.
 
-Reference: 
+Reference:
   McLennan, David et al. The English Indices of Deprivation 2019 : Technical Report. Ministry of Housing, Communities and Local Government, 2019. Print.
 
 
@@ -66,34 +64,30 @@ Reference:
 In the simple linear regression example we have only one dependent variable (health_london_rank) and one independent variable (livingEnv_london_rank).
 
 ```{r}
-
 reg_LivEnv_health <- lm(health_london_rank ~ livingEnv_london_rank, data = lon_dims_imd_2019)
-# We put the dependent variable to the left of the '~' and the independent variable(s) to the right 
+# We put the dependent variable to the left of the '~' and the independent variable(s) to the right
 # and we tell R which dataset we are referring to.
 
 summary(reg_LivEnv_health)
-
 ```
 
 From the result of this analysis, we can see that the Living Environment Deprivation Domain rank has a significant(small p-value, general rule of thumb <0.05) and positive relationship(positive coefficient) with the Health Deprivation and Disability Domain rank.
 
-One way of interpreting the result is: One unit increase in the Living Environment rank is related to around 0.343 (3.430e-01) points increase of the Health Deprivation and Disability rank. 
+One way of interpreting the result is: One unit increase in the Living Environment rank is related to around 0.343 (3.430e-01) points increase of the Health Deprivation and Disability rank.
 
 R-square shows the amount of variance of Y explained by X. In this case the Living Environment rank explains 6.225% of the variance in the Health Deprivation and Disability rank. Adj R2(6.205%) shows the same as R2 but adjusted by the # of cases and # of variables. When the # of variables is small and the # of cases is very large then Adj R2 is closer to R2.
 
 ### Log transform
 
-If your data is skwewed, it can be useful to transform a variable to it's log form when doing the regression. 
+If your data is skwewed, it can be useful to transform a variable to it's log form when doing the regression.
 You can either transform the variable beforehand or do so in the equation.
 
 ```{r}
-
-reg_logbarriers_health <- lm(health_london_rank ~ log (barriers_london_rank), data = lon_dims_imd_2019)
+reg_logbarriers_health <- lm(health_london_rank ~ log(barriers_london_rank), data = lon_dims_imd_2019)
 
 summary(reg_logbarriers_health)
-
 ```
-The interpretation of the log-transformed variable is a bit different. 
+The interpretation of the log-transformed variable is a bit different.
 In this example only the predictor variable is log tranformed, therefore to interpret the slope coefficient we divide it by 100 (2917.0/100=29.170).
 
 If the dependent/response variable is solely log-transformed. Exponentiate the coefficient. This gives the multiplicative factor for every one-unit increase in the independent variable. Example: the coefficient is 0.198. exp(0.198) = 1.218962. For every one-unit increase in the independent variable, our dependent variable increases by a factor of about 1.22, or 22%. Recall that multiplying a number by 1.22 is the same as increasing the number by 22%. Likewise, multiplying a number by, say 0.84, is the same as decreasing the number by 1 – 0.84 = 0.16, or 16%.
@@ -106,25 +100,23 @@ We can expand our simple linear regression example to incorporate the Barriers t
 The Barriers to Housing and Services Domain measures the physical and financial accessibility of housing and local services. The indicators fall into two sub-domains: ‘geographical barriers’, which relate to the physical proximity of local services, and ‘wider barriers’ which includes issues relating to access to housing, such as affordability.
 
 ```{r}
-
 reg_LivEnv_barriers_health <- lm(health_london_rank ~ livingEnv_london_rank + barriers_london_rank, data = lon_dims_imd_2019)
 
 summary(reg_LivEnv_barriers_health)
-
 ```
 
 After running the regression model, we can access the model predicted values and the residuals compared to the real observations.
 
 ```{r}
-#first we fit the predictions
-health_rank_pred<-fitted(reg_LivEnv_barriers_health)
-health_rank_pred<-as.data.frame(health_rank_pred)
+# first we fit the predictions
+health_rank_pred <- fitted(reg_LivEnv_barriers_health)
+health_rank_pred <- as.data.frame(health_rank_pred)
 
-#now we add the residual values too
-health_rank_resid<-residuals(reg_LivEnv_barriers_health)
-health_rank_pred$resid<-health_rank_resid
+# now we add the residual values too
+health_rank_resid <- residuals(reg_LivEnv_barriers_health)
+health_rank_pred$resid <- health_rank_resid
 
-#We can thenview the predictions and residuals
+# We can thenview the predictions and residuals
 View(health_rank_pred)
 ```
 
@@ -133,15 +125,15 @@ View(health_rank_pred)
 We can run the robust standard error regressions(control for heteroskedasticity, meaning unequal variances):
 
 ```{r}
-reg_LivEnv_barriers_health$robse <- vcovHC(reg_LivEnv_barriers_health, type="HC1")
-coeftest(reg_LivEnv_barriers_health,reg_LivEnv_barriers_health$robse) 
+reg_LivEnv_barriers_health$robse <- vcovHC(reg_LivEnv_barriers_health, type = "HC1")
+coeftest(reg_LivEnv_barriers_health, reg_LivEnv_barriers_health$robse)
 ```
 
 In addition,  we can access the cluster-robust standard errors regression results:
 
 ```{r}
-#cluster-robust standard errors
-coeftest(reg_LivEnv_barriers_health, reg_LivEnv_barriers_health$clse) 
+# cluster-robust standard errors
+coeftest(reg_LivEnv_barriers_health, reg_LivEnv_barriers_health$clse)
 ```
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -163,7 +155,7 @@ reg_cat_var <- lm(health_london_rank ~ livingEnv_london_rank + barriers_london_r
 summary(reg_cat_var)
 ```
 
-R automatically recognizes la19nm as a factor and treats it accordingly. 
+R automatically recognizes la19nm as a factor and treats it accordingly.
 The missing one in the coefficient summary (Barking and Dagenham) is treated as a base line, therefore the value is 0.
 However, we can also modify our model to show for all:
 
@@ -171,7 +163,6 @@ However, we can also modify our model to show for all:
 reg_cat_var_showall <- lm(health_london_rank ~ 0 + livingEnv_london_rank + barriers_london_rank + la19nm, data = lon_dims_imd_2019)
 
 summary(reg_cat_var_showall)
-
 ```
 ### Categorical variables with interaction terms
 
@@ -179,7 +170,7 @@ Sometimes we are interested in how a variable interacts with another variable.
 We can explore any interactions between locations (la19nm) and the living environment and barrier ranks.
 
 ```{r}
-reg_cat_var_int <- lm(health_london_rank ~ la19nm*(livingEnv_london_rank + barriers_london_rank), data = lon_dims_imd_2019)
+reg_cat_var_int <- lm(health_london_rank ~ la19nm * (livingEnv_london_rank + barriers_london_rank), data = lon_dims_imd_2019)
 
 summary(reg_cat_var_int)
 ```
@@ -205,31 +196,25 @@ These are:
 
 Let's revisit our initial linear model:
 ```{r}
-
 reg_LivEnv_health <- lm(health_london_rank ~ livingEnv_london_rank, data = lon_dims_imd_2019)
 
 summary(reg_LivEnv_health)
-
 ```
 
 There is a lot of useful information, but it not available in a way so that you can combine it with other models or do further analysis.
 We can convert this to tabular data using the 'tidy' function.
 
 ```{r}
-
 tidy(reg_LivEnv_health)
-
 ```
 The row names have been moved into a column called term, and the column names are simple and consistent (and can be accessed using $).
 
-Information about the model can be explored with 'augment'. The function augments the original data with information from the model, 
-such as the fitted values and residuals for each of the original points in the regression. 
+Information about the model can be explored with 'augment'. The function augments the original data with information from the model,
+such as the fitted values and residuals for each of the original points in the regression.
 
 
 ```{r}
-
 augment(reg_LivEnv_health)
-
 ```
 
 Some of the data presented by 'augment' will be discussed in the episode Linear Regression Diagnostics.
@@ -238,9 +223,7 @@ Summary statistics are computed for the entire regression, such as R^2 and the F
 
 
 ```{r}
-
 glance(reg_LivEnv_health)
-
 ```
 ### Generalised linear models
 
@@ -248,35 +231,27 @@ We can also use the 'broom' functions to present data from Generalised linear an
 For example, if we wanted to explore the Income Rank in relation to whether or not an area was within the City of London.
 
 ```{r}
-
 # add a variable to indicate whether or not an area is within the City of London
 lon_dims_imd_2019 <- lon_dims_imd_2019 %>% mutate(city = la19nm == "City of London")
 
 # create a Generalised Linear Model
 glmlondims <- glm(city ~ Income_london_rank, lon_dims_imd_2019, family = "binomial")
 summary(glmlondims)
-
 ```
 
 Use of 'tidy':
 ```{r}
-
 tidy(glmlondims)
-
 ```
 
 Use of 'augment':
 ```{r}
-
 augment(glmlondims)
-
 ```
 
 Use of 'glance':
 ```{r}
-
 glance(glmlondims)
-
 ```
 You will notice that the statistics computed by 'glance' are different for glm objects than for lm (e.g. deviance rather than R^2).
 
@@ -286,46 +261,38 @@ The tidy function can also be applied a range of hypotheses tests, such as built
 
 ### t-test
 ```{r}
-
 tt <- t.test(Income_london_rank ~ city, lon_dims_imd_2019)
 tidy(tt)
-
 ```
 Some cases might have fewer columns (for example, no confidence interval).
 
 Wilcox test:
 ```{r}
-
 wt <- wilcox.test(Income_london_rank ~ city, lon_dims_imd_2019)
 tidy(wt)
-
 ```
 
 Since the 'tidy' output is already only one row, glance returns the same output:
 ```{r}
-#t-test
+# t-test
 glance(tt)
 
-#Wilcox test
+# Wilcox test
 glance(wt)
-
 ```
 
-The 'augment' method is defined only for chi-squared tests, since there is no meaningful sense, for other tests, 
+The 'augment' method is defined only for chi-squared tests, since there is no meaningful sense, for other tests,
 in which a hypothesis test produces output about each initial data point.
 
 ```{r}
 # xtabs creates a frequency table of IMD deciles within London borooughs
-chit <- chisq.test(xtabs(~la19nm + IDAOP_london_decile,data = lon_dims_imd_2019))
+chit <- chisq.test(xtabs(~ la19nm + IDAOP_london_decile, data = lon_dims_imd_2019))
 
 tidy(chit)
-
 ```
 
 ```{r}
-
 augment(chit)
-
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -340,4 +307,4 @@ Which function(s) did you use and why?
 There are some conventions that enable consistency across the broom functions, these are:
 * The output of the tidy, augment and glance functions is always a tibble.
 * The output never has rownames. This ensures that you can combine it with other tidy outputs without fear of losing information (since rownames in R cannot contain duplicates).
-* Some column names are kept consistent, so that they can be combined across different models and so that you know what to expect (in contrast to asking “is it pval or PValue?” every time). 
+* Some column names are kept consistent, so that they can be combined across different models and so that you know what to expect (in contrast to asking “is it pval or PValue?” every time).
