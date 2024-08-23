@@ -1,7 +1,7 @@
 ---
 title: Assumption Diagnostics and Regression Trouble Shooting
-teaching: 40 minutes
-exercises: 20 minutes
+teaching: 80
+exercises: 20
 source: Rmd
 ---
 
