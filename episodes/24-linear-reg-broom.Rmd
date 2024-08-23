@@ -135,13 +135,16 @@ In addition,  we can access the cluster-robust standard errors regression result
 # cluster-robust standard errors
 coeftest(reg_LivEnv_barriers_health, reg_LivEnv_barriers_health$clse)
 ```
-:::::::::::::::::::::::::::::::::::::::  challenge
+
+::::::::::::::::::::::::::::::::::::::: challenge
 
 ## Challenge 1
 
-Using the GapMinder data to create a linear model between two continuous variables.
+Use the `gapminder` data to create a linear model between two continuous variables.
 
 Discuss your question and your findings.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Regression with Categorical independent variables
 
@@ -179,9 +182,11 @@ summary(reg_cat_var_int)
 
 ## Challenge 2
 
-Using the GapMinder data to create a linear model between a categorical and a continuous variable .
+Using the `gapminder` data to create a linear model between a categorical and a continuous variable .
 
 Discuss your question and your findings.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Broom
 
@@ -302,6 +307,8 @@ augment(chit)
 Use broom to amend the display of your model outputs.
 
 Which function(s) did you use and why?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Conventions
 There are some conventions that enable consistency across the broom functions, these are:

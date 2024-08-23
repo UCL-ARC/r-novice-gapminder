@@ -161,6 +161,8 @@ If it's 3, it's not worth deleting a valid point; the data may be better suited 
 
 ## Challenge
 
-Choose 3 of the of the regression diagnostics, check that the assumptions are met for the linear models you have created using the GapMinder data.
+Choose 3 of the of the regression diagnostics, check that the assumptions are met for the linear models you have created using the `gapminder` data.
 
 State what you tested and discuss your findings.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
