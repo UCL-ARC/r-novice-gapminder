@@ -1272,7 +1272,7 @@
       "Package": "stringi",
       "Version": "1.8.4",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "carpentries",
       "Requirements": [
         "R",
         "stats",
