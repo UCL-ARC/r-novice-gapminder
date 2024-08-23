@@ -24,22 +24,19 @@ source: Rmd
 
 -   Exploratory Data Analysis
 -   Model Creation and Estimation
--   Assumption Testing
--   Report the Logistic Regression Results
+-   Reporting the Logistic Regression Results
 
 ## Data
 
 ```{r libraries, message=FALSE, warning=FALSE}
 
 # We will need these libraries and this data later.
-library(table1)
-library(finalfit)
 library(aod)
+library(broom)
 library(ggplot2)
-library(tidyverse)
 library(lubridate)
-library(knitr)
 library(odds.n.ends)
+library(tidyverse)
 
 amrData <- read.csv("data/dig_health_hub_amr.csv")
 
@@ -249,12 +246,87 @@ summary(coamox_surg_imd_logit)
 ```
 As we did not include the 0 flag IMD quintile 1 has been used a reference for the other Quintiles.
 Quintiles 2 to 5 are not significantly significant.
+We may want to test that the coefficient for imd=1 is equal to the coefficient for imd=2. 
+The first line of code below creates a vector l that defines the test we want to perform. In this case, we want to test the difference (subtraction) of the terms for imd=1  and imd=2  (i.e., the 4th and 5th terms in the model). To contrast these two terms, we multiply one of them by 1, and the other by -1. The other terms in the model are not involved in the test, so they are multiplied by 0. The second line of code below uses L=l to tell R that we wish to base the test on the vector l (rather than using the Terms option as we did above).
 
 ```{r}
-car::vif(coamox_surg_logit))
+l <- cbind(0,0 , 0, 1, -1, 0, 0 , 0)
+wald.test(b = coef(coamox_surg_imd_logit), Sigma = vcov(coamox_surg_imd_logit), L = l)
 ```
-As the value of GVIF is lower than 4, it suggests that the assumption of independnce between the variables is held.
+The chi-squared test statistic of 33.9, with 1 degree of freedom is associated with a p-value of 5.7e-09 indicating that the overall effect of region is statistically significant.
 
 :::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Reporting the Logistic Regression Results
+
+For our model coamox_region_logit there are various things that we can report, and different functions and packages that can be used.
+
+We can report the CIs using profiled log-likelihood or using standard errors for our model.
+```{r}
+# CIs using log-likelihood
+confint(coamox_region_logit)
+
+## CIs using standard errors
+confint.default(coamox_region_logit)
+```
+
+Alternatively we may be interested in the odds-ratio:
+```{r}
+## odds ratios only
+exp(coef(coamox_region_logit))
+
+#including confidence intervals
+exp(cbind(OR = coef(coamox_region_logit), confint(coamox_region_logit)))
+```
+These can also be presented using broom:
+```{r}
+#as Log-Odds
+tidy(coamox_region_logit)
+
+#as ORs 
+tidy(coamox_region_logit,exp = TRUE)
+
+```
+
+The odd.n.ends package provides a wide range of reporting tools
+
+```{r}
+# Odds ratios and confidence intervals
+coamox_region_logitOR <- odds.n.ends::odds.n.ends(coamox_region_logit)
+coamox_region_logitCI <- coamox_region_logitOR$`Predictor odds ratios and 95% CI` 
+coamox_region_logitCI
+
+# model fit
+modfit <- coamox_region_logitOR$`Count R-squared (model fit): percent correctly predicted`
+modfit
+
+# Other model statistics
+odds.n.ends::odds.n.ends(coamox_region_logit)
+```
+As you can see we have a range of probabilities, odds ratios and log-odds. We need to be aware of which we are referring to.
+One way is to look at the range of the estimates. Probabilities always have a range from zero to 1. Logit units generally range from about -4 to +4, with zero meaning an equal probability of no event or the event outcome occurring. Odds ratios can range from very small (but positive) numbers to very large positive numbers.
+
+These odds ratios versions of the estimates are more easily interpretable than logit scores. Odds ratios of less than one means that an increase in that predictor makes the outcome less likely to occur, and an odds ratio of greater than one means that an increase in that predictor makes the outcome more likely to occur.
+
+::::::::::::::::::::::::::::::::::::::: discussion
+
+## Discussion
+
+* What other indicators could we have included in our model?
+* What question(s) would they help us to answer?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Challenge 3
+
+We have explored potential indicators of Coamoxiclav resistance.
+
+Explore potential indicators of either Gentamicin or Ciprofloxacin resistance.
+
+Present your analysis steps and findings in a Quarto report.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
