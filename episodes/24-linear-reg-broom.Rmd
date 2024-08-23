@@ -120,6 +120,11 @@ health_rank_resid <- residuals(reg_LivEnv_barriers_health)
 health_rank_pred$resid <- health_rank_resid
 
 # We can thenview the predictions and residuals
+head(health_rank_pred)
+```
+
+```{r, eval=FALSE}
+# You can view the full data in RStudio with the View() function
 View(health_rank_pred)
 ```
 
