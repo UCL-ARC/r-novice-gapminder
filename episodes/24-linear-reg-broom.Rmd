@@ -296,11 +296,15 @@ glance(tt)
 # Wilcox test
 glance(wt)
 ```
+The chisq.test enables use to investigate whether changes in one categorical variable are related to changes in another categorical variable.
 
 The 'augment' method is defined only for chi-squared tests, since there is no meaningful sense, for other tests,
 in which a hypothesis test produces output about each initial data point.
 
 ```{r}
+# convert IDAOP_london_decile to a factor so it is not interprested as continuous data
+lon_dims_imd_2019$IDAOP_london_decile <- factor(lon_dims_imd_2019$IDAOP_london_decile)
+
 # xtabs creates a frequency table of IMD deciles within London borooughs
 chit <- chisq.test(xtabs(~ la19nm + IDAOP_london_decile, data = lon_dims_imd_2019))
 
@@ -310,6 +314,14 @@ tidy(chit)
 ```{r}
 augment(chit)
 ```
+There are a number of underlying assumptions of a Chi-Square test, these are:
+* Independence: The Chi-Square test assumes that the observations in the data are independent of each other. This means that the outcome of one observation should not influence the outcome of another.
+* Random Sampling: The data should be obtained through random sampling to ensure that it is representative of the population from which it was drawn.
+* Expected Frequency: The Chi-Square test assumes that the expected frequency count for each cell in the contingency table should be at least 5. If this assumption is not met, the test results may not be reliable.
+
+As we have received a warning about the reliability of our test, it is likely that one of these assumptions has not been met,
+and that this is not a suitable test for this data.
+
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
