@@ -1,7 +1,7 @@
 ---
 title: "Logistic Regression"
 teaching: 60
-exercises: 30
+exercises: 60
 source: Rmd
 ---
 
@@ -205,3 +205,56 @@ As the value of GVIF is lower than 4, it suggests that the assumption of indepen
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Incorporating a multi-level factor
+
+So far we have considered binary and continuos variable indicators in our model(s).
+Our data set also contains some categorical variables: region, ethinicity and imd.
+
+We are going to incorporate region into our model:
+
+```{r}
+#To include reporting for all regions I will include the 0 flag
+coamox_region_logit <- glm(coamox ~ 0 + age_years_sd + sex_male + region, data = amrData, family= 'binomial')
+summary(coamox_region_logit)
+```
+It initially seems that all regions are significant and have a negative log-odds of Coamoxiclav resistance.
+
+
+We can use the Wald test to explore the overall effect of region. We will use the wald.test function of the aod library. The order in which the coefficients are given in the table of coefficients is the same as the order of the terms in the model. This is important because the wald.test function refers to the coefficients by their order in the model. We use the wald.test function. b supplies the coefficients, while Sigma supplies the variance covariance matrix of the error terms, finally Terms tells R which terms in the model are to be tested, in this case, terms 3 to 11, are the three terms for the different regions.
+
+```{r}
+# model with just the regions added
+wald.test(b = coef(coamox_region_logit), Sigma = vcov(coamox_region_logit), Terms = 3:11)
+'''
+The chi-squared test statistic of 12815.9, with nine degrees of freedom is associated with a p-value of 0.00 indicating that the overall effect of region is statistically significant.
+
+::::::::::::::::::::::::::::::::::::::  challenge
+
+### Challenge 2
+
+Update the model you created in Challenge 1 to include either ethnicity or imd as an independent variable.
+What is the log-odds reported and is it statistically significant?
+
+:::::::::::::::  solution
+
+### Challenge 2
+
+If you chose to incorporate imd, this would first need to be converted to a factor
+
+```{r}
+amrData$imd <- factor(amrData$imd)
+
+coamox_surg_imd_logit <- glm(coamox ~ age_years_sd + sex_male + had_surgery_past_yr + imd, data = amrData, family= 'binomial')
+
+summary(coamox_surg_imd_logit)
+```
+As we did not include the 0 flag IMD quintile 1 has been used a reference for the other Quintiles.
+Quintiles 2 to 5 are not significantly significant.
+
+```{r}
+car::vif(coamox_surg_logit))
+```
+As the value of GVIF is lower than 4, it suggests that the assumption of independnce between the variables is held.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
