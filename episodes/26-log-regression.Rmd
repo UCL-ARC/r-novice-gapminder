@@ -106,6 +106,13 @@ xtabs(~region, data=amrData)
 
 ```
 
+and for which organism:
+```{r}
+
+xtabs(~organism, data=amrData)
+
+```
+
 In addition, we can use cross-tabulation to identify if the specimen indicated resistance to one or more of Coamoxiclav, Gentamicin and Ciprofloxacin for the participants:
 
 ```{r}
@@ -164,3 +171,37 @@ linearPlot <- linearity.data %>%
 linearPlot
 
 ```
+
+::::::::::::::::::::::::::::::::::::::  challenge
+
+### Challenge 1
+
+Update the model coamox_logit to include had_surgery_past_yr as an independent variable.
+What is the log-odds reported and is it statistically significant?
+
+:::::::::::::::  solution
+
+### Challenge 1
+
+You may choose to create a new glm:
+
+```{r}
+coamox_surg_logit <- glm(coamox ~ age_years_sd + sex_male + had_surgery_past_yr, data = amrData, family= 'binomial')
+
+summary(coamox_surg_logit)
+```
+had_surgery_past_yr: The difference in the log-odds of Coamoxiclav resistance between those who have had surgery in the past year
+and those who have not is 0.1802123. It is statistically significant.
+
+You may also want to check for culticollinearity:
+
+```{r}
+car::vif(coamox_surg_logit))
+```
+As the value of GVIF is lower than 4, it suggests that the assumption of independnce between the variables is held.
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### Incorporating a multi-level factor
