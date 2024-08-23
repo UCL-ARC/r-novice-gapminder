@@ -144,7 +144,7 @@ If no points are identified, nothing is returned.
 Influence points can be further explored with an Influence Index Plot which provides index plots of influence and related diagnostics for a regression model.
 
 ```{r}
-influenceIndexPlot(model1, id.n = 3)
+influenceIndexPlot(model1)
 ```
 
 If an observation is influential then that observation can change the fit of the linear model.
