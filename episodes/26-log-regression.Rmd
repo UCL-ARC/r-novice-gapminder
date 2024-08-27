@@ -8,7 +8,7 @@ source: Rmd
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - To be able to construct regression models for a binary outcome
-- To be able to calculate predicted variables and residuals 
+- To be able to calculate predicted variables and residuals
 - To be able to present model outcomes using Broom
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -29,7 +29,6 @@ source: Rmd
 ## Data
 
 ```{r libraries, message=FALSE, warning=FALSE}
-
 # We will need these libraries and this data later.
 library(aod)
 library(broom)
@@ -39,9 +38,8 @@ library(odds.n.ends)
 library(tidyverse)
 
 amrData <- read.csv("data/dig_health_hub_amr.csv")
-
 ```
-The data used in this episode was provided by Simon Thelwall from the UKHSA. 
+The data used in this episode was provided by Simon Thelwall from the UKHSA.
 It has been created to represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS).
 The data has 100,000 rows of 12 variables.
 
@@ -50,39 +48,31 @@ The data has 100,000 rows of 12 variables.
 We can preview our data by using 'head':
 
 ```{r}
-
 head(amrData)
-
 ```
 We can also request information about variable names and data types:
 ```{r}
-
 sapply(amrData, class)
-
 ```
 
 We can see that dates are currently stored as the char data type. We also do not know the age of the participant when the sample was taken.
 
 ```{r}
-
 # Calculate age (in years) as of their last birthday and add as an additional variable to our data.
 
-amrData <- amrData %>% 
+amrData <- amrData %>%
   mutate(
     age_years_sd = (dob %--% spec_date) %/% years(1)
   )
-
 ```
 
 We can also convert 'spec_date', the date the specimen was taken from text to a date:
 ```{r}
-
 # Convert char to date and store as additional variable
-amrData <- amrData %>% 
+amrData <- amrData %>%
   mutate(
     spec_date_YMD = as.Date(amrData$spec_date)
   )
-
 ```
 We can use a histogram to explore the age distribution of the participants:
 
@@ -90,32 +80,25 @@ We can use a histogram to explore the age distribution of the participants:
 # histogram of age
 ageHisto <- amrData %>%
   ggplot(aes(x = age_years_sd)) +
-  geom_histogram(bins = 10, color = 'white') +
+  geom_histogram(bins = 10, color = "white") +
   theme_minimal(base_size = 14, base_family = "sans") +
   labs(x = "Age when specimen taken (years)", y = "Frequency")
 ageHisto
-
 ```
 We can also look at where the specimens were processed:
 ```{r}
-
-xtabs(~region, data=amrData)
-
+xtabs(~region, data = amrData)
 ```
 
 and for which organism:
 ```{r}
-
-xtabs(~organism, data=amrData)
-
+xtabs(~organism, data = amrData)
 ```
 
 In addition, we can use cross-tabulation to identify if the specimen indicated resistance to one or more of Coamoxiclav, Gentamicin and Ciprofloxacin for the participants:
 
 ```{r}
-
-xtabs(~coamox+cipro+gentam, data=amrData)
-
+xtabs(~ coamox + cipro + gentam, data = amrData)
 ```
 We can see from our table that only 227 participants indicated reistance to Coamoxiclav, Gentamicin and Ciprofloxacin.
 Coamoxiclav appears to have the highest individual indication of resistance. We will explore indicators to Coamoxiclav first.
@@ -126,11 +109,9 @@ As the dependent variable we want to explore is binary (0,1), we will use a bino
 
 
 ```{r}
-
-coamox_logit <- glm(coamox ~ age_years_sd + sex_male, data = amrData, family= 'binomial')
+coamox_logit <- glm(coamox ~ age_years_sd + sex_male, data = amrData, family = "binomial")
 
 summary(coamox_logit)
-
 ```
 In this initial model focusing on demographic indicators, age at time of sample being taken and whether or not the participant is male both seem to be statistically significant.
 
@@ -149,24 +130,23 @@ We can also check the linearity of the variable age_years_sd
 
 ```{r}
 # make a variable of the logit of the predicted values
-logit.use <- log(coamox_logit$fitted.values/(1-coamox_logit$fitted.values))
+logit.use <- log(coamox_logit$fitted.values / (1 - coamox_logit$fitted.values))
 
 # make a small data frame with the logit variable and the age predictor
 linearity.data <- data.frame(logit.use, age = coamox_logit$model$age_years_sd)
 
 # create a plot with linear and actual relationships shown
 linearPlot <- linearity.data %>%
-  ggplot(aes(x = age, y = logit.use))+
+  ggplot(aes(x = age, y = logit.use)) +
   geom_point(aes(size = "Observation"), color = "blue", alpha = .6) +
-  geom_smooth(se = FALSE, aes(color = "Loess curve")) + 
-  geom_smooth(method = lm, se = FALSE, aes(color = "linear")) + 
+  geom_smooth(se = FALSE, aes(color = "Loess curve")) +
+  geom_smooth(method = lm, se = FALSE, aes(color = "linear")) +
   theme_minimal(base_size = 14, base_family = "serif") +
   labs(x = "Age in years on sample date", y = "Log-odds of coamox resistance predicted probability") +
-  scale_color_manual(name="Type of fit line", values=c("red", "black")) +
+  scale_color_manual(name = "Type of fit line", values = c("red", "black")) +
   scale_size_manual(values = 1.5, name = "")
 
 linearPlot
-
 ```
 
 ::::::::::::::::::::::::::::::::::::::  challenge
@@ -183,7 +163,7 @@ What is the log-odds reported and is it statistically significant?
 You may choose to create a new glm:
 
 ```{r}
-coamox_surg_logit <- glm(coamox ~ age_years_sd + sex_male + had_surgery_past_yr, data = amrData, family= 'binomial')
+coamox_surg_logit <- glm(coamox ~ age_years_sd + sex_male + had_surgery_past_yr, data = amrData, family = "binomial")
 
 summary(coamox_surg_logit)
 ```
@@ -209,8 +189,8 @@ Our data set also contains some categorical variables: region, ethinicity and im
 We are going to incorporate region into our model:
 
 ```{r}
-#To include reporting for all regions I will include the 0 flag
-coamox_region_logit <- glm(coamox ~ 0 + age_years_sd + sex_male + region, data = amrData, family= 'binomial')
+# To include reporting for all regions I will include the 0 flag
+coamox_region_logit <- glm(coamox ~ 0 + age_years_sd + sex_male + region, data = amrData, family = "binomial")
 summary(coamox_region_logit)
 ```
 It initially seems that all regions are significant and have a negative log-odds of Coamoxiclav resistance.
@@ -241,17 +221,21 @@ If you chose to incorporate imd, this would first need to be converted to a fact
 ```{r}
 amrData$imd <- factor(amrData$imd)
 
-coamox_surg_imd_logit <- glm(coamox ~ age_years_sd + sex_male + had_surgery_past_yr + imd, data = amrData, family= 'binomial')
+coamox_surg_imd_logit <- glm(
+  coamox ~ age_years_sd + sex_male + had_surgery_past_yr + imd,
+  data = amrData,
+  family = "binomial"
+)
 
 summary(coamox_surg_imd_logit)
 ```
 As we did not include the 0 flag IMD quintile 1 has been used a reference for the other Quintiles.
 Quintiles 2 to 5 are not significantly significant.
-We may want to test that the coefficient for imd=1 is equal to the coefficient for imd=2. 
+We may want to test that the coefficient for imd=1 is equal to the coefficient for imd=2.
 The first line of code below creates a vector l that defines the test we want to perform. In this case, we want to test the difference (subtraction) of the terms for imd=1  and imd=2  (i.e., the 4th and 5th terms in the model). To contrast these two terms, we multiply one of them by 1, and the other by -1. The other terms in the model are not involved in the test, so they are multiplied by 0. The second line of code below uses L=l to tell R that we wish to base the test on the vector l (rather than using the Terms option as we did above).
 
 ```{r}
-l <- cbind(0,0 , 0, 1, -1, 0, 0 , 0)
+l <- cbind(0, 0, 0, 1, -1, 0, 0, 0)
 wald.test(b = coef(coamox_surg_imd_logit), Sigma = vcov(coamox_surg_imd_logit), L = l)
 ```
 The chi-squared test statistic of 33.9, with 1 degree of freedom is associated with a p-value of 5.7e-09 indicating that the overall effect of region is statistically significant.
@@ -278,17 +262,16 @@ Alternatively we may be interested in the odds-ratio:
 ## odds ratios only
 exp(coef(coamox_region_logit))
 
-#including confidence intervals
+# including confidence intervals
 exp(cbind(OR = coef(coamox_region_logit), confint(coamox_region_logit)))
 ```
 These can also be presented using broom:
 ```{r}
-#as Log-Odds
+# as Log-Odds
 tidy(coamox_region_logit)
 
-#as ORs 
-tidy(coamox_region_logit,exp = TRUE)
-
+# as ORs
+tidy(coamox_region_logit, exp = TRUE)
 ```
 
 The odd.n.ends package provides a wide range of reporting tools
@@ -296,7 +279,7 @@ The odd.n.ends package provides a wide range of reporting tools
 ```{r}
 # Odds ratios and confidence intervals
 coamox_region_logitOR <- odds.n.ends::odds.n.ends(coamox_region_logit)
-coamox_region_logitCI <- coamox_region_logitOR$`Predictor odds ratios and 95% CI` 
+coamox_region_logitCI <- coamox_region_logitOR$`Predictor odds ratios and 95% CI`
 coamox_region_logitCI
 
 # model fit
