@@ -17,6 +17,19 @@ source: Rmd
 
 :::::::::::::::::::::::::::::::::::::::: questions
 
-- How can I integrate software and reports?
+- How can I work with relational data?
+- How can I extract data given a specific criteria?
+- How can I join related data sets?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: content
+
+- Relational Databases - an overview
+- Selecting data
+- Filtering data
+- Joining data
+- Calculated fields
+- Reports
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
