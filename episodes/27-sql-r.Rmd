@@ -1,0 +1,22 @@
+---
+title: SQL and R
+teaching: 60
+exercises: 15
+source: Rmd
+---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Understand the value of writing reproducible reports
+- Learn how to recognise and compile the basic components of an Quarto file
+- Become familiar with R code chunks, and understand their purpose, structure and options
+- Demonstrate the use of inline chunks for weaving R outputs into text blocks, for example when discussing the results of some calculations
+- Be aware of alternative output formats to which a Quarto file can be exported
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- How can I integrate software and reports?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
