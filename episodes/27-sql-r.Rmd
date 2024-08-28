@@ -33,3 +33,25 @@ source: Rmd
 - Reports
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Relational Databases - an overview
+
+In this episode we will be using SQLite, a Relational Database Management Systems (RDBMS) within R.
+We have chosen SQLite as it is an embedded RDBMS and does not rely on a connection to a server. 
+It uses most of the SQL standard, and it is fully ACID compliant.
+
+### What is SQL?
+
+Structured Query Language, or SQL (sometimes pronounced "sequel"), is a powerful language used to interrogate and manipulate relational databases. It is not a general programming language that you can use to write an entire program. However, SQL queries can be called from programming languages to let any program interact with databases. There are several variants of SQL, but all support the same basic statements that we will be covering today.
+
+### Relational databases
+
+Relational databases consist of one or more tables of data. These tables have fields (columns) and records (rows). Every field has a data type. Every value in the same field of each record has the same type. These tables can be linked to each other when a field in one table can be matched to a field in another table. SQL queries are the commands that let you look up data in a database or make calculations based on columns.
+
+### Why use SQL?
+
+SQL is well established and has been around since the 1970s. It is still widely used in a variety of settings.
+
+SQL lets you keep the data separate from the analysis. There is no risk of accidentally changing data when you are analysing it. If the data is updated, a saved query can be re-run to analyse the new data.
+
+SQL is optimised for handling large amounts of data. Data types help quality control of entries - you will receive an error if you try to enter a word into a field that should contain a number.
