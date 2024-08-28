@@ -436,3 +436,13 @@ dbGetQuery (cdrcDB, "SELECT DISTINCT imd.LANAME, MAX(imd.Rank),
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Disconnection
+
+Once we have completed our analysis we need to disconnect from our database:
+
+```{r}
+
+dbDisconnect(cdrcDB)
+
+```
+
