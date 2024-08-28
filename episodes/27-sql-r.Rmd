@@ -26,11 +26,11 @@ source: Rmd
 :::::::::::::::::::::::::::::::::::::::: content
 
 - Relational Databases - an overview
+- Creating a SQLite database
 - Selecting data
 - Filtering data
 - Joining data
 - Calculated fields
-- Reports
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -55,3 +55,7 @@ SQL is well established and has been around since the 1970s. It is still widely 
 SQL lets you keep the data separate from the analysis. There is no risk of accidentally changing data when you are analysing it. If the data is updated, a saved query can be re-run to analyse the new data.
 
 SQL is optimised for handling large amounts of data. Data types help quality control of entries - you will receive an error if you try to enter a word into a field that should contain a number.
+
+## Creating a SQLite database
+
+
