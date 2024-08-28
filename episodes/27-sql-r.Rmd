@@ -362,3 +362,26 @@ dbGetQuery (cdrcDB, "SELECT LSOA, LANAME,
 In this example we used the calculation and AS to represent that the new column is different from the original SQL table data.
 
 We can use any arithmetic operators (like +, -, *, /, square root SQRT or the modulo operator %) if we would like.
+
+## Joining Data
+
+The SQL JOIN clause allows us to combine columns from one or more tables in a database by using values common to each. 
+It follows the FROM clause in a SQL statement. We also need to tell the computer which columns provide the link between 
+the two tables using the word ON.
+
+Let's start by joining data from the ahah table with the imd table. The LSOA and lsoa11 columns in these tables link them.
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT *
+            FROM ahah 
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            ")
+
+```
+
+ON is similar to WHERE, it filters things out according to a test condition. 
+We use the table.colname format to tell the SQL manager what column in which table we are referring to.
+
+We can represent a LEFT join using the following diagram.
