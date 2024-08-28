@@ -100,22 +100,57 @@ dbListTables(cdrcDB)
 
 ```
 
-There a few ways we can inspect our data.
-
-We can view the Fields in a table:
+We can view the Fields in our tables:
 
 ```{r}
 dbListFields(cdrcDB,"ahah")
 ```
 
-We can also return the dimensions of our tables utilising loops:
+## Selecting data
+
+A query is a question or request for data. For example, "What are the IMD deciles for the City of London?". 
+When we query a database, we can ask the same question using Structured Query Language (SQL) in what is called a statement. 
+Some of the most useful queries are used to return results from a table that match specific criteria.
+
+The basic structure of a SQL query contains a SELECT statement indicating which columns are desired and a FROM clause explaining where to find them:
 
 ```{r}
 
-for (t in dbListTables(cdrcDB)) {
-  rows <- dbGetQuery(cdrcDB, paste("SELECT COUNT(*) FROM", t))
-  cols <- length(dbListFields(cdrcDB, t))
-  print(paste(t, "-", rows, "x", cols))
-}
+dbGetQuery(cdrcDB, "SELECT LANAME FROM imd LIMIT 10")
+
+```
+The string, "SELECT LANAME FROM imd LIMIT 10" is a SQL query. 
+
+SELECT is the statement, and it has the basic syntax of:
+
+````
+SELECT var1, var2 FROM table
+````
+We add an additional clause, LIMIT 10 to reduce the amount of output.
+This is useful when testing queries, especially when you have a large data set.
+
+In the query above, we have capitalized the words SELECT and FROM because they are SQL keywords. Even though capitalization makes 
+no difference to the SQL interpreter, capitalization of these SQL terms helps for readability and is therefore considered good style. 
+
+As the data has repeating area name values (LANAME) due to them containing multiple LSOA units, we can specify unique values using DISTINCT:
+
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT DISTINCT LANAME FROM imd LIMIT 10")
+
+```
+
+We can expand our initial query to return Rank in addition to LANAME:
+
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT LANAME, Rank FROM imd LIMIT 10")
+
+```
+
+We can also make use of the wildcard character '*' to select all Fields in a table:
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT * FROM imd LIMIT 10")
 
 ```
