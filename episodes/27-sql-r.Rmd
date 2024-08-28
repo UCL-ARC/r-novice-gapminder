@@ -389,3 +389,58 @@ The following diagram is a visualisation of the different types of joins.
 In this image, the A table is the primary table (e.g. FROM), and the B table is the table you are joining in.
 
 ![](fig/joins.png){alt='Visualisation of different types of SQL join'}
+
+When joining tables, you can specify the columns you want by using table.colname instead of selecting all the columns using *. 
+
+For example:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT imd.LSOA, imd.LANAME, imd.Rank,
+            ahah.ah3h_rnk, ahah.ah3g_rnk, ahah.ah3e_rnk, ahah.ah3r_rnk
+            FROM ahah  
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            ")
+
+```
+
+Joins can be combined with sorting, filtering, and aggregation. 
+So, if we wanted the average imd rank and ah3h_rnk for each LANAME we would use:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT DISTINCT imd.LANAME, AVG(imd.Rank),
+            AVG(ahah.ah3h_rnk)
+            FROM ahah  
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            GROUP BY imd.LANAME
+            ")
+
+```
+::::::::::::::::::::::::::::::::::::::: challenge
+## Challenge 4
+
+Write a query that JOINS the imd and aha tables and that returns the LANAME and maximum values of Rank and ah3h_rnk for each LANAME.
+Sorted by RANK in descending order.
+
+::::::::::::::: solution
+## Solution
+
+```{r}
+dbGetQuery (cdrcDB, "SELECT DISTINCT imd.LANAME, MAX(imd.Rank),
+            MAX(ahah.ah3h_rnk)
+            FROM ahah  
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            GROUP BY imd.LANAME
+            ORDER BY MAX(imd.Rank) DESC
+            LIMIT 10
+            ")
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
