@@ -154,3 +154,37 @@ We can also make use of the wildcard character '*' to select all Fields in a tab
 dbGetQuery(cdrcDB, "SELECT * FROM imd LIMIT 10")
 
 ```
+
+### Sorting
+
+We can also sort the results of our queries by using the keyword ORDER BY. 
+Let's create a query that sorts the imd table in ascending order by Rank using the ASC keyword in conjunction with ORDER BY.
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT * 
+           FROM imd 
+           ORDER BY Rank ASC
+           LIMIT 10")
+
+```
+ASC is the default, so by omitting ASC or DESC, SQLite will sort ascending (ASC).
+
+::::::::::::::::::::::::::::::::::::::: challenge
+## Challenge 1
+
+Write a query that returns lsoa11, ah3h_rnk, ah3g_rnk and ah3e_rnk from the ahah table, 
+ordered by the ah3h_rnk from highest to lowest value.
+
+::::::::::::::: solution
+## Solution
+
+```{r}
+dbGetQuery(cdrcDB, "SELECT lsoa11, ah3h_rnk, ah3g_rnk, ah3e_rnk
+           FROM ahah 
+           ORDER BY ah3h_rnk DESC")
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
