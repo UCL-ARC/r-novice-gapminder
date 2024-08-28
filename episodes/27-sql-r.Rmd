@@ -188,3 +188,20 @@ dbGetQuery(cdrcDB, "SELECT lsoa11, ah3h_rnk, ah3g_rnk, ah3e_rnk
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+:::::::::::::::::::::::::::::::::::::::: callout
+
+It is important to note that the output from our queries is not saved in the RStudio environment.
+If needed, query results can be stored as data frames as dbGetQuery() returns the result of a query as a data frame.
+
+For example:
+'''{r}
+
+LANames_Distinct <- dbGetQuery(cdrcDB, "SELECT DISTINCT LANAME FROM imd")
+
+````
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Filtering Data
+
+
