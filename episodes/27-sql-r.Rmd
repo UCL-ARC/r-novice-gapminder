@@ -78,3 +78,44 @@ ahah_2022 <- read.csv('data/AHAH_V3_0.csv')
 imd_2019 <- read.csv('data/uk_imd2019.csv')
 
 ```
+We can now connect to SQLite and create a new empty database:
+
+```{r}
+
+cdrcDB <- dbConnect(RSQLite::SQLite(), "cdrcDB.sqlite")
+
+cdrcDB
+
+```
+
+and start adding our tables:
+
+```{r}
+#create tables
+
+dbWriteTable(cdrcDB, "ahah", ahah_2022)
+dbWriteTable(cdrcDB, "imd", imd_2019)
+
+dbListTables(cdrcDB)
+
+```
+
+There a few ways we can inspect our data.
+
+We can view the Fields in a table:
+
+```{r}
+dbListFields(cdrcDB,"ahah")
+```
+
+We can also return the dimensions of our tables utilising loops:
+
+```{r}
+
+for (t in dbListTables(cdrcDB)) {
+  rows <- dbGetQuery(cdrcDB, paste("SELECT COUNT(*) FROM", t))
+  cols <- length(dbListFields(cdrcDB, t))
+  print(paste(t, "-", rows, "x", cols))
+}
+
+```
