@@ -58,4 +58,23 @@ SQL is optimised for handling large amounts of data. Data types help quality con
 
 ## Creating a SQLite database
 
+For creating and querying a SQLite database in R we will be using 2 additional packages, RSQLite and DBI.
 
+```{r}
+# As RSQLite uses functions defined in the DBI package, we load DBI first
+
+library(DBI)
+library(RSQLite)
+
+```
+
+We will be using data from the Consumer Data Research Centre (CDRC), the Access to Healthy Assets & Hazards (AHAH) from 2022 
+and the UK Indices of Multiple Deprivation data from 2019. 
+The statistical unit area used in both are Lower layer Super Output Areas (LSOAs).
+
+```{r}
+# Import data initially to dataframes 
+ahah_2022 <- read.csv('data/AHAH_V3_0.csv')
+imd_2019 <- read.csv('data/uk_imd2019.csv')
+
+```
