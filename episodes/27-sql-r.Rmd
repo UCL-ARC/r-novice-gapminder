@@ -383,5 +383,9 @@ dbGetQuery (cdrcDB, "SELECT *
 
 ON is similar to WHERE, it filters things out according to a test condition. 
 We use the table.colname format to tell the SQL manager what column in which table we are referring to.
+This is an example of a LEFT join.
 
-We can represent a LEFT join using the following diagram.
+The following diagram is a visualisation of the different types of joins. 
+In this image, the A table is the primary table (e.g. FROM), and the B table is the table you are joining in.
+
+![](fig/joins.png){alt='Visualisation of different types of SQL join'}
