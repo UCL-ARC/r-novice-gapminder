@@ -7,19 +7,11 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the value of writing reproducible reports
-- Learn how to recognise and compile the basic components of an Quarto file
-- Become familiar with R code chunks, and understand their purpose, structure and options
-- Demonstrate the use of inline chunks for weaving R outputs into text blocks, for example when discussing the results of some calculations
-- Be aware of alternative output formats to which a Quarto file can be exported
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
-
-- How can I work with relational data?
-- How can I extract data given a specific criteria?
-- How can I join related data sets?
+- Explain what SQL is and why to use it.
+- Understand how SQL can be used to query databases
+- Write queries that SELECT data based on conditions, such as AND, OR, and NOT and use of the WHERE clause.
+- Use SQL functions like AVG in combination with clauses like Group By to aggregate values and make calculations on fields using SQL.
+- Understand how to link tables together via joins.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
