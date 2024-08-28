@@ -1,7 +1,7 @@
 ---
 title: SQL and R
-teaching: 60
-exercises: 15
+teaching: 90
+exercises: 20
 source: Rmd
 ---
 
@@ -29,8 +29,8 @@ source: Rmd
 - Creating a SQLite database
 - Selecting data
 - Filtering data
+- Calculated fields and Aggregation
 - Joining data
-- Calculated fields
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -247,6 +247,7 @@ Because of this you will notice matches with names such as Barking and Dagenham 
 
 Write a query that returns lsoa11, ah3h_rnk, ah3g_rnk and ah3e_rnk from the ahah table, 
 where ah3h_rnk is below 500 and ah3e_rnk is between 3500 and 4500. Limit responses to 15.
+
 ::::::::::::::: solution
 ## Solution
 
@@ -260,3 +261,85 @@ dbGetQuery(cdrcDB, "SELECT lsoa11, ah3h_rnk, ah3g_rnk, ah3e_rnk
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Calculated fields and Aggregation
+
+SQL contains functions which allow you to make calculations on data in your database for reports. 
+Some of the most common functions are MAX, MIN, AVG, COUNT, SUM, and they will: 
+- MAX (find the maximum value in a field), 
+- MIN (find the minimum value in a field), 
+- AVG (find the average value of a field), 
+- COUNT (count the number of values in a field and present the total), 
+- and SUM (add up the values in a field and present the sum).
+
+Let's say we wanted to get the average SOA_decile for each of the LANAMEs. We can use AVG and the GROUP BY clause in a query:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LANAME, AVG(SOA_decile)
+            FROM imd 
+            GROUP BY LANAME
+            LIMIT 10
+            ")
+
+````
+
+GROUP BY is used by SQL to arrange identical data into groups. In this case, we are arranging all the SOA deciles by LANAME. AVG acts on the SOA_decile in parentheses. This process is also called aggregation which allows us to combine results by grouping records based on value and calculating combined values in groups.
+
+As you can see, it is difficult to tell though what LANAME has the highest average SOA decile and the least. We can improve upon the query above by using ORDER BY and DESC.
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LANAME, AVG(SOA_decile)
+            FROM imd 
+            GROUP BY LANAME
+            ORDER BY AVG(SOA_decile) DESC
+            LIMIT 10
+            ")
+
+````
+::::::::::::::::::::::::::::::::::::::: challenge
+## Challenge 3
+
+Using the imd table, write a query using an aggregate function that returns the number of LANAMEs per SOA_decile, sorted by LANAME count in descending order. Which SOA_decile has the most LANAMEs? (Hint to choosing which aggregate function to use - it is one of the common aggregate functions MAX, MIN, AVG, COUNT, SUM.)
+
+::::::::::::::: solution
+## Solution
+
+```{r}
+dbGetQuery (cdrcDB, "SELECT SOA_decile, COUNT(LANAME)
+            FROM imd 
+            GROUP BY SOA_decile
+            ORDER BY COUNT(LANAME) DESC
+            LIMIT 10
+            ")
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### The HAVING keyword
+
+SQL offers a mechanism to filter the results based on aggregate functions, through the HAVING keyword.
+
+For example, we can adapt the last request we wrote to only return information about LANAMEs with an SOA_decile of more than 7:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LANAME, COUNT(*)
+            FROM imd 
+            GROUP BY LANAME
+            HAVING AVG(SOA_decile) > 7
+            LIMIT 10
+            ")
+
+```
+
+The HAVING keyword works exactly like the WHERE keyword, but uses aggregate functions instead of database fields. When you want to filter based on an aggregation like MAX, MIN, AVG, COUNT, SUM, use HAVING; to filter based on the individual values in a database field, use WHERE.
+
+Note that HAVING comes after GROUP BY. One way to think about this is: the data are retrieved (SELECT), can be filtered (WHERE), then joined in groups (GROUP BY); finally, we only select some of these groups (HAVING).
+
+
+
+
