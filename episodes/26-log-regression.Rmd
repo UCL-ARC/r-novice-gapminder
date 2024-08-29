@@ -59,6 +59,9 @@ We can see that dates are currently stored as the char data type. We also do not
 
 ```{r}
 # Calculate age (in years) as of their last birthday and add as an additional variable to our data.
+# The %--% and %/% are synax specific to lubridate. 
+# In the first part we are asking it to find the difference between the two dates.
+# We are then rounding down to the nearest year.
 
 amrData <- amrData %>%
   mutate(
