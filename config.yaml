@@ -90,7 +90,7 @@ episodes:
   # 23-regression
   # 24-logregression
   # 25-broom
-  # 26-r-sql
+  - 27-sql-r.Rmd
   - 27-wrap-up.Rmd
 
 # Information for Learners
