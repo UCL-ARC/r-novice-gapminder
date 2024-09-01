@@ -452,7 +452,7 @@ Is the difference between the income ranks statistically significant?
 
 
 ``` r
- t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$statistic
+t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$statistic
 ```
 
 ``` output
@@ -461,7 +461,7 @@ Is the difference between the income ranks statistically significant?
 ```
 
 ``` r
- t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$parameter
+t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$parameter
 ```
 
 ``` output
