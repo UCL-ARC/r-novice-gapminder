@@ -512,7 +512,31 @@
 <div class="accordion accordion-flush" id="accordionFlush25">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading25">
-        <a href="27-wrap-up.html">24. Writing Good Software</a>
+        <a href="24-linear-reg-broom.html">24. Linear Regression and Broom</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush26">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading26">
+        <a href="25-linreg-diagnostics.html">25. Assumption Diagnostics and Regression Trouble Shooting</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush27">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading27">
+        <a href="27-wrap-up.html">26. Writing Good Software</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -579,7 +603,7 @@
         
 <section id="aio-01-rstudio-intro"><p>Content from <a href="01-rstudio-intro.html">Introduction to R and RStudio</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/01-rstudio-intro.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 55 minutes</p>
@@ -1319,7 +1343,7 @@ instead of a listing of objects.</p>
     }
     else all.names
 }
-&lt;bytecode: 0x561c5b36fd80&gt;
+&lt;bytecode: 0x562ca85e5e10&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>What’s going on here?</p>
@@ -1640,7 +1664,7 @@ functions.</li>
 </div>
 </section></section><section id="aio-02-project-intro"><p>Content from <a href="02-project-intro.html">Project Management With RStudio</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/02-project-intro.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -1903,7 +1927,7 @@ questions:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>-rw-r--r-- 1 runner docker 80K Aug  7 12:27 data/gapminder_data.csv</code></pre>
+<pre class="output" tabindex="0"><code>-rw-r--r-- 1 runner docker 80K Sep  1 15:25 data/gapminder_data.csv</code></pre>
 </div>
 <p>The file size is 80K.</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -2037,7 +2061,7 @@ layout.</li>
 </div>
 </section></section><section id="aio-03-seeking-help"><p>Content from <a href="03-seeking-help.html">Seeking Help</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/03-seeking-help.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -2284,7 +2308,7 @@ vector do you expect will be created if you evaluate the following:</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>The <code>c()</code> function creates a vector, in which all elements
 are of the same type. In the first case, the elements are numeric, in
@@ -2314,7 +2338,7 @@ to use it later. What’s the difference between the <code>sep</code> and
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>To look at the help for the <code>paste()</code> function, use:</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -2423,7 +2447,7 @@ reading in tabular data.</p>
   Solution to Challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The standard R function for reading tab-delimited files with a period
 decimal separator is read.delim(). You can also do this with
@@ -2459,7 +2483,7 @@ cheat sheets</a></li>
 </div>
 </section></section><section id="aio-04-data-structures-part1"><p>Content from <a href="04-data-structures-part1.html">Data Structures</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/04-data-structures-part1.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 55 minutes</p>
@@ -4434,7 +4458,7 @@ lists and vectors, with some added attributes.</li>
 </div>
 </section></section><section id="aio-05-data-structures-part2"><p>Content from <a href="05-data-structures-part2.html">Exploring Data Frames</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/05-data-structures-part2.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
@@ -4746,7 +4770,7 @@ person’s answer to the question, “Is it time for coffee break?”</p>
   Solution to Challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5036,7 +5060,7 @@ could ask for a few lines at random. How would you code this?</p>
   Solution to Challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>To check the last few lines it’s relatively simple as R already has a
 function for this:</p>
@@ -5097,7 +5121,7 @@ RStudio).</p>
   Solution to Challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The <code>source</code> function can be used to use a script within a
 script. Assume you would like to load the same type of file over and
@@ -5149,7 +5173,7 @@ neighbors!</p>
   Solution to Challenge 4
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>The object <code>gapminder</code> is a data frame with columns</p>
 <ul>
@@ -5190,7 +5214,7 @@ represents.</li>
 </div>
 </section></section><section id="aio-06-filedir"><p>Content from <a href="06-filedir.html">Navigating Files and Directories</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/06-filedir.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
@@ -5238,7 +5262,7 @@ advantages.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Introducing and navigating the filesystem in the shell (covered in <a href="02-filedir.html">Navigating Files and Directories</a> section) can
 be confusing. You may have both terminal and GUI file explorer open side
@@ -5585,7 +5609,7 @@ useful nevertheless.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The <code>-l</code> option makes <code>ls</code> use a
 <strong>l</strong>ong listing format, showing not only the
@@ -5620,7 +5644,7 @@ option to see the last changed dates.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The most recently changed file is listed last when using
 <code>-rt</code>. This can be very useful for finding your most recent
@@ -5968,7 +5992,7 @@ commands could Nelle use to navigate to her home directory, which is
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>No: <code>.</code> stands for the current directory.</li>
@@ -6013,7 +6037,7 @@ display?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>No: there <em>is</em> a directory <code>backup</code> in
@@ -6058,7 +6082,7 @@ following output:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>No: <code>pwd</code> is not the name of a directory.</li>
@@ -6248,7 +6272,7 @@ location.</li>
 </div>
 </section></section><section id="aio-07-basics"><p>Content from <a href="07-basics.html">Automated Version Control</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/07-basics.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 5 minutes</p>
@@ -6400,7 +6424,7 @@ problems.</p></li>
 </div>
 </div></section><section id="aio-08-setup"><p>Content from <a href="08-setup.html">Setting Up Git</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/08-setup.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 5 minutes</p>
@@ -6733,7 +6757,7 @@ per machine.</li>
 </div>
 </div></section><section id="aio-09-create"><p>Content from <a href="09-create.html">Creating a Repository</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/09-create.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -7003,7 +7027,7 @@ directory.</li>
 </div>
 </div></section><section id="aio-10-changes"><p>Content from <a href="10-changes.html">Tracking Changes</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/10-changes.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -7903,7 +7927,7 @@ the local repository.</li>
 </div>
 </div></section><section id="aio-11-history"><p>Content from <a href="11-history.html">Exploring History</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/11-history.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
@@ -8524,7 +8548,7 @@ both commit messages and the difference between each commit.</p>
 </div>
 </div></section><section id="aio-12-ignore"><p>Content from <a href="12-ignore.html">Ignoring Things</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/12-ignore.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 5 minutes</p>
@@ -8704,7 +8728,7 @@ nothing to commit, working tree clean</code></pre>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>If you only want to ignore the contents of
 <code>results/plots</code>, you can change your <code>.gitignore</code>
@@ -8744,7 +8768,7 @@ directory except for <code>final.csv</code>? Hint: Find out what
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>You would add the following two lines to your .gitignore:</p>
 <div class="codewrapper">
@@ -8792,7 +8816,7 @@ not <code>results/data</code>?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>If you want to ignore the contents of <code>results/</code> but not
 those of <code>results/data/</code>, you can change your
@@ -8839,7 +8863,7 @@ ignore all <code>.csv</code> files in
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>Appending <code>results/data/position/gps/*.csv</code> will match
 every file in <code>results/data/position/gps</code> that ends with
@@ -8876,7 +8900,7 @@ listing the names of the corresponding folders?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>In the <code>.gitignore</code> file, write:</p>
 <div class="codewrapper">
@@ -8914,7 +8938,7 @@ exception with the exclamation point operator.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>The <code>!</code> modifier will negate an entry from a previously
 defined ignore pattern. Because the <code>!*.csv</code> entry negates
@@ -8957,7 +8981,7 @@ via <code>.gitignore</code>.</p></li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>append either <code>log_*</code> or <code>log*</code> as a new entry
@@ -8984,7 +9008,7 @@ ignore.</li>
 </div>
 </div></section><section id="aio-13-supplemental-rstudio"><p>Content from <a href="13-supplemental-rstudio.html">Supplemental: Using Git from RStudio</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/13-supplemental-rstudio.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -9189,7 +9213,7 @@ project over time.</li>
 </div>
 </div></section><section id="aio-14-data-subsetting"><p>Content from <a href="14-data-subsetting.html">Subsetting Data</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/14-data-subsetting.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 50 minutes</p>
@@ -9524,7 +9548,7 @@ neighbour. Did you have different strategies?</p>
   Solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9717,7 +9741,7 @@ than 4 and less than 7.</p>
   Solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -9971,7 +9995,7 @@ work.</p>
   Solution to challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ul>
 <li>The <strong>wrong</strong> way to do this problem is
@@ -10262,7 +10286,7 @@ instead of their row and column indices.</p>
   Solution to challenge 4
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>D</p>
 </div>
@@ -10409,7 +10433,7 @@ in the list.</p>
   Solution to challenge 5
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb115">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -10474,7 +10498,7 @@ in the list.</p>
   Solution to challenge 6
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb122">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -10640,7 +10664,7 @@ and 2007</li>
   Solution to challenge 7
   </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Fix each of the following common data frame subsetting errors:</p>
 <ol style="list-style-type: decimal">
@@ -10725,7 +10749,7 @@ through 23. You can do this in one or two steps.</p></li>
   Solution to challenge 8
   </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li><p><code>gapminder</code> is a data.frame so needs to be subsetted
@@ -10764,7 +10788,7 @@ data.</li>
 </div>
 </section></section><section id="aio-15-plot-ggplot2"><p>Content from <a href="15-plot-ggplot2.html">Creating Publication-Quality Graphics with ggplot2</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/15-plot-ggplot2.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 80 minutes</p>
@@ -10907,7 +10931,7 @@ appear on the x-axis.</p>
   Solution to challenge 1
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Here is one possible solution:</p>
 <div class="codewrapper sourceCode" id="cb5">
@@ -10948,7 +10972,7 @@ do you see in the data? Are they what you expected?</p>
   Solution to challenge 2
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The solution presented below adds <code>color=continent</code> to the
 call of the <code>aes</code> function. The general trend seems to
@@ -11059,7 +11083,7 @@ example. What happened?</p>
   Solution to challenge 3
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>The lines now get drawn over the points!</p>
 <div class="codewrapper sourceCode" id="cb11">
@@ -11184,7 +11208,7 @@ previous example.</p>
   Solution to challenge 4a
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>Here a possible solution: Notice that the <code>color</code> argument
 is supplied outside of the <code>aes()</code> function. This means that
@@ -11228,7 +11252,7 @@ The color argument can be used inside the aesthetic.</p>
   Solution to challenge 4b
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Here is a possible solution: Notice that supplying the
 <code>color</code> argument inside the <code>aes()</code> functions
@@ -11386,7 +11410,7 @@ continents during the available years.</p>
   Solution to Challenge 5
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>Here a possible solution: <code>xlab()</code> and <code>ylab()</code>
 set labels for the x and y axes, respectively The axis title, text and
@@ -11425,7 +11449,7 @@ scale transformation, and grouping.</li>
 </div>
 </section></section><section id="aio-16-writing-data"><p>Content from <a href="16-writing-data.html">Writing Data</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/16-writing-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 20 minutes</p>
@@ -11673,7 +11697,7 @@ include only data points collected since 1990.</p>
 </div>
 </section></section><section id="aio-17-github"><p>Content from <a href="17-github.html">Remotes in GitHub</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/17-github.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
@@ -12338,7 +12362,7 @@ local repository.</li>
 </div>
 </section></section><section id="aio-18-collab"><p>Content from <a href="18-collab.html">Collaborating</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/18-collab.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
@@ -12595,7 +12619,7 @@ has changed with command line? And on GitHub?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>On the command line, the Collaborator can use
 <code>git fetch origin main</code> to get the remote changes into the
@@ -12656,7 +12680,7 @@ up.</li>
 </div>
 </div></section><section id="aio-19-conflict"><p>Content from <a href="19-conflict.html">Conflicts</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/19-conflict.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -13028,7 +13052,7 @@ non-textual file that is stored in version control?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Let’s try it. Suppose Dracula takes a picture of Martian surface and
 calls it <code>mars.jpg</code>.</p>
@@ -13270,7 +13294,7 @@ started.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <table class="table">
 <colgroup>
@@ -13338,7 +13362,7 @@ resolved.</li>
 </div>
 </div></section><section id="aio-20-dplyr"><p>Content from <a href="20-dplyr.html">Data Frame Manipulation with dplyr</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/20-dplyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 55 minutes</p>
@@ -14145,7 +14169,7 @@ with subsets of data.</li>
 </div>
 </section></section><section id="aio-21-tidyr"><p>Content from <a href="21-tidyr.html">Data Frame Manipulation with tidyr</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/21-tidyr.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 45 minutes</p>
@@ -14873,7 +14897,7 @@ layout.</li>
 </div>
 </section></section><section id="aio-22-quarto"><p>Content from <a href="22-quarto.html">Producing Reports With Quarto</a></p>
 <hr>
-<p>Last updated on 2024-08-21 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/22-quarto.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 75 minutes</p>
@@ -15565,7 +15589,7 @@ formats.</li>
 </div>
 </section></section><section id="aio-23-statistics"><p>Content from <a href="23-statistics.html">Basic Statistics: describing, modelling and reporting</a></p>
 <hr>
-<p>Last updated on 2024-08-08 |
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/23-statistics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 80 minutes</p>
@@ -15748,7 +15772,7 @@ exponential.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Emphasise that parametric is not equal to normal.</p>
 </div>
@@ -15824,7 +15848,7 @@ which is more spread out.</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
 <p>Get them to plot the graphs. Explain that we are generating random
 data from different distributions and plotting them.</p>
@@ -16183,7 +16207,7 @@ abandoned in favour of always using a conservative test.</p></li>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="fu">t.test</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">city</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">t.test</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">city</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span><span class="op">$</span><span class="va">statistic</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -16195,7 +16219,7 @@ abandoned in favour of always using a conservative test.</p></li>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span> <span class="fu">t.test</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">city</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span><span class="op">$</span><span class="va">parameter</span></span></code></pre>
+<code class="sourceCode R"><span><span class="fu">t.test</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">city</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span><span class="op">$</span><span class="va">parameter</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -50795,9 +50819,1456 @@ with the ANOVA carried out earlier.</p>
 the day</li>
 </ul>
 </div>
-</div></section><section id="aio-27-wrap-up"><p>Content from <a href="27-wrap-up.html">Writing Good Software</a></p>
+</div></section><section id="aio-24-linear-reg-broom"><p>Content from <a href="24-linear-reg-broom.html">Linear Regression and Broom</a></p>
 <hr>
-<p>Last updated on 2024-08-07 |
+<p>Last updated on 2024-09-01 |
+
+        <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/24-linear-reg-broom.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 100 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How can I explore relationships between variables in my data?</li>
+<li>How can I present model outputs in an easier to read way?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>To be able to explore relationships between variables</li>
+<li>To be able to calculate predicted variables and residuals</li>
+<li>To be able to construct linear regression models</li>
+<li>To be able to present model outcomes using Broom</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="content">Content<a class="anchor" aria-label="anchor" href="#content"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Linear Regression Models</li>
+<li>Use of Log transform</li>
+<li>Use of Categorical Variables</li>
+<li>Use of Broom</li>
+</ul></section><section><h2 class="section-heading" id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+</h2>
+<hr class="half-width">
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># We will need these libraries and this data later.</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">tidyverse</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">lmtest</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">sandwich</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">broom</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lon_dims_imd_2019</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>We are going to use the data from the Consumer Data Research Centre,
+specifically the London IMD 2019 (English IMD 2019 Domains rebased).</p>
+<p>Atribution: Data provided by the Consumer Data Research Centre, an
+ESRC Data Investment: ES/L011840/1, ES/L011891/1</p>
+<p>The statistical unit areas across the country are Lower layer Super
+Output Areas (LSOAs). We will explore the relationships between the
+different dimensions of the Indices of Multiple Deprivation.</p>
+</section><section><h2 class="section-heading" id="linear-regression">Linear Regression<a class="anchor" aria-label="anchor" href="#linear-regression"></a>
+</h2>
+<hr class="half-width">
+<p>Linear Regression enables use to to explore the the linear
+relationship of the dependent variable Y and independent variable(s)
+X(s). We are going to explore the linear relationship between the Health
+Deprivation and Disability Domain and the Living Environment Deprivation
+Domain.</p>
+<p>The Health Deprivation and Disability Domain measures the risk of
+premature death and the impairment of quality of life through poor
+physical or mental health. The domain measures morbidity, disability and
+premature mortality but not aspects of behaviour or environment that may
+be predictive of future health deprivation.</p>
+<p>The Living Environment Deprivation Domain measures the quality of the
+local environment. The indicators fall into two sub-domains. The
+‘indoors’ living environment measures the quality of housing; while the
+‘outdoors’ living environment contains measures of air quality and road
+traffic accidents.</p>
+<p>Reference: McLennan, David et al. The English Indices of Deprivation
+2019 : Technical Report. Ministry of Housing, Communities and Local
+Government, 2019. Print.</p>
+<div class="section level3">
+<h3 id="simple-linear-regression">Simple Linear Regression<a class="anchor" aria-label="anchor" href="#simple-linear-regression"></a>
+</h3>
+<p>In the simple linear regression example we have only one dependent
+variable (health_london_rank) and one independent variable
+(livingEnv_london_rank).</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reg_LivEnv_health</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">livingEnv_london_rank</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span><span class="co"># We put the dependent variable to the left of the '~' and the independent variable(s) to the right</span></span>
+<span><span class="co"># and we tell R which dataset we are referring to.</span></span>
+<span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">reg_LivEnv_health</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+lm(formula = health_london_rank ~ livingEnv_london_rank, data = lon_dims_imd_2019)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-21549.6  -5948.2    609.1   6239.2  15792.2
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)           1.692e+04  2.274e+02   74.40   &lt;2e-16 ***
+livingEnv_london_rank 3.430e-01  1.915e-02   17.91   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7625 on 4833 degrees of freedom
+Multiple R-squared:  0.06225,	Adjusted R-squared:  0.06205
+F-statistic: 320.8 on 1 and 4833 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>From the result of this analysis, we can see that the Living
+Environment Deprivation Domain rank has a significant(small p-value,
+general rule of thumb &lt;0.05) and positive relationship(positive
+coefficient) with the Health Deprivation and Disability Domain rank.</p>
+<p>One way of interpreting the result is: One unit increase in the
+Living Environment rank is related to around 0.343 (3.430e-01) points
+increase of the Health Deprivation and Disability rank.</p>
+<p>R-square shows the amount of variance of Y explained by X. In this
+case the Living Environment rank explains 6.225% of the variance in the
+Health Deprivation and Disability rank. Adj R2(6.205%) shows the same as
+R2 but adjusted by the # of cases and # of variables. When the # of
+variables is small and the # of cases is very large then Adj R2 is
+closer to R2.</p>
+</div>
+<div class="section level3">
+<h3 id="log-transform">Log transform<a class="anchor" aria-label="anchor" href="#log-transform"></a>
+</h3>
+<p>If your data is skwewed, it can be useful to transform a variable to
+it’s log form when doing the regression. You can either transform the
+variable beforehand or do so in the equation.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reg_logbarriers_health</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="fu">log</span><span class="op">(</span><span class="va">barriers_london_rank</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">reg_logbarriers_health</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+lm(formula = health_london_rank ~ log(barriers_london_rank),
+    data = lon_dims_imd_2019)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-20379.3  -5611.7    774.9   5988.6  23828.5
+
+Coefficients:
+                          Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                -1349.4      798.3   -1.69    0.091 .
+log(barriers_london_rank)   2917.0      105.7   27.59   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7319 on 4833 degrees of freedom
+Multiple R-squared:  0.1361,	Adjusted R-squared:  0.1359
+F-statistic: 761.1 on 1 and 4833 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>The interpretation of the log-transformed variable is a bit
+different. In this example only the predictor variable is log
+tranformed, therefore to interpret the slope coefficient we divide it by
+100 (2917.0/100=29.170).</p>
+<p>If the dependent/response variable is solely log-transformed.
+Exponentiate the coefficient. This gives the multiplicative factor for
+every one-unit increase in the independent variable. Example: the
+coefficient is 0.198. exp(0.198) = 1.218962. For every one-unit increase
+in the independent variable, our dependent variable increases by a
+factor of about 1.22, or 22%. Recall that multiplying a number by 1.22
+is the same as increasing the number by 22%. Likewise, multiplying a
+number by, say 0.84, is the same as decreasing the number by 1 – 0.84 =
+0.16, or 16%.</p>
+<p>If both are transformed. nterpret the coefficient as the percent
+increase in the dependent variable for every 1% increase in the
+independent variable. Example: the coefficient is 0.198. For every 1%
+increase in the independent variable, our dependent variable increases
+by about 0.20%. For x percent increase, calculate 1.x to the power of
+the coefficient, subtract 1, and multiply by 100. Example: For every 20%
+increase in the independent variable, our dependent variable increases
+by about (1.20 0.198 - 1) * 100 = 3.7 percent.</p>
+</div>
+<div class="section level3">
+<h3 id="predicted-values-and-residuals">Predicted values and Residuals<a class="anchor" aria-label="anchor" href="#predicted-values-and-residuals"></a>
+</h3>
+<p>We can expand our simple linear regression example to incorporate the
+Barriers to Housing and Services Domain rank. The Barriers to Housing
+and Services Domain measures the physical and financial accessibility of
+housing and local services. The indicators fall into two sub-domains:
+‘geographical barriers’, which relate to the physical proximity of local
+services, and ‘wider barriers’ which includes issues relating to access
+to housing, such as affordability.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reg_LivEnv_barriers_health</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span></span>
+<span>  <span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">livingEnv_london_rank</span> <span class="op">+</span> <span class="va">barriers_london_rank</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">reg_LivEnv_barriers_health</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+lm(formula = health_london_rank ~ livingEnv_london_rank + barriers_london_rank,
+    data = lon_dims_imd_2019)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-21685.8  -4834.9    546.5   5142.4  18971.7
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)           1.169e+04  2.502e+02   46.74   &lt;2e-16 ***
+livingEnv_london_rank 2.620e-01  1.721e-02   15.22   &lt;2e-16 ***
+barriers_london_rank  2.508e+00  7.059e-02   35.54   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 6790 on 4832 degrees of freedom
+Multiple R-squared:  0.2566,	Adjusted R-squared:  0.2562
+F-statistic: 833.7 on 2 and 4832 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>After running the regression model, we can access the model predicted
+values and the residuals compared to the real observations.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># first we fit the predictions</span></span>
+<span><span class="va">health_rank_pred</span> <span class="op">&lt;-</span> <span class="fu">fitted</span><span class="op">(</span><span class="va">reg_LivEnv_barriers_health</span><span class="op">)</span></span>
+<span><span class="va">health_rank_pred</span> <span class="op">&lt;-</span> <span class="fu">as.data.frame</span><span class="op">(</span><span class="va">health_rank_pred</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># now we add the residual values too</span></span>
+<span><span class="va">health_rank_resid</span> <span class="op">&lt;-</span> <span class="fu">residuals</span><span class="op">(</span><span class="va">reg_LivEnv_barriers_health</span><span class="op">)</span></span>
+<span><span class="va">health_rank_pred</span><span class="op">$</span><span class="va">resid</span> <span class="op">&lt;-</span> <span class="va">health_rank_resid</span></span>
+<span></span>
+<span><span class="co"># We can thenview the predictions and residuals</span></span>
+<span><span class="fu">head</span><span class="op">(</span><span class="va">health_rank_pred</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>  health_rank_pred     resid
+1         20454.30 11658.702
+2         24260.97  5444.031
+3         15233.92  2366.080
+4         16671.36  1235.645
+5         15719.80  5861.196
+6         14981.47  1432.528</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># You can view the full data in RStudio with the View() function</span></span>
+<span><span class="fu">View</span><span class="op">(</span><span class="va">health_rank_pred</span><span class="op">)</span></span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="robust-regression">Robust Regression<a class="anchor" aria-label="anchor" href="#robust-regression"></a>
+</h3>
+<p>We can run the robust standard error regressions(control for
+heteroskedasticity, meaning unequal variances):</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reg_LivEnv_barriers_health</span><span class="op">$</span><span class="va">robse</span> <span class="op">&lt;-</span> <span class="fu">vcovHC</span><span class="op">(</span><span class="va">reg_LivEnv_barriers_health</span>, type <span class="op">=</span> <span class="st">"HC1"</span><span class="op">)</span></span>
+<span><span class="fu">coeftest</span><span class="op">(</span><span class="va">reg_LivEnv_barriers_health</span>, <span class="va">reg_LivEnv_barriers_health</span><span class="op">$</span><span class="va">robse</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+t test of coefficients:
+
+                        Estimate Std. Error t value  Pr(&gt;|t|)
+(Intercept)           1.1694e+04 2.3776e+02  49.182 &lt; 2.2e-16 ***
+livingEnv_london_rank 2.6197e-01 1.7458e-02  15.006 &lt; 2.2e-16 ***
+barriers_london_rank  2.5085e+00 6.4394e-02  38.955 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<p>In addition, we can access the cluster-robust standard errors
+regression results:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># cluster-robust standard errors</span></span>
+<span><span class="fu">coeftest</span><span class="op">(</span><span class="va">reg_LivEnv_barriers_health</span>, <span class="va">reg_LivEnv_barriers_health</span><span class="op">$</span><span class="va">clse</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+t test of coefficients:
+
+                        Estimate Std. Error t value  Pr(&gt;|t|)
+(Intercept)           1.1694e+04 2.5018e+02  46.741 &lt; 2.2e-16 ***
+livingEnv_london_rank 2.6197e-01 1.7207e-02  15.225 &lt; 2.2e-16 ***
+barriers_london_rank  2.5085e+00 7.0588e-02  35.537 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div id="challenge-1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-1" class="callout-inner">
+<h3 class="callout-title">Challenge 1</h3>
+<div class="callout-content">
+<p>Use the <code>gapminder</code> data to create a linear model between
+two continuous variables.</p>
+<p>Discuss your question and your findings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="regression-with-categorical-independent-variables">Regression with Categorical independent variables<a class="anchor" aria-label="anchor" href="#regression-with-categorical-independent-variables"></a>
+</h3>
+<p>We will explore the use of categorical independent variables in
+linear regression in this episode. When the dependent variable is a
+categorical variable, you may consider the alternatives of linear
+regression like logit regression and multinomial regression.</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># As a categorical variable we have added la19nm, these are the names of the London boroughs</span></span>
+<span><span class="va">reg_cat_var</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">livingEnv_london_rank</span> <span class="op">+</span> <span class="va">barriers_london_rank</span> <span class="op">+</span> <span class="va">la19nm</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">reg_cat_var</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+lm(formula = health_london_rank ~ livingEnv_london_rank + barriers_london_rank +
+    la19nm, data = lon_dims_imd_2019)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-21694.3  -3423.6    248.1   3691.8  19321.5
+
+Coefficients:
+                               Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                   1.105e+04  5.429e+02  20.346  &lt; 2e-16 ***
+livingEnv_london_rank         3.595e-02  1.802e-02   1.996 0.046036 *
+barriers_london_rank          3.149e+00  7.888e-02  39.924  &lt; 2e-16 ***
+la19nmBarnet                  8.400e+03  6.508e+02  12.908  &lt; 2e-16 ***
+la19nmBexley                  1.416e+03  7.186e+02   1.970 0.048856 *
+la19nmBrent                   7.765e+03  6.545e+02  11.863  &lt; 2e-16 ***
+la19nmBromley                 5.208e+03  6.789e+02   7.670 2.06e-14 ***
+la19nmCamden                 -1.842e+03  7.426e+02  -2.480 0.013184 *
+la19nmCity of London          4.742e+03  2.251e+03   2.107 0.035185 *
+la19nmCroydon                 7.488e+02  6.388e+02   1.172 0.241192
+la19nmEaling                  3.697e+03  6.459e+02   5.724 1.11e-08 ***
+la19nmEnfield                 7.344e+03  6.501e+02  11.297  &lt; 2e-16 ***
+la19nmGreenwich              -2.221e+03  6.873e+02  -3.232 0.001238 **
+la19nmHackney                -2.725e+03  6.811e+02  -4.000 6.43e-05 ***
+la19nmHammersmith and Fulham -3.907e+03  7.438e+02  -5.252 1.57e-07 ***
+la19nmHaringey                1.019e+03  6.877e+02   1.481 0.138580
+la19nmHarrow                  9.993e+03  7.053e+02  14.168  &lt; 2e-16 ***
+la19nmHavering               -3.945e+02  7.317e+02  -0.539 0.589781
+la19nmHillingdon              8.459e+02  6.937e+02   1.219 0.222791
+la19nmHounslow                2.462e+03  6.890e+02   3.573 0.000356 ***
+la19nmIslington              -8.217e+03  7.305e+02 -11.248  &lt; 2e-16 ***
+la19nmKensington and Chelsea  9.191e+03  7.473e+02  12.299  &lt; 2e-16 ***
+la19nmKingston upon Thames    4.899e+03  7.804e+02   6.277 3.75e-10 ***
+la19nmLambeth                -6.270e+03  6.830e+02  -9.180  &lt; 2e-16 ***
+la19nmLewisham               -1.991e+03  6.675e+02  -2.983 0.002869 **
+la19nmMerton                  3.387e+02  7.474e+02   0.453 0.650434
+la19nmNewham                  4.209e+03  6.617e+02   6.361 2.19e-10 ***
+la19nmRedbridge               4.420e+03  6.914e+02   6.392 1.79e-10 ***
+la19nmRichmond upon Thames    4.469e+03  7.740e+02   5.774 8.22e-09 ***
+la19nmSouthwark              -3.363e+03  6.731e+02  -4.996 6.05e-07 ***
+la19nmSutton                 -1.729e+02  7.537e+02  -0.229 0.818563
+la19nmTower Hamlets          -5.862e+03  6.968e+02  -8.414  &lt; 2e-16 ***
+la19nmWaltham Forest          2.026e+03  6.854e+02   2.956 0.003137 **
+la19nmWandsworth              1.087e+01  6.797e+02   0.016 0.987246
+la19nmWestminster             5.683e+02  7.472e+02   0.761 0.446958
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5362 on 4800 degrees of freedom
+Multiple R-squared:  0.5395,	Adjusted R-squared:  0.5363
+F-statistic: 165.4 on 34 and 4800 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>R automatically recognizes la19nm as a factor and treats it
+accordingly. The missing one in the coefficient summary (Barking and
+Dagenham) is treated as a base line, therefore the value is 0. However,
+we can also modify our model to show for all:</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reg_cat_var_showall</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span></span>
+<span>  <span class="va">health_london_rank</span> <span class="op">~</span> <span class="fl">0</span> <span class="op">+</span> <span class="va">livingEnv_london_rank</span> <span class="op">+</span> <span class="va">barriers_london_rank</span> <span class="op">+</span> <span class="va">la19nm</span>,</span>
+<span>  data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">reg_cat_var_showall</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+lm(formula = health_london_rank ~ 0 + livingEnv_london_rank +
+    barriers_london_rank + la19nm, data = lon_dims_imd_2019)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-21694.3  -3423.6    248.1   3691.8  19321.5
+
+Coefficients:
+                              Estimate Std. Error t value Pr(&gt;|t|)
+livingEnv_london_rank        3.595e-02  1.802e-02   1.996    0.046 *
+barriers_london_rank         3.149e+00  7.888e-02  39.924  &lt; 2e-16 ***
+la19nmBarking and Dagenham   1.105e+04  5.429e+02  20.346  &lt; 2e-16 ***
+la19nmBarnet                 1.945e+04  4.764e+02  40.820  &lt; 2e-16 ***
+la19nmBexley                 1.246e+04  5.876e+02  21.209  &lt; 2e-16 ***
+la19nmBrent                  1.881e+04  4.526e+02  41.564  &lt; 2e-16 ***
+la19nmBromley                1.625e+04  5.444e+02  29.858  &lt; 2e-16 ***
+la19nmCamden                 9.205e+03  5.783e+02  15.918  &lt; 2e-16 ***
+la19nmCity of London         1.579e+04  2.198e+03   7.184 7.78e-13 ***
+la19nmCroydon                1.180e+04  4.574e+02  25.789  &lt; 2e-16 ***
+la19nmEaling                 1.474e+04  4.388e+02  33.601  &lt; 2e-16 ***
+la19nmEnfield                1.839e+04  4.549e+02  40.431  &lt; 2e-16 ***
+la19nmGreenwich              8.825e+03  5.233e+02  16.865  &lt; 2e-16 ***
+la19nmHackney                8.322e+03  4.675e+02  17.802  &lt; 2e-16 ***
+la19nmHammersmith and Fulham 7.140e+03  5.675e+02  12.582  &lt; 2e-16 ***
+la19nmHaringey               1.207e+04  4.848e+02  24.886  &lt; 2e-16 ***
+la19nmHarrow                 2.104e+04  5.667e+02  37.127  &lt; 2e-16 ***
+la19nmHavering               1.065e+04  6.178e+02  17.243  &lt; 2e-16 ***
+la19nmHillingdon             1.189e+04  5.541e+02  21.464  &lt; 2e-16 ***
+la19nmHounslow               1.351e+04  5.050e+02  26.750  &lt; 2e-16 ***
+la19nmIslington              2.830e+03  5.500e+02   5.145 2.78e-07 ***
+la19nmKensington and Chelsea 2.024e+04  5.491e+02  36.859  &lt; 2e-16 ***
+la19nmKingston upon Thames   1.595e+04  6.476e+02  24.624  &lt; 2e-16 ***
+la19nmLambeth                4.777e+03  4.657e+02  10.257  &lt; 2e-16 ***
+la19nmLewisham               9.055e+03  4.543e+02  19.931  &lt; 2e-16 ***
+la19nmMerton                 1.139e+04  5.935e+02  19.182  &lt; 2e-16 ***
+la19nmNewham                 1.526e+04  4.467e+02  34.149  &lt; 2e-16 ***
+la19nmRedbridge              1.547e+04  5.307e+02  29.141  &lt; 2e-16 ***
+la19nmRichmond upon Thames   1.552e+04  6.355e+02  24.414  &lt; 2e-16 ***
+la19nmSouthwark              7.684e+03  4.662e+02  16.481  &lt; 2e-16 ***
+la19nmSutton                 1.087e+04  6.274e+02  17.332  &lt; 2e-16 ***
+la19nmTower Hamlets          5.184e+03  5.107e+02  10.151  &lt; 2e-16 ***
+la19nmWaltham Forest         1.307e+04  4.831e+02  27.057  &lt; 2e-16 ***
+la19nmWandsworth             1.106e+04  4.905e+02  22.543  &lt; 2e-16 ***
+la19nmWestminster            1.161e+04  5.649e+02  20.560  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5362 on 4800 degrees of freedom
+Multiple R-squared:  0.9407,	Adjusted R-squared:  0.9403
+F-statistic:  2177 on 35 and 4800 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="categorical-variables-with-interaction-terms">Categorical variables with interaction terms<a class="anchor" aria-label="anchor" href="#categorical-variables-with-interaction-terms"></a>
+</h3>
+<p>Sometimes we are interested in how a variable interacts with another
+variable. We can explore any interactions between locations (la19nm) and
+the living environment and barrier ranks.</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reg_cat_var_int</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">la19nm</span> <span class="op">*</span> <span class="op">(</span><span class="va">livingEnv_london_rank</span> <span class="op">+</span> <span class="va">barriers_london_rank</span><span class="op">)</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">reg_cat_var_int</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+lm(formula = health_london_rank ~ la19nm * (livingEnv_london_rank +
+    barriers_london_rank), data = lon_dims_imd_2019)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-19227.9  -3254.4    297.6   3372.8  17891.5
+
+Coefficients:
+                                                     Estimate Std. Error
+(Intercept)                                         1.300e+04  1.431e+03
+la19nmBarnet                                        9.411e+03  1.909e+03
+la19nmBexley                                       -5.447e+03  2.464e+03
+la19nmBrent                                         3.068e+03  1.866e+03
+la19nmBromley                                       1.577e+03  2.107e+03
+la19nmCamden                                       -1.547e+04  3.565e+03
+la19nmCity of London                               -8.405e+02  5.283e+03
+la19nmCroydon                                      -3.824e+03  1.679e+03
+la19nmEaling                                        2.124e+03  1.841e+03
+la19nmEnfield                                       2.420e+03  1.750e+03
+la19nmGreenwich                                    -3.383e+03  2.268e+03
+la19nmHackney                                      -1.803e+03  1.937e+03
+la19nmHammersmith and Fulham                       -1.123e+04  2.389e+03
+la19nmHaringey                                     -4.527e+02  1.975e+03
+la19nmHarrow                                        7.800e+03  2.476e+03
+la19nmHavering                                     -8.133e+03  2.519e+03
+la19nmHillingdon                                    7.792e+02  2.030e+03
+la19nmHounslow                                      4.939e+03  2.064e+03
+la19nmIslington                                    -4.614e+03  2.592e+03
+la19nmKensington and Chelsea                        1.264e+04  2.185e+03
+la19nmKingston upon Thames                          5.297e+03  2.972e+03
+la19nmLambeth                                      -6.973e+03  2.276e+03
+la19nmLewisham                                     -4.745e+03  1.912e+03
+la19nmMerton                                       -8.433e+03  2.793e+03
+la19nmNewham                                        3.468e+03  1.786e+03
+la19nmRedbridge                                     4.339e+03  2.156e+03
+la19nmRichmond upon Thames                          3.822e+03  4.288e+03
+la19nmSouthwark                                    -6.830e+03  1.923e+03
+la19nmSutton                                       -8.242e+03  2.600e+03
+la19nmTower Hamlets                                -2.705e+03  2.163e+03
+la19nmWaltham Forest                                2.070e+03  1.814e+03
+la19nmWandsworth                                    6.438e+02  2.060e+03
+la19nmWestminster                                  -1.063e+04  3.281e+03
+livingEnv_london_rank                              -1.900e-01  1.321e-01
+barriers_london_rank                                3.620e+00  8.023e-01
+la19nmBarnet:livingEnv_london_rank                  1.641e-01  1.553e-01
+la19nmBexley:livingEnv_london_rank                  5.286e-01  1.644e-01
+la19nmBrent:livingEnv_london_rank                   5.219e-01  1.663e-01
+la19nmBromley:livingEnv_london_rank                 4.577e-01  1.492e-01
+la19nmCamden:livingEnv_london_rank                 -4.599e-02  1.783e-01
+la19nmCity of London:livingEnv_london_rank          3.448e-01  9.482e-01
+la19nmCroydon:livingEnv_london_rank                 4.524e-01  1.417e-01
+la19nmEaling:livingEnv_london_rank                  2.053e-01  1.624e-01
+la19nmEnfield:livingEnv_london_rank                 5.217e-01  1.556e-01
+la19nmGreenwich:livingEnv_london_rank               2.230e-01  1.620e-01
+la19nmHackney:livingEnv_london_rank                -2.882e-01  1.817e-01
+la19nmHammersmith and Fulham:livingEnv_london_rank  1.915e-01  2.025e-01
+la19nmHaringey:livingEnv_london_rank               -9.428e-02  2.048e-01
+la19nmHarrow:livingEnv_london_rank                  3.559e-01  1.774e-01
+la19nmHavering:livingEnv_london_rank                5.238e-01  1.584e-01
+la19nmHillingdon:livingEnv_london_rank              3.026e-01  1.572e-01
+la19nmHounslow:livingEnv_london_rank               -3.776e-02  1.691e-01
+la19nmIslington:livingEnv_london_rank              -4.471e-01  1.967e-01
+la19nmKensington and Chelsea:livingEnv_london_rank -1.673e+00  2.725e-01
+la19nmKingston upon Thames:livingEnv_london_rank    2.551e-01  1.748e-01
+la19nmLambeth:livingEnv_london_rank                -1.901e-01  2.037e-01
+la19nmLewisham:livingEnv_london_rank                1.834e-01  1.687e-01
+la19nmMerton:livingEnv_london_rank                  5.430e-01  1.761e-01
+la19nmNewham:livingEnv_london_rank                 -4.372e-03  1.627e-01
+la19nmRedbridge:livingEnv_london_rank               2.310e-01  1.655e-01
+la19nmRichmond upon Thames:livingEnv_london_rank   -2.672e-03  1.876e-01
+la19nmSouthwark:livingEnv_london_rank               2.786e-01  1.656e-01
+la19nmSutton:livingEnv_london_rank                  5.311e-01  1.576e-01
+la19nmTower Hamlets:livingEnv_london_rank           1.954e-01  1.629e-01
+la19nmWaltham Forest:livingEnv_london_rank         -2.538e-02  1.729e-01
+la19nmWandsworth:livingEnv_london_rank             -1.552e-01  1.637e-01
+la19nmWestminster:livingEnv_london_rank            -9.646e-01  2.107e-01
+la19nmBarnet:barriers_london_rank                  -1.334e+00  8.565e-01
+la19nmBexley:barriers_london_rank                  -4.421e-01  8.661e-01
+la19nmBrent:barriers_london_rank                   -7.477e-01  9.505e-01
+la19nmBromley:barriers_london_rank                 -1.240e+00  8.666e-01
+la19nmCamden:barriers_london_rank                   2.994e+00  1.172e+00
+la19nmCity of London:barriers_london_rank           1.001e+00  3.050e+00
+la19nmCroydon:barriers_london_rank                 -6.200e-01  8.595e-01
+la19nmEaling:barriers_london_rank                  -5.816e-01  8.604e-01
+la19nmEnfield:barriers_london_rank                 -6.740e-01  8.776e-01
+la19nmGreenwich:barriers_london_rank               -8.003e-01  8.842e-01
+la19nmHackney:barriers_london_rank                  4.611e-01  1.427e+00
+la19nmHammersmith and Fulham:barriers_london_rank   1.442e+00  9.425e-01
+la19nmHaringey:barriers_london_rank                 4.613e-01  9.154e-01
+la19nmHarrow:barriers_london_rank                  -1.413e+00  9.202e-01
+la19nmHavering:barriers_london_rank                -3.766e-01  9.029e-01
+la19nmHillingdon:barriers_london_rank              -1.592e+00  8.683e-01
+la19nmHounslow:barriers_london_rank                -1.445e+00  9.061e-01
+la19nmIslington:barriers_london_rank               -7.852e-01  1.031e+00
+la19nmKensington and Chelsea:barriers_london_rank   1.076e+00  1.007e+00
+la19nmKingston upon Thames:barriers_london_rank    -1.257e+00  9.816e-01
+la19nmLambeth:barriers_london_rank                 -3.110e-01  9.491e-01
+la19nmLewisham:barriers_london_rank                 1.004e-01  9.045e-01
+la19nmMerton:barriers_london_rank                   4.934e-01  9.399e-01
+la19nmNewham:barriers_london_rank                   2.625e+00  2.260e+00
+la19nmRedbridge:barriers_london_rank               -1.116e+00  8.944e-01
+la19nmRichmond upon Thames:barriers_london_rank    -1.884e-01  1.104e+00
+la19nmSouthwark:barriers_london_rank                5.627e-02  9.074e-01
+la19nmSutton:barriers_london_rank                  -5.571e-02  9.399e-01
+la19nmTower Hamlets:barriers_london_rank           -2.394e+00  9.808e-01
+la19nmWaltham Forest:barriers_london_rank          -5.478e-01  9.237e-01
+la19nmWandsworth:barriers_london_rank              -2.874e-01  8.705e-01
+la19nmWestminster:barriers_london_rank              3.494e+00  1.111e+00
+                                                   t value Pr(&gt;|t|)
+(Intercept)                                          9.089  &lt; 2e-16 ***
+la19nmBarnet                                         4.929 8.57e-07 ***
+la19nmBexley                                        -2.210 0.027119 *
+la19nmBrent                                          1.645 0.100112
+la19nmBromley                                        0.749 0.454155
+la19nmCamden                                        -4.338 1.47e-05 ***
+la19nmCity of London                                -0.159 0.873612
+la19nmCroydon                                       -2.277 0.022851 *
+la19nmEaling                                         1.154 0.248528
+la19nmEnfield                                        1.382 0.166890
+la19nmGreenwich                                     -1.491 0.135952
+la19nmHackney                                       -0.931 0.352136
+la19nmHammersmith and Fulham                        -4.700 2.68e-06 ***
+la19nmHaringey                                      -0.229 0.818706
+la19nmHarrow                                         3.150 0.001640 **
+la19nmHavering                                      -3.228 0.001254 **
+la19nmHillingdon                                     0.384 0.701039
+la19nmHounslow                                       2.393 0.016735 *
+la19nmIslington                                     -1.780 0.075114 .
+la19nmKensington and Chelsea                         5.787 7.61e-09 ***
+la19nmKingston upon Thames                           1.782 0.074808 .
+la19nmLambeth                                       -3.064 0.002197 **
+la19nmLewisham                                      -2.482 0.013106 *
+la19nmMerton                                        -3.019 0.002549 **
+la19nmNewham                                         1.942 0.052165 .
+la19nmRedbridge                                      2.013 0.044191 *
+la19nmRichmond upon Thames                           0.891 0.372776
+la19nmSouthwark                                     -3.552 0.000387 ***
+la19nmSutton                                        -3.169 0.001538 **
+la19nmTower Hamlets                                 -1.251 0.211119
+la19nmWaltham Forest                                 1.141 0.253966
+la19nmWandsworth                                     0.313 0.754638
+la19nmWestminster                                   -3.240 0.001203 **
+livingEnv_london_rank                               -1.438 0.150471
+barriers_london_rank                                 4.511 6.60e-06 ***
+la19nmBarnet:livingEnv_london_rank                   1.057 0.290593
+la19nmBexley:livingEnv_london_rank                   3.215 0.001312 **
+la19nmBrent:livingEnv_london_rank                    3.139 0.001705 **
+la19nmBromley:livingEnv_london_rank                  3.068 0.002169 **
+la19nmCamden:livingEnv_london_rank                  -0.258 0.796425
+la19nmCity of London:livingEnv_london_rank           0.364 0.716133
+la19nmCroydon:livingEnv_london_rank                  3.191 0.001425 **
+la19nmEaling:livingEnv_london_rank                   1.264 0.206349
+la19nmEnfield:livingEnv_london_rank                  3.354 0.000803 ***
+la19nmGreenwich:livingEnv_london_rank                1.376 0.168758
+la19nmHackney:livingEnv_london_rank                 -1.586 0.112711
+la19nmHammersmith and Fulham:livingEnv_london_rank   0.946 0.344403
+la19nmHaringey:livingEnv_london_rank                -0.460 0.645286
+la19nmHarrow:livingEnv_london_rank                   2.005 0.044971 *
+la19nmHavering:livingEnv_london_rank                 3.307 0.000951 ***
+la19nmHillingdon:livingEnv_london_rank               1.925 0.054317 .
+la19nmHounslow:livingEnv_london_rank                -0.223 0.823335
+la19nmIslington:livingEnv_london_rank               -2.273 0.023082 *
+la19nmKensington and Chelsea:livingEnv_london_rank  -6.137 9.08e-10 ***
+la19nmKingston upon Thames:livingEnv_london_rank     1.459 0.144509
+la19nmLambeth:livingEnv_london_rank                 -0.934 0.350602
+la19nmLewisham:livingEnv_london_rank                 1.087 0.277108
+la19nmMerton:livingEnv_london_rank                   3.082 0.002065 **
+la19nmNewham:livingEnv_london_rank                  -0.027 0.978565
+la19nmRedbridge:livingEnv_london_rank                1.396 0.162864
+la19nmRichmond upon Thames:livingEnv_london_rank    -0.014 0.988639
+la19nmSouthwark:livingEnv_london_rank                1.683 0.092533 .
+la19nmSutton:livingEnv_london_rank                   3.370 0.000759 ***
+la19nmTower Hamlets:livingEnv_london_rank            1.200 0.230337
+la19nmWaltham Forest:livingEnv_london_rank          -0.147 0.883300
+la19nmWandsworth:livingEnv_london_rank              -0.948 0.343019
+la19nmWestminster:livingEnv_london_rank             -4.578 4.80e-06 ***
+la19nmBarnet:barriers_london_rank                   -1.558 0.119396
+la19nmBexley:barriers_london_rank                   -0.510 0.609807
+la19nmBrent:barriers_london_rank                    -0.787 0.431493
+la19nmBromley:barriers_london_rank                  -1.431 0.152500
+la19nmCamden:barriers_london_rank                    2.555 0.010647 *
+la19nmCity of London:barriers_london_rank            0.328 0.742734
+la19nmCroydon:barriers_london_rank                  -0.721 0.470718
+la19nmEaling:barriers_london_rank                   -0.676 0.499110
+la19nmEnfield:barriers_london_rank                  -0.768 0.442499
+la19nmGreenwich:barriers_london_rank                -0.905 0.365429
+la19nmHackney:barriers_london_rank                   0.323 0.746543
+la19nmHammersmith and Fulham:barriers_london_rank    1.530 0.126056
+la19nmHaringey:barriers_london_rank                  0.504 0.614335
+la19nmHarrow:barriers_london_rank                   -1.535 0.124794
+la19nmHavering:barriers_london_rank                 -0.417 0.676607
+la19nmHillingdon:barriers_london_rank               -1.834 0.066734 .
+la19nmHounslow:barriers_london_rank                 -1.595 0.110827
+la19nmIslington:barriers_london_rank                -0.762 0.446220
+la19nmKensington and Chelsea:barriers_london_rank    1.068 0.285397
+la19nmKingston upon Thames:barriers_london_rank     -1.280 0.200487
+la19nmLambeth:barriers_london_rank                  -0.328 0.743140
+la19nmLewisham:barriers_london_rank                  0.111 0.911614
+la19nmMerton:barriers_london_rank                    0.525 0.599625
+la19nmNewham:barriers_london_rank                    1.161 0.245561
+la19nmRedbridge:barriers_london_rank                -1.247 0.212307
+la19nmRichmond upon Thames:barriers_london_rank     -0.171 0.864559
+la19nmSouthwark:barriers_london_rank                 0.062 0.950560
+la19nmSutton:barriers_london_rank                   -0.059 0.952740
+la19nmTower Hamlets:barriers_london_rank            -2.440 0.014708 *
+la19nmWaltham Forest:barriers_london_rank           -0.593 0.553200
+la19nmWandsworth:barriers_london_rank               -0.330 0.741265
+la19nmWestminster:barriers_london_rank               3.146 0.001667 **
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5162 on 4736 degrees of freedom
+Multiple R-squared:  0.5789,	Adjusted R-squared:  0.5702
+F-statistic: 66.45 on 98 and 4736 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="challenge-2" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2" class="callout-inner">
+<h3 class="callout-title">Challenge 2</h3>
+<div class="callout-content">
+<p>Using the <code>gapminder</code> data to create a linear model
+between a categorical and a continuous variable .</p>
+<p>Discuss your question and your findings.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="broom">Broom<a class="anchor" aria-label="anchor" href="#broom"></a>
+</h2>
+<hr class="half-width">
+<p>The ‘broom’ package offers an alternative way of presenting the
+output of statistical analysis. It centers around three S3 methods, each
+of which take common objects produced by R statistical functions (lm,
+t.test, nls, etc) and convert them into a tibble.</p>
+<p>These are: * tidy: constructs a tibble that summarizes the model’s
+statistical findings. This includes coefficients and p-values for each
+term in a regression, per-cluster information in clustering
+applications, or per-test information for multtest functions. * augment:
+add columns to the original data that was modeled. This includes
+predictions, residuals, and cluster assignments. * glance: construct a
+concise one-row summary of the model. This typically contains values
+such as R^2, adjusted R^2, and residual standard error that are computed
+once for the entire model.</p>
+<p>Let’s revisit our initial linear model:</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">reg_LivEnv_health</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">livingEnv_london_rank</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">reg_LivEnv_health</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+lm(formula = health_london_rank ~ livingEnv_london_rank, data = lon_dims_imd_2019)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-21549.6  -5948.2    609.1   6239.2  15792.2
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)           1.692e+04  2.274e+02   74.40   &lt;2e-16 ***
+livingEnv_london_rank 3.430e-01  1.915e-02   17.91   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 7625 on 4833 degrees of freedom
+Multiple R-squared:  0.06225,	Adjusted R-squared:  0.06205
+F-statistic: 320.8 on 1 and 4833 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>There is a lot of useful information, but it not available in a way
+so that you can combine it with other models or do further analysis. We
+can convert this to tabular data using the ‘tidy’ function.</p>
+<div class="codewrapper sourceCode" id="cb23">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">reg_LivEnv_health</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 2 × 5
+  term                   estimate std.error statistic  p.value
+  &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)           16916.     227.          74.4 0
+2 livingEnv_london_rank     0.343    0.0192      17.9 1.63e-69</code></pre>
+</div>
+<p>The row names have been moved into a column called term, and the
+column names are simple and consistent (and can be accessed using
+$).</p>
+<p>Information about the model can be explored with ‘augment’. The
+function augments the original data with information from the model,
+such as the fitted values and residuals for each of the original points
+in the regression.</p>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">reg_LivEnv_health</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 4,835 × 8
+   health_london_rank livingEnv_london_rank .fitted  .resid     .hat .sigma
+                &lt;int&gt;                 &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+ 1              32113                  7789  19588.  12525. 0.000250  7624.
+ 2              29705                 13070  21400.   8305. 0.000252  7625.
+ 3              17600                  4092  18320.   -720. 0.000458  7626.
+ 4              17907                  9397  20140.  -2233. 0.000213  7626.
+ 5              21581                 10629  20562.   1019. 0.000207  7626.
+ 6              16414                 11162  20745.  -4331. 0.000210  7626.
+ 7              12334                  8672  19891.  -7557. 0.000226  7625.
+ 8               9661                  9611  20213. -10552. 0.000211  7625.
+ 9              16050                  2269  17694.  -1644. 0.000624  7626.
+10              18178                  4309  18394.   -216. 0.000441  7626.
+# ℹ 4,825 more rows
+# ℹ 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+</div>
+<p>Some of the data presented by ‘augment’ will be discussed in the
+episode Linear Regression Diagnostics.</p>
+<p>Summary statistics are computed for the entire regression, such as
+R^2 and the F-statistic can be accessed with the ‘glance’ function:</p>
+<div class="codewrapper sourceCode" id="cb27">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">reg_LivEnv_health</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1 × 12
+  r.squared adj.r.squared sigma statistic  p.value    df  logLik     AIC     BIC
+      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1    0.0622        0.0621 7625.      321. 1.63e-69     1 -50081. 100167. 100187.
+# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+</div>
+<div class="section level3">
+<h3 id="generalised-linear-models">Generalised linear models<a class="anchor" aria-label="anchor" href="#generalised-linear-models"></a>
+</h3>
+<p>We can also use the ‘broom’ functions to present data from
+Generalised linear and non-linear models. For example, if we wanted to
+explore the Income Rank in relation to whether or not an area was within
+the City of London.</p>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># add a variable to indicate whether or not an area is within the City of London</span></span>
+<span><span class="va">lon_dims_imd_2019</span> <span class="op">&lt;-</span> <span class="va">lon_dims_imd_2019</span> <span class="op">%&gt;%</span> <span class="fu">mutate</span><span class="op">(</span>city <span class="op">=</span> <span class="va">la19nm</span> <span class="op">==</span> <span class="st">"City of London"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># create a Generalised Linear Model</span></span>
+<span><span class="va">glmlondims</span> <span class="op">&lt;-</span> <span class="fu">glm</span><span class="op">(</span><span class="va">city</span> <span class="op">~</span> <span class="va">Income_london_rank</span>, <span class="va">lon_dims_imd_2019</span>, family <span class="op">=</span> <span class="st">"binomial"</span><span class="op">)</span></span>
+<span><span class="fu">summary</span><span class="op">(</span><span class="va">glmlondims</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>
+Call:
+glm(formula = city ~ Income_london_rank, family = "binomial",
+    data = lon_dims_imd_2019)
+
+Coefficients:
+                     Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)        -7.868e+00  1.004e+00  -7.835 4.68e-15 ***
+Income_london_rank  6.888e-05  4.635e-05   1.486    0.137
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 92.295  on 4834  degrees of freedom
+Residual deviance: 90.062  on 4833  degrees of freedom
+AIC: 94.062
+
+Number of Fisher Scoring iterations: 10</code></pre>
+</div>
+<p>Use of ‘tidy’:</p>
+<div class="codewrapper sourceCode" id="cb31">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">glmlondims</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 2 × 5
+  term                 estimate std.error statistic  p.value
+  &lt;chr&gt;                   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)        -7.87      1.00          -7.84 4.68e-15
+2 Income_london_rank  0.0000689 0.0000463      1.49 1.37e- 1</code></pre>
+</div>
+<p>Use of ‘augment’:</p>
+<div class="codewrapper sourceCode" id="cb33">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">glmlondims</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 4,835 × 8
+   city  Income_london_rank .fitted  .resid     .hat .sigma   .cooksd .std.resid
+   &lt;lgl&gt;              &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+ 1 TRUE               32831   -5.61  3.35   0.00194   0.128   2.65e-1     3.35
+ 2 TRUE               29901   -5.81  3.41   0.00115   0.127   1.93e-1     3.41
+ 3 TRUE               18510   -6.59  3.63   0.000233  0.126   8.51e-2     3.63
+ 4 TRUE                6029   -7.45  3.86   0.000332  0.125   2.87e-1     3.86
+ 5 FALSE              14023   -6.90 -0.0448 0.000239  0.137   1.20e-7    -0.0448
+ 6 FALSE               6261   -7.44 -0.0343 0.000330  0.137   9.72e-8    -0.0343
+ 7 FALSE               3382   -7.64 -0.0311 0.000360  0.137   8.70e-8    -0.0311
+ 8 FALSE               7506   -7.35 -0.0358 0.000315  0.137   1.01e-7    -0.0358
+ 9 FALSE               8902   -7.25 -0.0376 0.000298  0.137   1.05e-7    -0.0376
+10 FALSE               9033   -7.25 -0.0378 0.000296  0.137   1.06e-7    -0.0378
+# ℹ 4,825 more rows</code></pre>
+</div>
+<p>Use of ‘glance’:</p>
+<div class="codewrapper sourceCode" id="cb35">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">glance</span><span class="op">(</span><span class="va">glmlondims</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1 × 8
+  null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs
+          &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt; &lt;int&gt;
+1          92.3    4834  -45.0  94.1  107.     90.1        4833  4835</code></pre>
+</div>
+<p>You will notice that the statistics computed by ‘glance’ are
+different for glm objects than for lm (e.g. deviance rather than
+R^2).</p>
+</div>
+<div class="section level3">
+<h3 id="hypothesis-testing">Hypothesis Testing<a class="anchor" aria-label="anchor" href="#hypothesis-testing"></a>
+</h3>
+<p>The tidy function can also be applied a range of hypotheses tests,
+such as built-in functions like t.test, cor.test, and wilcox.test.</p>
+</div>
+<div class="section level3">
+<h3 id="t-test">t-test<a class="anchor" aria-label="anchor" href="#t-test"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb37">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tt</span> <span class="op">&lt;-</span> <span class="fu">t.test</span><span class="op">(</span><span class="va">Income_london_rank</span> <span class="op">~</span> <span class="va">city</span>, <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span><span class="fu">tidy</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1 × 10
+  estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
+     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1   -5344.    14456.    19800.     -1.24   0.270      5.01  -16407.     5719.
+# ℹ 2 more variables: method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
+</div>
+<p>Some cases might have fewer columns (for example, no confidence
+interval).</p>
+<p>Wilcox test:</p>
+<div class="codewrapper sourceCode" id="cb39">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">wt</span> <span class="op">&lt;-</span> <span class="fu">wilcox.test</span><span class="op">(</span><span class="va">Income_london_rank</span> <span class="op">~</span> <span class="va">city</span>, <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span><span class="fu">tidy</span><span class="op">(</span><span class="va">wt</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1 × 4
+  statistic p.value method                                           alternative
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                                            &lt;chr&gt;
+1     9836.   0.174 Wilcoxon rank sum test with continuity correcti… two.sided  </code></pre>
+</div>
+<p>Since the ‘tidy’ output is already only one row, glance returns the
+same output:</p>
+<div class="codewrapper sourceCode" id="cb41">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># t-test</span></span>
+<span><span class="fu">glance</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1 × 10
+  estimate estimate1 estimate2 statistic p.value parameter conf.low conf.high
+     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1   -5344.    14456.    19800.     -1.24   0.270      5.01  -16407.     5719.
+# ℹ 2 more variables: method &lt;chr&gt;, alternative &lt;chr&gt;</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb43">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Wilcox test</span></span>
+<span><span class="fu">glance</span><span class="op">(</span><span class="va">wt</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1 × 4
+  statistic p.value method                                           alternative
+      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                                            &lt;chr&gt;
+1     9836.   0.174 Wilcoxon rank sum test with continuity correcti… two.sided  </code></pre>
+</div>
+<p>The chisq.test enables use to investigate whether changes in one
+categorical variable are related to changes in another categorical
+variable.</p>
+<p>The ‘augment’ method is defined only for chi-squared tests, since
+there is no meaningful sense, for other tests, in which a hypothesis
+test produces output about each initial data point.</p>
+<div class="codewrapper sourceCode" id="cb45">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># convert IDAOP_london_decile to a factor so it is not interprested as continuous data</span></span>
+<span><span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">IDAOP_london_decile</span> <span class="op">&lt;-</span> <span class="fu">factor</span><span class="op">(</span><span class="va">lon_dims_imd_2019</span><span class="op">$</span><span class="va">IDAOP_london_decile</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># xtabs creates a frequency table of IMD deciles within London borooughs</span></span>
+<span><span class="va">chit</span> <span class="op">&lt;-</span> <span class="fu">chisq.test</span><span class="op">(</span><span class="fu">xtabs</span><span class="op">(</span><span class="op">~</span> <span class="va">la19nm</span> <span class="op">+</span> <span class="va">IDAOP_london_decile</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">WARNING<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="warning" tabindex="0"><code>Warning in chisq.test(xtabs(~la19nm + IDAOP_london_decile, data =
+lon_dims_imd_2019)): Chi-squared approximation may be incorrect</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb47">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">tidy</span><span class="op">(</span><span class="va">chit</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 1 × 4
+  statistic p.value parameter method
+      &lt;dbl&gt;   &lt;dbl&gt;     &lt;int&gt; &lt;chr&gt;
+1     2841.       0       288 Pearson's Chi-squared test</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb49">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">augment</span><span class="op">(</span><span class="va">chit</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code># A tibble: 330 × 9
+   la19nm    IDAOP_london_decile .observed   .prop .row.prop .col.prop .expected
+   &lt;fct&gt;     &lt;fct&gt;                   &lt;int&gt;   &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Barking … 1                           6 1.24e-3    0.0545   0.0124     11.0
+ 2 Barnet    1                           6 1.24e-3    0.0284   0.0124     21.1
+ 3 Bexley    1                           0 0          0        0          14.6
+ 4 Brent     1                          12 2.48e-3    0.0694   0.0248     17.3
+ 5 Bromley   1                           2 4.14e-4    0.0102   0.00414    19.7
+ 6 Camden    1                          12 2.48e-3    0.0902   0.0248     13.3
+ 7 City of … 1                           0 0          0        0           0.599
+ 8 Croydon   1                           8 1.65e-3    0.0364   0.0166     22.0
+ 9 Ealing    1                          11 2.28e-3    0.0561   0.0228     19.6
+10 Enfield   1                           9 1.86e-3    0.0492   0.0186     18.3
+# ℹ 320 more rows
+# ℹ 2 more variables: .resid &lt;dbl&gt;, .std.resid &lt;dbl&gt;</code></pre>
+</div>
+<p>There are a number of underlying assumptions of a Chi-Square test,
+these are: * Independence: The Chi-Square test assumes that the
+observations in the data are independent of each other. This means that
+the outcome of one observation should not influence the outcome of
+another. * Random Sampling: The data should be obtained through random
+sampling to ensure that it is representative of the population from
+which it was drawn. * Expected Frequency: The Chi-Square test assumes
+that the expected frequency count for each cell in the contingency table
+should be at least 5. If this assumption is not met, the test results
+may not be reliable.</p>
+<p>As we have received a warning about the reliability of our test, it
+is likely that one of these assumptions has not been met, and that this
+is not a suitable test for this data.</p>
+<div id="challenge-3" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-3" class="callout-inner">
+<h3 class="callout-title">Challenge 3</h3>
+<div class="callout-content">
+<p>Use broom to amend the display of your model outputs.</p>
+<p>Which function(s) did you use and why?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="conventions">Conventions<a class="anchor" aria-label="anchor" href="#conventions"></a>
+</h3>
+<p>There are some conventions that enable consistency across the broom
+functions, these are: * The output of the tidy, augment and glance
+functions is always a tibble. * The output never has rownames. This
+ensures that you can combine it with other tidy outputs without fear of
+losing information (since rownames in R cannot contain duplicates). *
+Some column names are kept consistent, so that they can be combined
+across different models and so that you know what to expect (in contrast
+to asking “is it pval or PValue?” every time).</p>
+</div>
+</section></section><section id="aio-25-linreg-diagnostics"><p>Content from <a href="25-linreg-diagnostics.html">Assumption Diagnostics and Regression Trouble Shooting</a></p>
+<hr>
+<p>Last updated on 2024-09-01 |
+
+        <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/25-linreg-diagnostics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 100 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How can I check that my data is suitable for use in a linear
+regression model?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>To be able to check assumptions for linear regression models</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="content">Content<a class="anchor" aria-label="anchor" href="#content"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Residual diagnostics</li>
+<li>Heteroskedasticity Check</li>
+<li>Multicollinearity Check</li>
+<li>Identification of Influential Points</li>
+</ul></section><section><h2 class="section-heading" id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+</h2>
+<hr class="half-width">
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># We will need these libraries and this data later.</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">ggplot2</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">olsrr</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">car</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">lon_dims_imd_2019</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span><span class="st">"data/English_IMD_2019_Domains_rebased_London_by_CDRC.csv"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>For accurate model interpretation and prediction, there are a number
+of assumptions about linear regression models that need to be verified.
+These are: * Linear Relationship: The core premise of multiple linear
+regression is the existence of a linear relationship between the
+dependent (outcome) variable and the independent variables. T *
+Multivariate Normality: The analysis assumes that the residuals (the
+differences between observed and predicted values) are normally
+distributed. This assumption can be assessed by examining histograms or
+Q-Q plots of the residuals, or through statistical tests such as the
+Kolmogorov-Smirnov test. * No Multicollinearity: It is essential that
+the independent variables are not too highly correlated with each other,
+a condition known as multicollinearity. This can be checked using: +
+Correlation matrices, where correlation coefficients should ideally be
+below 0.80. + Variance Inflation Factor (VIF), with VIF values above 10
+indicating problematic multicollinearity. * Homoscedasticity: The
+variance of error terms (residuals) should be consistent across all
+levels of the independent variables.</p>
+<p>We can perform a number of tests to see if the assumptions are
+met.</p>
+</section><section><h2 class="section-heading" id="residual-diagnostics">Residual Diagnostics<a class="anchor" aria-label="anchor" href="#residual-diagnostics"></a>
+</h2>
+<hr class="half-width">
+<div class="section level3">
+<h3 id="residual-qq-plot">Residual QQ Plot<a class="anchor" aria-label="anchor" href="#residual-qq-plot"></a>
+</h3>
+<p>Plot for detecting violation of normality assumption.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model1</span> <span class="op">&lt;-</span> <span class="fu">lm</span><span class="op">(</span><span class="va">health_london_rank</span> <span class="op">~</span> <span class="va">livingEnv_london_rank</span> <span class="op">+</span> <span class="va">barriers_london_rank</span> <span class="op">+</span> <span class="va">la19nm</span>, data <span class="op">=</span> <span class="va">lon_dims_imd_2019</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ols_plot_resid_qq</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/25-linreg-diagnostics-rendered-unnamed-chunk-1-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure>
+</div>
+<div class="section level3">
+<h3 id="residual-normality-test">Residual Normality Test<a class="anchor" aria-label="anchor" href="#residual-normality-test"></a>
+</h3>
+<p>Test for detecting violation of normality assumption.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ols_test_normality</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>-----------------------------------------------
+       Test             Statistic       pvalue
+-----------------------------------------------
+Shapiro-Wilk              0.9968         0.0000
+Kolmogorov-Smirnov        0.0238         0.0084
+Cramer-von Mises         404.803         0.0000
+Anderson-Darling          4.1283         0.0000
+-----------------------------------------------</code></pre>
+</div>
+<p>Correlation between observed residuals and expected residuals under
+normality.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ols_test_correlation</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] 0.9983931</code></pre>
+</div>
+<p>From these tests we can see that our assumptions are seemingly
+correct.</p>
+<div class="section level4">
+<h4 id="residual-vs-fitted-values-plot">Residual vs Fitted Values Plot<a class="anchor" aria-label="anchor" href="#residual-vs-fitted-values-plot"></a>
+</h4>
+<p>We can create a scatter plot of residuals on the y axis and fitted
+values on the x axis to detect non-linearity, unequal error variances,
+and outliers.</p>
+<p>Characteristics of a well behaved residual vs fitted plot: * The
+residuals spread randomly around the 0 line indicating that the
+relationship is linear. * The residuals form an approximate horizontal
+band around the 0 line indicating homogeneity of error variance. * No
+one residual is visibly away from the random pattern of the residuals
+indicating that there are no outliers.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ols_plot_resid_fit</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/25-linreg-diagnostics-rendered-unnamed-chunk-4-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure>
+</div>
+</div>
+<div class="section level3">
+<h3 id="residual-histogram">Residual Histogram<a class="anchor" aria-label="anchor" href="#residual-histogram"></a>
+</h3>
+<p>Additionally, we can create a histogram of residuals for detecting
+violation of normality assumption.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ols_plot_resid_hist</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/25-linreg-diagnostics-rendered-unnamed-chunk-5-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure>
+</div>
+</section><section><h2 class="section-heading" id="additional-diagnostics">Additional Diagnostics<a class="anchor" aria-label="anchor" href="#additional-diagnostics"></a>
+</h2>
+<hr class="half-width">
+<p>In addition the residual diagnostics, we can also assess our model
+for Heteroskedasticity, Multicollinearity and any Influential/High
+leverage points.</p>
+<div class="section level3">
+<h3 id="heteroskedasticity-check">Heteroskedasticity Check<a class="anchor" aria-label="anchor" href="#heteroskedasticity-check"></a>
+</h3>
+<p>We can use the ncvTest() function to test for equal variances.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">ncvTest</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Non-constant Variance Score Test
+Variance formula: ~ fitted.values
+Chisquare = 52.92299, Df = 1, p = 3.4689e-13</code></pre>
+</div>
+<p>The p-value here is low, indicating that this model may have a
+problem of unequal variances.</p>
+</div>
+<div class="section level3">
+<h3 id="multicollinearity-check">Multicollinearity Check<a class="anchor" aria-label="anchor" href="#multicollinearity-check"></a>
+</h3>
+<p>We want to know whether we have too many variables that have high
+correlation with each other. If the value of GVIF is greater than 4, it
+suggests collinearity.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">vif</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>                          GVIF Df GVIF^(1/(2*Df))
+livingEnv_london_rank 1.790038  1        1.337923
+barriers_london_rank  2.038530  1        1.427771
+la19nm                3.583479 32        1.020143</code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="outlier-identification">Outlier Identification<a class="anchor" aria-label="anchor" href="#outlier-identification"></a>
+</h3>
+<p>We can identify outliers in our data by creating a QQPlot and running
+statistical tests on the data. The outlierTest() reports the Bonferroni
+p-values for testing each observation in turn to be a mean-shift
+outlier, based Studentized residuals in linear (t-tests), generalized
+linear models (normal tests), and linear mixed models.</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create a qqPlot</span></span>
+<span><span class="fu">qqPlot</span><span class="op">(</span><span class="va">model1</span>, id.n <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/25-linreg-diagnostics-rendered-unnamed-chunk-8-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>[1] 4612 4721</code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Test for outliers</span></span>
+<span><span class="fu">outlierTest</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>No Studentized residuals with Bonferroni p &lt; 0.05
+Largest |rstudent|:
+      rstudent unadjusted p-value Bonferroni p
+4612 -4.069694         4.7832e-05      0.23127</code></pre>
+</div>
+<p>The null hypothesis for the Bonferonni adjusted outlier test is the
+observation is an outlier. Here observation related to ‘4612’ is an
+outlier. In our data ‘4612’ is difficult to identify as it may refer to
+either a Living Environment or a Barriers rank.</p>
+</div>
+<div class="section level3">
+<h3 id="identifying-influence-points">Identifying Influence Points<a class="anchor" aria-label="anchor" href="#identifying-influence-points"></a>
+</h3>
+<p>We can identify potential influential points via an Influence Plot,
+these may be Ouliers and/or High Leverage points. A point can be
+considered influential if it’s exclusion causes substantial change in
+the estimated regression.</p>
+<p>An influence plot summarises the 3 metrics for influence analysis in
+one single glance. The X-axis plots the leverage, which is normalised
+between 0 and 1. The Y-axis plots the studentized residuals, which can
+be positive or negative. The size of the circles for each data point
+reflect its Cook’s distance, degree of influence.</p>
+<p>Vertical reference lines are drawn at twice and three times the
+average hat value, horizontal reference lines at -2, 0, and 2 on the
+Studentized-residual scale.</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Influence Plots</span></span>
+<span><span class="fu">influencePlot</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/25-linreg-diagnostics-rendered-unnamed-chunk-9-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>        StudRes         Hat        CookD
+1     1.5548629 0.166808357 0.0138248622
+2     0.4024213 0.167706627 0.0009324887
+4612 -4.0696939 0.008281120 0.0039386753
+4675 -1.1177591 0.166718323 0.0071416294
+4676 -0.2645859 0.167101314 0.0004013628
+4721  3.6227234 0.007981167 0.0030092149</code></pre>
+</div>
+<p>Identified influential points are returned in a data frame with the
+hat values, Studentized residuals and Cook’s distance of the identified
+points. If no points are identified, nothing is returned.</p>
+<p>Influence points can be further explored with an Influence Index Plot
+which provides index plots of influence and related diagnostics for a
+regression model.</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">influenceIndexPlot</span><span class="op">(</span><span class="va">model1</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="../fig/25-linreg-diagnostics-rendered-unnamed-chunk-10-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure><p>If an observation is influential then that observation can change the
+fit of the linear model.</p>
+<p>An observation may be influential because: 1. Someone made a
+recording error 2. Someone made a fundamental mistake collecting the
+observation 3. The data point is perfectly valid, in which case the
+model cannot account for the behaviour.</p>
+<p>If the case is 1 or 2, then you can remove the point (or correct it).
+If it’s 3, it’s not worth deleting a valid point; the data may be better
+suited a non-linear model.</p>
+<div id="challenge" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge" class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>Choose 3 of the of the regression diagnostics, check that the
+assumptions are met for the linear models you have created using the
+<code>gapminder</code> data.</p>
+<p>State what you tested and discuss your findings.</p>
+</div>
+</div>
+</div>
+</div>
+</section></section><section id="aio-27-wrap-up"><p>Content from <a href="27-wrap-up.html">Writing Good Software</a></p>
+<hr>
+<p>Last updated on 2024-09-01 |
 
         <a href="https://github.com/UCL-ARC/r-amr-epidemiology/edit/main/episodes/27-wrap-up.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 15 minutes</p>
@@ -50993,8 +52464,8 @@ style.</li>
   "url": "https://UCL-ARC.github.io/R-AMR-Epidemiology/instructor/aio.html",
   "identifier": "https://UCL-ARC.github.io/R-AMR-Epidemiology/instructor/aio.html",
   "dateCreated": "2015-04-18",
-  "dateModified": "2024-08-30",
-  "datePublished": "2024-08-30"
+  "dateModified": "2024-09-01",
+  "datePublished": "2024-09-01"
 }
 
   </script><script>
