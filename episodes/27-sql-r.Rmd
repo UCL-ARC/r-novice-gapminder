@@ -15,6 +15,16 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+::::::::::::::::::::::::::::::::::::::: questions
+
+- What is the relationship between a relational database and SQL?
+- How do you query databases using SQL?
+- How can I filter data?
+- Can SQL be used to make calculations?
+- How do I join two tables if they share a common point of information?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Content
 
 - Relational Databases - an overview
