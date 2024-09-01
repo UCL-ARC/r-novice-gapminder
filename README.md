@@ -32,6 +32,12 @@ are not necessarily the best, nor are they comprehensive, but they are
 packages we find useful, and have been chosen primarily for their
 usability.
 
+## R for AMR Epidemiology
+
+Content developed and modified by: 
+- [Samantha Ahern](https://github.com/quirksahern)
+- [Milan Malfait](https://github.com/milanmlft)
+
 ## R for Reproducible Scientific Analysis
 
 Current Maintainers:
