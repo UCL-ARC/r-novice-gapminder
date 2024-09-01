@@ -15,7 +15,7 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::: content
+## Content
 
 - Relational Databases - an overview
 - Creating a SQLite database
@@ -23,8 +23,6 @@ source: Rmd
 - Filtering data
 - Calculated fields and Aggregation
 - Joining data
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Relational Databases - an overview
 
