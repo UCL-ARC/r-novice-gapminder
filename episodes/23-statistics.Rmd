@@ -277,9 +277,8 @@ Is the difference between the income ranks statistically significant?
 ## Doing a t-test
 
 ```{r}
-
- t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$statistic
- t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$parameter
+t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$statistic
+t.test(health_london_rank ~ city, data = lon_dims_imd_2019)$parameter
 ```
 
 Notice that the summary()** of the test contains more data than is output by default.

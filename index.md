@@ -2,21 +2,16 @@
 site: sandpaper::sandpaper_site
 ---
 
-*an introduction to R for non-programmers using gapminder data*
+*This material was commisioned by the EPSRC Digital Health Hub for AMR, for delivery to the UK HSA w/c 16th September 2024.*
 
-The goal of this lesson is to teach novice programmers to write modular code
-and best practices for using R for data analysis. R is commonly used in many
-scientific disciplines for statistical analysis and its array of third-party
-packages. We find that many scientists who come to Software Carpentry workshops
-use R and want to learn more. The emphasis of these materials is to give
-attendees a strong foundation in the fundamentals of R, and to teach best
-practices for scientific computing: breaking down analyses into modular units,
-task automation, and encapsulation.
+An introduction to R for non-programmers using the Gapminder data. In addition, this lesson makes use of open data from the Centre for Consumer Research Data and bespoke synthetic data provided by UKHSA.
 
-Note that this workshop will focus on teaching the fundamentals of the
-programming language R, and will not teach statistical analysis.
+The goal of this lesson is to teach novice programmers to write modular code and best practices for using R for data analysis. R is commonly used in many scientific disciplines for statistical analysis and its array of third-party packages. We find that many scientists who come to Software Carpentry workshops use R and want to learn more. The emphasis of these materials is to give attendees a strong foundation in the fundamentals of R, and to teach best practices for scientific computing: breaking down analyses into modular units, task automation, and encapsulation.
 
-The lesson contains more material than can be taught in a day.  The [instructor notes page](instructors/instructor-notes.md) has some suggested lesson plans suitable for a one or half day workshop.
+This lesson has been expanded to incorporate additional content on the use of Git for Version Control, navigating files and directories in a terminal, creation and validation of regression models and SQL.
+
+This content has been developed to form a five day course.  
+The [instructor notes page](instructors/instructor-notes.md) has some suggested lesson plans suitable for shorter workshops.
 
 A variety of third party packages are used throughout this workshop. These
 are not necessarily the best, nor are they comprehensive, but they are
