@@ -538,15 +538,14 @@ project).</li>
 <code>git verb options</code>, where <code>verb</code> is what we
 actually want to do and <code>options</code> is additional optional
 information which may be needed for the <code>verb</code>. So here is
-how Dracula sets up his new laptop:</p>
+how you can configure <code>git</code> on your own machine:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.name <span class="st">"Vlad Dracula"</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.email <span class="st">"vlad@tran.sylvan.ia"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.name <span class="st">"&lt;Your Full Name&gt;"</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.email <span class="st">"&lt;your email address&gt;"</span></span></code></pre>
 </div>
-<p>Please use your own name and email address instead of Dracula’s. This
-user name and email will be associated with your subsequent Git
+<p>This user name and email will be associated with your subsequent Git
 activity, which means that any changes pushed to <a href="https://github.com/" class="external-link">GitHub</a>, <a href="https://bitbucket.org/" class="external-link">BitBucket</a>, <a href="https://gitlab.com/" class="external-link">GitLab</a> or another Git host server after
 this lesson will include this information.</p>
 <p>For this lesson, we will be interacting with <a href="https://github.com/" class="external-link">GitHub</a> and so the email address used
@@ -601,8 +600,7 @@ following settings are recommended:</p>
 </div>
 </div>
 </div>
-<p>Dracula also has to set his favorite text editor, following this
-table:</p>
+<p>You can also set your favorite text editor, following this table:</p>
 <table class="table"><colgroup><col width="27%"><col width="72%"></colgroup><thead><tr class="header"><th align="left">Editor</th>
 <th align="left">Configuration command</th>
 </tr></thead><tbody><tr class="odd"><td align="left">Atom</td>
@@ -654,9 +652,9 @@ hit <kbd>Enter</kbd> or <kbd>↵</kbd> or on Macs, <kbd>Return</kbd>.</p>
 </div>
 </div>
 <p>Git (2.28+) allows configuration of the name of the branch created
-when you initialize any new repository. Dracula decides to use that
-feature to set it to <code>main</code> so it matches the cloud service
-he will eventually use.</p>
+when you initialize any new repository You should set this to
+<code>main</code> so it matches the cloud service you will eventually
+use.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
