@@ -21,27 +21,34 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 First let's make sure we're still in the right directory.
-You should be in the `planets` directory.
+You should be in the `data-dictionary` directory.
 
 ```bash
-$ cd ~/Desktop/planets
+$ cd ~/Desktop/data-dictionary
 ```
 
-Let's create a file called `mars.txt` that contains some notes
-about the Red Planet's suitability as a base.
-We'll use `nano` to edit the file;
-you can use whatever editor you like.
-In particular, this does not have to be the `core.editor` you set globally earlier. But remember, the bash command to create or edit a new file will depend on the editor you choose (it might not be `nano`). For a refresher on text editors, check out ["Which Editor?"](https://swcarpentry.github.io/shell-novice/03-create.html#which-editor) in [The Unix Shell](https://swcarpentry.github.io/shell-novice/) lesson.
+Let's create a file called `amr-data-dictionary.txt` that will contain the description of the
+variables in our AMR data.
+We'll use RStudio to edit the file;  but you can use whatever editor you like.
+In particular, this does not have to be the `core.editor` you set globally earlier.
 
+First create the file from the command line:
 ```bash
-$ nano mars.txt
+$ touch amr-data-dictionary.txt
 ```
 
-Type the text below into the `mars.txt` file:
+Now open the file in RStudio (or your preferred editor).
+
+Type the text below into the `amr-data-dictionary.txt` file:
 
 ```output
-Cold and dry, but everything is my favorite color
+AMR data
+100,000 rows of 12 variables
+
+These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
 ```
+
+and save the file.
 
 Let's first verify that the file was properly created by running the list command (`ls`):
 
@@ -50,17 +57,20 @@ $ ls
 ```
 
 ```output
-mars.txt
+amr-data-dictionary.txt
 ```
 
-`mars.txt` contains a single line, which we can see by running:
+`amr-data-dictionary.txt` should contain 4 lines, which we can see by running:
 
 ```bash
-$ cat mars.txt
+$ cat amr-data-dictionary.txt
 ```
 
 ```output
-Cold and dry, but everything is my favorite color
+AMR data
+100,000 rows of 12 variables
+
+These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
 ```
 
 If we check the status of our project again,
@@ -78,7 +88,7 @@ No commits yet
 Untracked files:
    (use "git add <file>..." to include in what will be committed)
 
-	mars.txt
+	amr-data-dictionary.txt
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
@@ -88,7 +98,7 @@ that Git isn't keeping track of.
 We can tell Git to track a file using `git add`:
 
 ```bash
-$ git add mars.txt
+$ git add amr-data-dictionary.txt
 ```
 
 and then check that the right thing happened:
@@ -105,23 +115,23 @@ No commits yet
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
-	new file:   mars.txt
+	new file:   amr-data-dictionary.txt
 
 ```
 
-Git now knows that it's supposed to keep track of `mars.txt`,
+Git now knows that it's supposed to keep track of `amr-data-dictionary.txt`,
 but it hasn't recorded these changes as a commit yet.
 To get it to do that,
 we need to run one more command:
 
 ```bash
-$ git commit -m "Start notes on Mars as a base"
+$ git commit -m "Start data dictionary for AMR data"
 ```
 
 ```output
 [main (root-commit) f22b25e] Start notes on Mars as a base
  1 file changed, 1 insertion(+)
- create mode 100644 mars.txt
+ create mode 100644 amr-data-dictionary.txt
 ```
 
 When we run `git commit`,
@@ -161,10 +171,10 @@ $ git log
 
 ```output
 commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
+Author: <John Doe> <john.doe@unkown.com>
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
-    Start notes on Mars as a base
+    Start data dictionary for AMR data
 ```
 
 `git log` lists all commits  made to a repository in reverse chronological order.
@@ -180,7 +190,7 @@ and the log message Git was given when the commit was created.
 
 ## Where Are My Changes?
 
-If we run `ls` at this point, we will still see just one file called `mars.txt`.
+If we run `ls` at this point, we will still see just one file called `amr-data-dictionary.txt`.
 That's because Git saves information about files' history
 in the special `.git` directory mentioned earlier
 so that our filesystem doesn't become cluttered
@@ -189,18 +199,21 @@ so that our filesystem doesn't become cluttered
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Now suppose Dracula adds more information to the file.
-(Again, we'll edit with `nano` and then `cat` the file to show its contents;
+Now suppose we add more information to the file.
+(Again, we'll edit with RStudio and then `cat` the file to show its contents;
 you may use a different editor, and don't need to `cat`.)
 
 ```bash
-$ nano mars.txt
-$ cat mars.txt
+$ cat amr-data-dictionary.txt
 ```
 
 ```output
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
+AMR data
+100,000 rows of 12 variables
+
+These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
+
+* id Integer - A unique identifier for each person
 ```
 
 When we run `git status` now,
@@ -216,7 +229,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   mars.txt
+	modified:   amr-data-dictionary.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -237,13 +250,16 @@ $ git diff
 ```
 
 ```output
-diff --git a/mars.txt b/mars.txt
+diff --git a/amr-data-dictionary.txt b/amr-data-dictionary.txt
 index df0654a..315bf3a 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,2 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
+--- a/amr-data-dictionary.txt
++++ b/amr-data-dictionary.txt
+@@ -2,3 +2,5 @@ AMR data
+ 100,000 rows of 12 variables
+
+ These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
++
++* id Integer - A unique identifier for each person
 ```
 
 The output is cryptic because
@@ -265,7 +281,7 @@ If we break it down into pieces:
 After reviewing our change, it's time to commit it:
 
 ```bash
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
+$ git commit -m "Add entry for the id column"
 ```
 
 ```output
@@ -274,7 +290,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   mars.txt
+	modified:   amr-data-dictionary.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -284,13 +300,13 @@ Git won't commit because we didn't use `git add` first.
 Let's fix that:
 
 ```bash
-$ git add mars.txt
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
+$ git add amr-data-dictionary.txt
+$ git commit -m "Add entry for the id column"
 ```
 
 ```output
-[main 34961b1] Add concerns about effects of Mars' moons on Wolfman
- 1 file changed, 1 insertion(+)
+[main 7464434] Add entry for the id column
+ 1 file changed, 2 insertions(+)
 ```
 
 Git insists that we add files to the set we want to commit
@@ -340,17 +356,31 @@ Let's watch as our changes to a file move from our editor
 to the staging area
 and into long-term storage.
 First,
-we'll add another line to the file:
+we'll add a few more lines to the file and complete our dictionary:
 
 ```bash
-$ nano mars.txt
-$ cat mars.txt
+$ cat amr-data-dictionary.txt
 ```
 
 ```output
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+AMR data
+
+100,000 rows of 12 variables
+
+These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
+
+ * id Integer - A unique identifier for each person
+ * dob Character - a string giving the date of birth
+ * spec_date Character - a string giving the date a specimen was taken
+ * sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
+ * region Character - a string indicating the England region of laboratory testing the specimen
+ * had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
+ * ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
+ * imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
+ * organism Character - indicates the species name for the organism detected
+ * coamox Binary - indicates specimen was resistant to Coamoxiclav
+ * gentam Binary - indicates specimen was resistant to Gentamicin
+ * ciprof Binary - indicates specimen was resistant to Ciprofloxacin
 ```
 
 ```bash
@@ -358,24 +388,35 @@ $ git diff
 ```
 
 ```output
-diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/amr-data-dictionary.txt b/amr-data-dictionary.txt
+index f2c537e..c9a8214 100644
+--- a/amr-data-dictionary.txt
++++ b/amr-data-dictionary.txt
+@@ -4,3 +4,14 @@ AMR data
+ These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
+
+ * id Integer - A unique identifier for each person
++* dob Character - a string giving the date of birth
++* spec_date Character - a string giving the date a specimen was taken
++* sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
++* region Character - a string indicating the England region of laboratory testing the specimen
++* had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
++* ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
++* imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
++* organism Character - indicates the species name for the organism detected
++* coamox Binary - indicates specimen was resistant to Coamoxiclav
++* gentam Binary - indicates specimen was resistant to Gentamicin
++* ciprof Binary - indicates specimen was resistant to Ciprofloxacin
 ```
 
 So far, so good:
-we've added one line to the end of the file
+we've added the necessary lines to the end of the file
 (shown with a `+` in the first column).
 Now let's put that change in the staging area
 and see what `git diff` reports:
 
 ```bash
-$ git add mars.txt
+$ git add amr-data-dictionary.txt
 $ git diff
 ```
 
@@ -391,14 +432,25 @@ $ git diff --staged
 ```
 
 ```output
-diff --git a/mars.txt b/mars.txt
-index 315bf3a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,2 +1,3 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
+diff --git a/amr-data-dictionary.txt b/amr-data-dictionary.txt
+index f2c537e..c9a8214 100644
+--- a/amr-data-dictionary.txt
++++ b/amr-data-dictionary.txt
+@@ -4,3 +4,14 @@ AMR data
+ These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
+
+ * id Integer - A unique identifier for each person
++* dob Character - a string giving the date of birth
++* spec_date Character - a string giving the date a specimen was taken
++* sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
++* region Character - a string indicating the England region of laboratory testing the specimen
++* had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
++* ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
++* imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
++* organism Character - indicates the species name for the organism detected
++* coamox Binary - indicates specimen was resistant to Coamoxiclav
++* gentam Binary - indicates specimen was resistant to Gentamicin
++* ciprof Binary - indicates specimen was resistant to Ciprofloxacin
 ```
 
 it shows us the difference between
@@ -407,12 +459,12 @@ and what's in the staging area.
 Let's save our changes:
 
 ```bash
-$ git commit -m "Discuss concerns about Mars' climate for Mummy"
+$ git commit -m "Complete the data dictionary"
 ```
 
 ```output
-[main 005937f] Discuss concerns about Mars' climate for Mummy
- 1 file changed, 1 insertion(+)
+[main 1c642ba] Complete the data dictionary
+ 1 file changed, 11 insertions(+)
 ```
 
 check our status:
@@ -433,23 +485,23 @@ $ git log
 ```
 
 ```output
-commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -> main)
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:14:07 2013 -0400
+commit 1c642ba5c32a722081ea9e3c80ef0634b4e071f3 (HEAD -> main)
+Author: John Doe <john.doe@unkown.com>
+Date:   Wed Aug 14 15:01:56 2024 +0100
 
-    Discuss concerns about Mars' climate for Mummy
+    Complete the data dictionary
 
-commit 34961b159c27df3b475cfe4415d94a6d1fcd064d
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:07:21 2013 -0400
+commit 746443401e4f3e41a4bb67844dfb03e0241a1721
+Author: John Doe <john.doe@unkown.com>
+Date:   Wed Aug 14 14:57:35 2024 +0100
 
-    Add concerns about effects of Mars' moons on Wolfman
+    Add entry for the id column
 
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+commit 0f988204ddcf33c060ecb849d640b3bd7aec71cc
+Author: John Doe <john.doe@unkown.com>
+Date:   Wed Aug 14 14:54:11 2024 +0100
 
-    Start notes on Mars as a base
+    Start data dictionary
 ```
 
 :::::::::::::::::::::::::::::::::::::::::  callout
@@ -497,11 +549,11 @@ $ git log -1
 ```
 
 ```output
-commit 005937fbe2a98fb83f0ade869025dc2636b4dad5 (HEAD -> main)
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 10:14:07 2013 -0400
+commit 1c642ba5c32a722081ea9e3c80ef0634b4e071f3 (HEAD -> main)
+Author: John Doe <john.doe@unkown.com>
+Date:   Wed Aug 14 15:01:56 2024 +0100
 
-   Discuss concerns about Mars' climate for Mummy
+    Complete the data dictionary
 ```
 
 You can also reduce the quantity of information using the
@@ -512,9 +564,9 @@ $ git log --oneline
 ```
 
 ```output
-005937f (HEAD -> main) Discuss concerns about Mars' climate for Mummy
-34961b1 Add concerns about effects of Mars' moons on Wolfman
-f22b25e Start notes on Mars as a base
+1c642ba (HEAD -> main) Complete the data dictionary
+7464434 Add entry for the id column
+0f98820 Start data dictionary
 ```
 
 You can also combine the `--oneline` option with others. One useful
@@ -528,9 +580,9 @@ $ git log --oneline --graph
 ```
 
 ```output
-* 005937f (HEAD -> main) Discuss concerns about Mars' climate for Mummy
-* 34961b1 Add concerns about effects of Mars' moons on Wolfman
-* f22b25e Start notes on Mars as a base
+* 1c642ba (HEAD -> main) Complete the data dictionary
+* 7464434 Add entry for the id column
+* 0f98820 Start data dictionary
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -545,13 +597,13 @@ Two important facts you should know about directories in Git.
   Try it for yourself:
   
   ```bash
-  $ mkdir spaceships
+  $ mkdir notes
   $ git status
-  $ git add spaceships
+  $ git add notes
   $ git status
   ```
   
-  Note, our newly created empty directory `spaceships` does not appear in
+  Note, our newly created empty directory `notes` does not appear in
   the list of untracked files even if we explicitly add it (*via* `git add`) to our
   repository. This is the reason why you will sometimes see `.gitkeep` files
   in otherwise empty directories. Unlike `.gitignore`, these files are not special
@@ -568,16 +620,16 @@ Two important facts you should know about directories in Git.
   Try it for yourself:
   
   ```bash
-  $ touch spaceships/apollo-11 spaceships/sputnik-1
+  $ touch notes/2024-08-14.txt spaceships/2024-08-13.txt
   $ git status
-  $ git add spaceships
+  $ git add notes
   $ git status
   ```
   
   Before moving on, we will commit these changes.
   
   ```bash
-  $ git commit -m "Add some initial thoughts on spaceships"
+  $ git commit -m "Add meeting notes"
   ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -594,11 +646,11 @@ repository (`git commit`):
 ## Choosing a Commit Message
 
 Which of the following commit messages would be most appropriate for the
-last commit made to `mars.txt`?
+last commit made to `amr-data-dictionary.txt`?
 
 1. "Changes"
-2. "Added line 'But the Mummy will appreciate the lack of humidity' to mars.txt"
-3. "Discuss effects of Mars' climate on the Mummy"
+2. "Added lines 7-17 to amr-data-dictionary.txt"
+3. "Add description for each data variable"
 
 :::::::::::::::  solution
 
@@ -658,10 +710,10 @@ to my local Git repository?
 The staging area can hold changes from any number of files
 that you want to commit as a single snapshot.
 
-1. Add some text to `mars.txt` noting your decision
-   to consider Venus as a base
-2. Create a new file `venus.txt` with your initial thoughts
-   about Venus as a base for you and your friends
+1. Add some text to `amr-data-dictionary.txt` to mention that more detailed information on each
+   variable can be found in a separate file with the same name as the variable.
+2. Create a new file `ciprof.txt` with a short description of what Ciproflaxacin is
+   (feel free to make something up).
 3. Add changes from both files to the staging area,
    and commit those changes.
 
@@ -669,53 +721,52 @@ that you want to commit as a single snapshot.
 
 ## Solution
 
-The output below from `cat mars.txt` reflects only content added during
+The output below from `cat amr-data-dictionary.txt` reflects only content added during
 this exercise. Your output may vary.
 
-First we make our changes to the `mars.txt` and `venus.txt` files:
+First we make our changes to the `amr-data-dictionary.txt` and `ciprof.txt` files:
 
 ```bash
-$ nano mars.txt
-$ cat mars.txt
+$ cat amr-data-dictionary.txt
 ```
 
 ```output
-Maybe I should start with a base on Venus.
+More information on each variable can be found in the corresponding file.
 ```
 
 ```bash
-$ nano venus.txt
-$ cat venus.txt
+$ cat ciprof.txt
 ```
 
 ```output
-Venus is a nice planet and I definitely should consider it as a base.
+Ciprofloxacin is a fluoroquinolone antibiotic used to treat a number of bacterial infections.
 ```
 
 Now you can add both files to the staging area. We can do that in one line:
 
 ```bash
-$ git add mars.txt venus.txt
+$ git add amr-data-dictionary.txt ciprof.txt
 ```
 
 Or with multiple commands:
 
 ```bash
-$ git add mars.txt
-$ git add venus.txt
+$ git add amr-data-dictionary.txt
+$ git add ciprof.txt
 ```
 
 Now the files are ready to commit. You can check that using `git status`. If you are ready to commit use:
 
 ```bash
-$ git commit -m "Write plans to start a base on Venus"
+$ git commit -m "Add more detailed information about ciprofloxacin"
+```
 ```
 
 ```output
 [main cc127c2]
- Write plans to start a base on Venus
+ Add more detailed information about ciprofloxacin
  2 files changed, 2 insertions(+)
- create mode 100644 venus.txt
+ create mode 100644 ciprof.txt
 ```
 
 :::::::::::::::::::::::::
@@ -737,7 +788,7 @@ $ git commit -m "Write plans to start a base on Venus"
 
 ## Solution
 
-If needed, move out of the `planets` folder:
+If needed, move out of the `data-dictionary` folder:
 
 ```bash
 $ cd ..
