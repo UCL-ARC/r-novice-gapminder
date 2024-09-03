@@ -25,38 +25,45 @@ As we saw in the previous episode, we can refer to commits by their
 identifiers.  You can refer to the *most recent commit* of the working
 directory by using the identifier `HEAD`.
 
-We've been adding one line at a time to `mars.txt`, so it's easy to track our
+We've been adding one line at a time to `amr-data-dictionary.txt`, so it's easy to track our
 progress by looking, so let's do that using our `HEAD`s.  Before we start,
-let's make a change to `mars.txt`, adding yet another line.
+let's make a change to `amr-data-dictionary.txt`, adding yet another line.
 
 ```bash
-$ nano mars.txt
-$ cat mars.txt
+$ tail amr-data-dictionary.txt
 ```
 
+Showing only the last few lines:
+
 ```output
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
-An ill-considered change
+* sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
+* region Character - a string indicating the England region of laboratory testing the specimen
+* had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
+* ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
+* imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
+* organism Character - indicates the species name for the organism detected
+* coamox Binary - indicates specimen was resistant to Coamoxiclav
+* gentam Binary - indicates specimen was resistant to Gentamicin
+* ciprof Binary - indicates specimen was resistant to Ciprofloxacin
+* name Character - a string giving the name of the person from whom the specimen was taken
 ```
 
 Now, let's see what we get.
 
 ```bash
-$ git diff HEAD mars.txt
+$ git diff HEAD amr-data-dictionary.txt
 ```
 
 ```output
-diff --git a/mars.txt b/mars.txt
-index b36abfd..0848c8d 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1,3 +1,4 @@
- Cold and dry, but everything is my favorite color
- The two moons may be a problem for Wolfman
- But the Mummy will appreciate the lack of humidity
-+An ill-considered change.
+diff --git a/amr-data-dictionary.txt b/amr-data-dictionary.txt
+index c9a8214..d7d742c 100644
+--- a/amr-data-dictionary.txt
++++ b/amr-data-dictionary.txt
+@@ -15,3 +15,4 @@ These data represent the sort of data that might be obtained from the Second Gen
+ * coamox Binary - indicates specimen was resistant to Coamoxiclav
+ * gentam Binary - indicates specimen was resistant to Gentamicin
+ * ciprof Binary - indicates specimen was resistant to Ciprofloxacin
++* name Character - a string giving the name of the person from whom the specimen was taken
 ```
 
 which is the same as what you would get if you leave out `HEAD` (try it).  The
@@ -66,26 +73,39 @@ that by adding `~1`
 to refer to the commit one before `HEAD`.
 
 ```bash
-$ git diff HEAD~1 mars.txt
+$ git diff HEAD~1 amr-data-dictionary.txt
 ```
 
 If we want to see the differences between older commits we can use `git diff`
 again, but with the notation `HEAD~1`, `HEAD~2`, and so on, to refer to them:
 
 ```bash
-$ git diff HEAD~2 mars.txt
+$ git diff HEAD~2 amr-data-dictionary.txt
 ```
 
 ```output
-diff --git a/mars.txt b/mars.txt
-index df0654a..b36abfd 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,4 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
-+An ill-considered change
+diff --git a/amr-data-dictionary.txt b/amr-data-dictionary.txt
+index 55895cc..d7d742c 100644
+--- a/amr-data-dictionary.txt
++++ b/amr-data-dictionary.txt
+@@ -2,3 +2,17 @@ AMR data
+ 100,000 rows of 12 variables
+
+ These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
++
++* id Integer - A unique identifier for each person
++* dob Character - a string giving the date of birth
++* spec_date Character - a string giving the date a specimen was taken
++* sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
++* region Character - a string indicating the England region of laboratory testing the specimen
++* had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
++* ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
++* imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
++* organism Character - indicates the species name for the organism detected
++* coamox Binary - indicates specimen was resistant to Coamoxiclav
++* gentam Binary - indicates specimen was resistant to Gentamicin
++* ciprof Binary - indicates specimen was resistant to Ciprofloxacin
++* name Character - a string giving the name of the person from whom the specimen was taken
 ```
 
 We could also use `git show` which shows us what changes we made at an older commit as
@@ -93,23 +113,26 @@ well as the commit message, rather than the *differences* between a commit and o
 working directory that we see by using `git diff`.
 
 ```bash
-$ git show HEAD~2 mars.txt
+$ git show HEAD~2 amr-data-dictionary.txt
 ```
 
 ```output
-commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
-Author: Vlad Dracula <vlad@tran.sylvan.ia>
-Date:   Thu Aug 22 09:51:46 2013 -0400
+commit 0f988204ddcf33c060ecb849d640b3bd7aec71cc
+Author: John Doe <john.doe@unknown.com>
+Date:   Wed Aug 14 14:54:11 2024 +0100
 
-    Start notes on Mars as a base
+    Start data dictionary
 
-diff --git a/mars.txt b/mars.txt
+diff --git a/amr-data-dictionary.txt b/amr-data-dictionary.txt
 new file mode 100644
-index 0000000..df0654a
+index 0000000..55895cc
 --- /dev/null
-+++ b/mars.txt
-@@ -0,0 +1 @@
-+Cold and dry, but everything is my favorite color
++++ b/amr-data-dictionary.txt
+@@ -0,0 +1,4 @@
++AMR data
++100,000 rows of 12 variables
++
++These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
 ```
 
 In this way,
@@ -128,23 +151,36 @@ and "unique" really does mean unique:
 every change to any set of files on any computer
 has a unique 40-character identifier.
 Our first commit was given the ID
-`f22b25e3233b4645dabd0d81e651fe074bd8e73b`,
+`0f988204ddcf33c060ecb849d640b3bd7aec71cc`,
 so let's try this:
 
 ```bash
-$ git diff f22b25e3233b4645dabd0d81e651fe074bd8e73b mars.txt
+$ git diff 0f988204ddcf33c060ecb849d640b3bd7aec71cc amr-data-dictionary.txt
 ```
 
 ```output
-diff --git a/mars.txt b/mars.txt
-index df0654a..93a3e13 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,4 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
-+An ill-considered change
+diff --git a/amr-data-dictionary.txt b/amr-data-dictionary.txt
+index 55895cc..d7d742c 100644
+--- a/amr-data-dictionary.txt
++++ b/amr-data-dictionary.txt
+@@ -2,3 +2,17 @@ AMR data
+ 100,000 rows of 12 variables
+
+ These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
++
++* id Integer - A unique identifier for each person
++* dob Character - a string giving the date of birth
++* spec_date Character - a string giving the date a specimen was taken
++* sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
++* region Character - a string indicating the England region of laboratory testing the specimen
++* had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
++* ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
++* imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
++* organism Character - indicates the species name for the organism detected
++* coamox Binary - indicates specimen was resistant to Coamoxiclav
++* gentam Binary - indicates specimen was resistant to Gentamicin
++* ciprof Binary - indicates specimen was resistant to Ciprofloxacin
++* name Character - a string giving the name of the person from whom the specimen was taken
 ```
 
 That's the right answer,
@@ -152,26 +188,14 @@ but typing out random 40-character strings is annoying,
 so Git lets us use just the first few characters (typically seven for normal size projects):
 
 ```bash
-$ git diff f22b25e mars.txt
-```
-
-```output
-diff --git a/mars.txt b/mars.txt
-index df0654a..93a3e13 100644
---- a/mars.txt
-+++ b/mars.txt
-@@ -1 +1,4 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
-+But the Mummy will appreciate the lack of humidity
-+An ill-considered change
+$ git diff 0f98820 amr-data-dictionary.txt
 ```
 
 All right! So
 we can save changes to files and see what we've changed. Now, how
 can we restore older versions of things?
 Let's suppose we change our mind about the last update to
-`mars.txt` (the "ill-considered change").
+`amr-data-dictionary.txt` (we realise the `name` variable is not actually part of the data).
 
 `git status` now tells us that the file has been changed,
 but those changes haven't been staged:
@@ -185,8 +209,7 @@ On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-
-    modified:   mars.txt
+        modified:   amr-data-dictionary.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -195,14 +218,21 @@ We can put things back the way they were
 by using `git restore`:
 
 ```bash
-$ git restore mars.txt
-$ cat mars.txt
+$ git restore amr-data-dictionary.txt
+$ tail amr-data-dictionary.txt
 ```
 
 ```output
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+* spec_date Character - a string giving the date a specimen was taken
+* sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
+* region Character - a string indicating the England region of laboratory testing the specimen
+* had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
+* ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
+* imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
+* organism Character - indicates the species name for the organism detected
+* coamox Binary - indicates specimen was resistant to Coamoxiclav
+* gentam Binary - indicates specimen was resistant to Gentamicin
+* ciprof Binary - indicates specimen was resistant to Ciprofloxacin
 ```
 
 As you might guess from its name,
@@ -214,15 +244,18 @@ If we want to go back even further,
 we can use a commit identifier instead, using `-s` option:
 
 ```bash
-$ git restore -s f22b25e mars.txt
+$ git restore -s 0f98820 amr-data-dictionary.txt
 ```
 
 ```bash
-$ cat mars.txt
+$ cat amr-data-dictionary.txt
 ```
 
 ```output
-Cold and dry, but everything is my favorite color
+AMR data
+100,000 rows of 12 variables
+
+These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
 ```
 
 ```bash
@@ -234,7 +267,7 @@ On branch main
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-        modified:   mars.txt
+        modified:   amr-data-dictionary.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
@@ -243,14 +276,28 @@ Notice that the changes are currently in the staging area.
 Again, we can put things back the way they were by using `git restore`:
 
 ```bash
-$ git restore mars.txt
-$ cat mars.txt
+$ git restore amr-data-dictionary.txt
+$ cat amr-data-dictionary.txt
 ```
 
 ```output
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
-But the Mummy will appreciate the lack of humidity
+AMR data
+100,000 rows of 12 variables
+
+These data represent the sort of data that might be obtained from the Second Generation Surveillance System (SGSS)
+
+* id Integer - A unique identifier for each person
+* dob Character - a string giving the date of birth
+* spec_date Character - a string giving the date a specimen was taken
+* sex_male Binary - indicates whether the person from whom the specimen was taken was male or not. 1 (male) 0 (not male)
+* region Character - a string indicating the England region of laboratory testing the specimen
+* had_surgery_past_yr Binary - indicates whether person from whom sample was taken had undergone surgery in hospital in the past year before specimen taken. 1 (surgery within last year) 0 (No surgery within last year)
+* ethnicity Character - indicates self-reported ethnicity group according to Office for National Statistics groupings
+* imd Integer - indicates the Index of Multiple Deprivation for residence for person from whom specimen was taken. Range: 1 (least deprived) - 5 (most deprived)
+* organism Character - indicates the species name for the organism detected
+* coamox Binary - indicates specimen was resistant to Coamoxiclav
+* gentam Binary - indicates specimen was resistant to Gentamicin
+* ciprof Binary - indicates specimen was resistant to Ciprofloxacin
 ```
 
 
@@ -430,10 +477,10 @@ Venus is beautiful and full of love.
 
 ## Checking Understanding of `git diff`
 
-Consider this command: `git diff HEAD~9 mars.txt`. What do you predict this command
+Consider this command: `git diff HEAD~9 amr-data-dictionary.txt`. What do you predict this command
 will do if you execute it? What happens when you do execute it? Why?
 
-Try another command, `git diff [ID] mars.txt`, where [ID] is replaced with
+Try another command, `git diff [ID] amr-data-dictionary.txt`, where [ID] is replaced with
 the unique identifier for your most recent commit. What do you think will happen,
 and what does happen?
 
@@ -446,7 +493,7 @@ and what does happen?
 
 `git restore` can be used to restore a previous commit when unstaged changes have
 been made, but will it also work for changes that have been staged but not committed?
-Make a change to `mars.txt`, add that change using `git add`,
+Make a change to `amr-data-dictionary.txt`, add that change using `git add`,
 then use `git restore` to see if you can remove your change.
 
 :::::::::::::::  solution
@@ -460,7 +507,7 @@ Let's look at the output of `git status`:
 On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
-        modified:   mars.txt
+        modified:   amr-data-dictionary.txt
 
 ```
 
@@ -468,13 +515,13 @@ Note that if you don't have the same output
 you may either have forgotten to change the file,
 or you have added it *and* committed it.
 
-Using the command `git restore mars.txt` now does not give an error,
+Using the command `git restore amr-data-dictionary.txt` now does not give an error,
 but it does not restore the file either.
 Git helpfully tells us that we need to use `git restore --staged` first
 to unstage the file:
 
 ```bash
-$ git restore --staged mars.txt
+$ git restore --staged amr-data-dictionary.txt
 ```
 
 
@@ -490,7 +537,7 @@ Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git git restore <file>..." to discard changes in working directory)
 
-        modified:   mars.txt
+        modified:   amr-data-dictionary.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
@@ -499,7 +546,7 @@ This means we can now use `git restore` to restore the file
 to the previous commit:
 
 ```bash
-$ git restore mars.txt
+$ git restore amr-data-dictionary.txt
 $ git status
 ```
 
@@ -519,16 +566,16 @@ nothing to commit, working tree clean
 Exploring history is an important part of Git, and often it is a challenge to find
 the right commit ID, especially if the commit is from several months ago.
 
-Imagine the `planets` project has more than 50 files.
-You would like to find a commit that modifies some specific text in `mars.txt`.
+Imagine the `data-dictionary` project has more than 50 files.
+You would like to find a commit that modifies some specific text in `amr-data-dictionary.txt`.
 When you type `git log`, a very long list appeared.
 How can you narrow down the search?
 
 Recall that the `git diff` command allows us to explore one specific file,
-e.g., `git diff mars.txt`. We can apply a similar idea here.
+e.g., `git diff amr-data-dictionary.txt`. We can apply a similar idea here.
 
 ```bash
-$ git log mars.txt
+$ git log amr-data-dictionary.txt
 ```
 
 Unfortunately some of these commit messages are very ambiguous, e.g., `update files`.
@@ -539,7 +586,7 @@ for you.
 Is it possible to combine both? Let's try the following:
 
 ```bash
-$ git log --patch mars.txt
+$ git log --patch amr-data-dictionary.txt
 ```
 
 You should get a long list of output, and you should be able to see both commit messages and
