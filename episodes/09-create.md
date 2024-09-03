@@ -20,43 +20,30 @@ exercises: 0
 Once Git is configured,
 we can start using it.
 
-We will continue with the story of Wolfman and Dracula who are investigating if it
-is possible to send a planetary lander to Mars.
-
-![](fig/motivatingexample.png){alt='The main elements of the story: Dracula, Wolfman, the Mummy, Mars, Pluto and The Moon'}
-[Werewolf vs dracula](https://www.deviantart.com/b-maze/art/Werewolf-vs-Dracula-124893530)
-by [b-maze](https://www.deviantart.com/b-maze) / [Deviant Art](https://www.deviantart.com/).
-[Mars](https://en.wikipedia.org/wiki/File:OSIRIS_Mars_true_color.jpg) by European Space Agency /
-[CC-BY-SA 3.0 IGO](https://creativecommons.org/licenses/by/3.0/deed.en).
-[Pluto](https://commons.wikimedia.org/wiki/File:PIA19873-Pluto-NewHorizons-FlyingPastImage-20150714-transparent.png) /
-Courtesy NASA/JPL-Caltech.
-[Mummy](https://commons.wikimedia.org/wiki/File:Mummy_icon_-_Noun_Project_4070.svg)
-© Gilad Fried / [The Noun Project](https://thenounproject.com/) /
-[CC BY 3.0](https://creativecommons.org/licenses/by/3.0/deed.en).
-[Moon](https://commons.wikimedia.org/wiki/File:Lune_ico.png)
-© Luc Viatour / [https://lucnix.be](https://lucnix.be/) /
-[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
+To demonstrate the use of `git`, we will build a
+[**data dictionary**](https://en.wikipedia.org/wiki/Data_dictionary) for the data we obtained
+from UKHSA.
 
 First, let's create a new directory in the `Desktop` folder for our work and then change the current working directory to the newly created one:
 
 ```bash
 $ cd ~/Desktop
-$ mkdir planets
-$ cd planets
+$ mkdir data-dictionary
+$ cd data-dictionary
 ```
 
-Then we tell Git to make `planets` a [repository](../learners/reference.md#repository)
-\-- a place where Git can store versions of our files:
+Then we tell Git to make `data-dictionary` a [repository](../learners/reference.md#repository)
+-- a place where Git can store versions of our files:
 
 ```bash
 $ git init
 ```
 
 It is important to note that `git init` will create a repository that
-can include subdirectories and their files---there is no need to create
-separate repositories nested within the `planets` repository, whether
+can include subdirectories and their files -- there is no need to create
+separate repositories nested within the `data-dictionary` repository, whether
 subdirectories are present from the beginning or added later. Also, note
-that the creation of the `planets` directory and its initialization as a
+that the creation of the `data-dictionary` directory and its initialization as a
 repository are completely separate processes.
 
 If we use `ls` to show the directory's contents,
@@ -67,7 +54,7 @@ $ ls
 ```
 
 But if we add the `-a` flag to show everything,
-we can see that Git has created a hidden directory within `planets` called `.git`:
+we can see that Git has created a hidden directory within `data-dictionary` called `.git`:
 
 ```bash
 $ ls -a
@@ -85,7 +72,7 @@ we will lose the project's history.
 Next, we will change the default branch to be called `main`.
 This might be the default branch depending on your settings and version
 of git.
-See the [setup episode](02-setup.md#default-git-branch-naming) for more information on this change.
+See the [setup episode](08-setup.md#default-git-branch-naming) for more information on this change.
 
 ```bash
 $ git checkout -b main
@@ -116,33 +103,33 @@ wording of the output might be slightly different.
 
 ## Places to Create Git Repositories
 
-Along with tracking information about planets (the project we have already created),
-Dracula would also like to track information about moons.
-Despite Wolfman's concerns, Dracula creates a `moons` project inside his `planets`
+Along with tracking information about the data dictionary (the project we have already created),
+we would also like to track information about related datasets.
+Despite any concerns, we create a `related-data` project inside the `data-dictionary`
 project with the following sequence of commands:
 
 ```bash
 $ cd ~/Desktop   # return to Desktop directory
-$ cd planets     # go into planets directory, which is already a Git repository
-$ ls -a          # ensure the .git subdirectory is still present in the planets directory
-$ mkdir moons    # make a subdirectory planets/moons
-$ cd moons       # go into moons subdirectory
-$ git init       # make the moons subdirectory a Git repository
+$ cd data-dictionary     # go into data-dictionary directory, which is already a Git repository
+$ ls -a          # ensure the .git subdirectory is still present in the data-dictionary directory
+$ mkdir related-data    # make a subdirectory data-dictionary/related-data
+$ cd related-data       # go into related-data subdirectory
+$ git init       # make the related-data subdirectory a Git repository
 $ ls -a          # ensure the .git subdirectory is present indicating we have created a new Git repository
 ```
 
-Is the `git init` command, run inside the `moons` subdirectory, required for
-tracking files stored in the `moons` subdirectory?
+Is the `git init` command, run inside the `related-data` subdirectory, required for
+tracking files stored in the `related-data` subdirectory?
 
 :::::::::::::::  solution
 
 ## Solution
 
-No. Dracula does not need to make the `moons` subdirectory a Git repository
-because the `planets` repository can track any files, sub-directories, and
-subdirectory files under the `planets` directory.  Thus, in order to track
-all information about moons, Dracula only needed to add the `moons` subdirectory
-to the `planets` directory.
+No. We do not need to make the `related-data` subdirectory a Git repository
+because the `data-dictionary` repository can track any files, sub-directories, and
+subdirectory files under the `data-dictionary` directory.  Thus, in order to track
+all information about related data, we only needed to add the `related-data` subdirectory
+to the `data-dictionary` directory.
 
 Additionally, Git repositories can interfere with each other if they are "nested":
 the outer repository will try to version-control
@@ -164,9 +151,9 @@ fatal: Not a git repository (or any of the parent directories): .git
 
 ## Correcting `git init` Mistakes
 
-Wolfman explains to Dracula how a nested repository is redundant and may cause confusion
-down the road. Dracula would like to go back to a single git repository. How can Dracula undo
-his last `git init` in the `moons` subdirectory?
+Now that we know that a nested repository is redundant and may cause confusion
+down the road, we would like to go back to a single git repository. How can we undo
+our last `git init` in the `related-data` subdirectory?
 
 :::::::::::::::  solution
 
@@ -189,11 +176,11 @@ becomes another change that we will need to track, as we will see in the next ep
 ### Solution
 
 Git keeps all of its files in the `.git` directory.
-To recover from this little mistake, Dracula can remove the `.git`
-folder in the moons subdirectory by running the following command from inside the `planets` directory:
+To recover from this little mistake, we can remove the `.git`
+folder in the `related-data` subdirectory by running the following command from inside the `data-dictionary` directory:
 
 ```bash
-$ rm -rf moons/.git
+$ rm -rf related-data/.git
 ```
 
 But be careful! Running this command in the wrong directory will remove
