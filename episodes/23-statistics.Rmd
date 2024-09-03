@@ -5,6 +5,12 @@ exercises: 20
 source: Rmd
 ---
 
+```{r, include=FALSE}
+## Limit printing output to max. 100 lines to avoid endless scrolling
+options(max.print = 100)
+```
+
+
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - To be able to describe the different types of data
