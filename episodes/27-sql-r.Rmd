@@ -15,7 +15,7 @@ source: Rmd
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::::::::::::::::::::::::::::: questions
+:::::::::::::::::::::::::::::::::::::::: questions
 
 - What is the relationship between a relational database and SQL?
 - How do you query databases using SQL?
@@ -169,13 +169,13 @@ dbGetQuery(cdrcDB, "SELECT *
 ```
 ASC is the default, so by omitting ASC or DESC, SQLite will sort ascending (ASC).
 
-::::::::::::::::::::::::::::::::::::::: challenge
+:::::::::::::::::::::::::::::::::::::::  challenge
 ## Challenge 1
 
 Write a query that returns lsoa11, ah3h_rnk, ah3g_rnk and ah3e_rnk from the ahah table, 
 ordered by the ah3h_rnk from highest to lowest value.
 
-::::::::::::::: solution
+:::::::::::::::  solution
 ## Solution
 
 ```{r}
@@ -188,7 +188,7 @@ dbGetQuery(cdrcDB, "SELECT lsoa11, ah3h_rnk, ah3g_rnk, ah3e_rnk
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::::::::: callout
+:::::::::::::::::::::::::::::::::::::::  callout
 
 It is important to note that the output from our queries is not saved in the RStudio environment.
 If needed, query results can be stored as data frames as dbGetQuery() returns the result of a query as a data frame.
@@ -199,7 +199,6 @@ For example:
 LANames_Distinct <- dbGetQuery(cdrcDB, "SELECT DISTINCT LANAME FROM imd")
 
 ```
-
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Filtering Data
@@ -242,13 +241,13 @@ You may have noticed the wildcard character %. It is used to match zero to many 
 So in the SQL statement above, it will match zero or more characters before and after 'and'.
 Because of this you will notice matches with names such as Barking and Dagenham and where it is part of a single word, such as Rutland.
 
-::::::::::::::::::::::::::::::::::::::: challenge
+:::::::::::::::::::::::::::::::::::::::  challenge
 ## Challenge 2
 
 Write a query that returns lsoa11, ah3h_rnk, ah3g_rnk and ah3e_rnk from the ahah table, 
 where ah3h_rnk is below 500 and ah3e_rnk is between 3500 and 4500. Limit responses to 15.
 
-::::::::::::::: solution
+:::::::::::::::  solution
 ## Solution
 
 ```{r}
@@ -298,12 +297,12 @@ dbGetQuery (cdrcDB, "SELECT LANAME, AVG(SOA_decile)
             ")
 
 ````
-::::::::::::::::::::::::::::::::::::::: challenge
+:::::::::::::::::::::::::::::::::::::::  challenge
 ## Challenge 3
 
 Using the imd table, write a query using an aggregate function that returns the number of LANAMEs per SOA_decile, sorted by LANAME count in descending order. Which SOA_decile has the most LANAMEs? (Hint to choosing which aggregate function to use - it is one of the common aggregate functions MAX, MIN, AVG, COUNT, SUM.)
 
-::::::::::::::: solution
+:::::::::::::::  solution
 ## Solution
 
 ```{r}
@@ -419,13 +418,13 @@ dbGetQuery (cdrcDB, "SELECT DISTINCT imd.LANAME, AVG(imd.Rank),
             ")
 
 ```
-::::::::::::::::::::::::::::::::::::::: challenge
+:::::::::::::::::::::::::::::::::::::::  challenge
 ## Challenge 4
 
 Write a query that JOINS the imd and aha tables and that returns the LANAME and maximum values of Rank and ah3h_rnk for each LANAME.
 Sorted by RANK in descending order.
 
-::::::::::::::: solution
+:::::::::::::::  solution
 ## Solution
 
 ```{r}
