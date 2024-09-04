@@ -198,7 +198,7 @@ For example:
 
 LANames_Distinct <- dbGetQuery(cdrcDB, "SELECT DISTINCT LANAME FROM imd")
 
-````
+```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
