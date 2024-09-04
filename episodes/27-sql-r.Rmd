@@ -222,7 +222,7 @@ dbGetQuery (cdrcDB, "SELECT LSOA, LANAME, SOA_decile
             WHERE (SOA_decile < 5) AND (LANAME != 'City of London')
             LIMIT 10")
 
-````
+```
 In this example we modified our query to return only those with a SOA_decile of 1,2, 3 or 4 and from all areas other than City of London.
 The parantheses are added for readability in this case but can be required by the SQL interpreter in order to disambiguate formulas.
 
@@ -281,7 +281,7 @@ dbGetQuery (cdrcDB, "SELECT LANAME, AVG(SOA_decile)
             LIMIT 10
             ")
 
-````
+```
 
 GROUP BY is used by SQL to arrange identical data into groups. In this case, we are arranging all the SOA deciles by LANAME. AVG acts on the SOA_decile in parentheses. This process is also called aggregation which allows us to combine results by grouping records based on value and calculating combined values in groups.
 
@@ -296,7 +296,7 @@ dbGetQuery (cdrcDB, "SELECT LANAME, AVG(SOA_decile)
             LIMIT 10
             ")
 
-````
+```
 :::::::::::::::::::::::::::::::::::::::  challenge
 ## Challenge 3
 
