@@ -315,13 +315,12 @@ You may also want to check for culticollinearity:
 
 
 ``` r
-car::vif(coamox_surg_logit))
+car::vif(coamox_surg_logit)
 ```
 
-``` error
-Error: <text>:1:28: unexpected ')'
-1: car::vif(coamox_surg_logit))
-                               ^
+``` output
+       age_years_sd            sex_male had_surgery_past_yr 
+           1.000156            1.000018            1.000144 
 ```
 As the value of GVIF is lower than 4, it suggests that the assumption of independnce between the variables is held.
 
