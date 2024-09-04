@@ -176,7 +176,7 @@ and those who have not is 0.1802123. It is statistically significant.
 You may also want to check for culticollinearity:
 
 ```{r}
-car::vif(coamox_surg_logit))
+car::vif(coamox_surg_logit)
 ```
 As the value of GVIF is lower than 4, it suggests that the assumption of independnce between the variables is held.
 
