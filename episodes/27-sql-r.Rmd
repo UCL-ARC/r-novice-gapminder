@@ -1,0 +1,455 @@
+---
+title: SQL and R
+teaching: 110
+exercises: 40
+source: Rmd
+---
+
+::::::::::::::::::::::::::::::::::::::: objectives
+
+- Explain what SQL is and why to use it.
+- Understand how SQL can be used to query databases
+- Write queries that SELECT data based on conditions, such as AND, OR, and NOT and use of the WHERE clause.
+- Use SQL functions like AVG in combination with clauses like Group By to aggregate values and make calculations on fields using SQL.
+- Understand how to link tables together via joins.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::: questions
+
+- What is the relationship between a relational database and SQL?
+- How do you query databases using SQL?
+- How can I filter data?
+- Can SQL be used to make calculations?
+- How do I join two tables if they share a common point of information?
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Content
+
+- Relational Databases - an overview
+- Creating a SQLite database
+- Selecting data
+- Filtering data
+- Calculated fields and Aggregation
+- Joining data
+
+## Relational Databases - an overview
+
+In this episode we will be using SQLite, a Relational Database Management Systems (RDBMS) within R.
+We have chosen SQLite as it is an embedded RDBMS and does not rely on a connection to a server. 
+It uses most of the SQL standard, and it is fully ACID compliant.
+
+### What is SQL?
+
+Structured Query Language, or SQL (sometimes pronounced "sequel"), is a powerful language used to interrogate and manipulate relational databases. It is not a general programming language that you can use to write an entire program. However, SQL queries can be called from programming languages to let any program interact with databases. There are several variants of SQL, but all support the same basic statements that we will be covering today.
+
+### Relational databases
+
+Relational databases consist of one or more tables of data. These tables have fields (columns) and records (rows). Every field has a data type. Every value in the same field of each record has the same type. These tables can be linked to each other when a field in one table can be matched to a field in another table. SQL queries are the commands that let you look up data in a database or make calculations based on columns.
+
+### Why use SQL?
+
+SQL is well established and has been around since the 1970s. It is still widely used in a variety of settings.
+
+SQL lets you keep the data separate from the analysis. There is no risk of accidentally changing data when you are analysing it. If the data is updated, a saved query can be re-run to analyse the new data.
+
+SQL is optimised for handling large amounts of data. Data types help quality control of entries - you will receive an error if you try to enter a word into a field that should contain a number.
+
+## Creating a SQLite database
+
+For creating and querying a SQLite database in R we will be using 2 additional packages, RSQLite and DBI.
+
+```{r}
+# As RSQLite uses functions defined in the DBI package, we load DBI first
+
+library(DBI)
+library(RSQLite)
+
+```
+
+We will be using data from the Consumer Data Research Centre (CDRC), the Access to Healthy Assets & Hazards (AHAH) from 2022 
+and the UK Indices of Multiple Deprivation data from 2019. 
+The statistical unit area used in both are Lower layer Super Output Areas (LSOAs).
+
+```{r}
+# Import data initially to dataframes 
+ahah_2022 <- read.csv('data/AHAH_V3_0.csv')
+imd_2019 <- read.csv('data/uk_imd2019.csv')
+
+```
+We can now connect to SQLite and create a new empty database:
+
+```{r}
+
+cdrcDB <- dbConnect(RSQLite::SQLite(), "cdrcDB.sqlite")
+
+cdrcDB
+
+```
+
+and start adding our tables:
+
+```{r}
+#create tables
+
+dbWriteTable(cdrcDB, "ahah", ahah_2022)
+dbWriteTable(cdrcDB, "imd", imd_2019)
+
+dbListTables(cdrcDB)
+
+```
+
+We can view the Fields in our tables:
+
+```{r}
+dbListFields(cdrcDB,"ahah")
+```
+
+## Selecting data
+
+A query is a question or request for data. For example, "What are the IMD deciles for the City of London?". 
+When we query a database, we can ask the same question using Structured Query Language (SQL) in what is called a statement. 
+Some of the most useful queries are used to return results from a table that match specific criteria.
+
+The basic structure of a SQL query contains a SELECT statement indicating which columns are desired and a FROM clause explaining where to find them:
+
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT LANAME FROM imd LIMIT 10")
+
+```
+The string, "SELECT LANAME FROM imd LIMIT 10" is a SQL query. 
+
+SELECT is the statement, and it has the basic syntax of:
+
+````
+SELECT var1, var2 FROM table
+````
+We add an additional clause, LIMIT 10 to reduce the amount of output.
+This is useful when testing queries, especially when you have a large data set.
+
+In the query above, we have capitalized the words SELECT and FROM because they are SQL keywords. Even though capitalization makes 
+no difference to the SQL interpreter, capitalization of these SQL terms helps for readability and is therefore considered good style. 
+
+As the data has repeating area name values (LANAME) due to them containing multiple LSOA units, we can specify unique values using DISTINCT:
+
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT DISTINCT LANAME FROM imd LIMIT 10")
+
+```
+
+We can expand our initial query to return Rank in addition to LANAME:
+
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT LANAME, Rank FROM imd LIMIT 10")
+
+```
+
+We can also make use of the wildcard character '*' to select all Fields in a table:
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT * FROM imd LIMIT 10")
+
+```
+
+### Sorting
+
+We can also sort the results of our queries by using the keyword ORDER BY. 
+Let's create a query that sorts the imd table in ascending order by Rank using the ASC keyword in conjunction with ORDER BY.
+```{r}
+
+dbGetQuery(cdrcDB, "SELECT * 
+           FROM imd 
+           ORDER BY Rank ASC
+           LIMIT 10")
+
+```
+ASC is the default, so by omitting ASC or DESC, SQLite will sort ascending (ASC).
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+## Challenge 1
+
+Write a query that returns lsoa11, ah3h_rnk, ah3g_rnk and ah3e_rnk from the ahah table, 
+ordered by the ah3h_rnk from highest to lowest value.
+
+:::::::::::::::  solution
+## Solution
+
+```{r}
+dbGetQuery(cdrcDB, "SELECT lsoa11, ah3h_rnk, ah3g_rnk, ah3e_rnk
+           FROM ahah 
+           ORDER BY ah3h_rnk DESC")
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::  callout
+
+It is important to note that the output from our queries is not saved in the RStudio environment.
+If needed, query results can be stored as data frames as dbGetQuery() returns the result of a query as a data frame.
+
+For example:
+'''{r}
+
+LANames_Distinct <- dbGetQuery(cdrcDB, "SELECT DISTINCT LANAME FROM imd")
+
+'''
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Filtering Data
+
+SQL is a powerful tool for filtering data in databases based on a set of conditions.
+To answer our earlier question: "What are the IMD deciles for the City of London?" we can utilise the WHERE clause.
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LSOA, LANAME, SOA_decile 
+            FROM imd 
+            WHERE LANAME = 'City of London'")
+
+```
+
+We can add additional conditions by using AND, OR, and/or NOT.
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LSOA, LANAME, SOA_decile 
+            FROM imd 
+            WHERE (SOA_decile < 5) AND (LANAME != 'City of London')
+            LIMIT 10")
+
+```
+In this example we modified our query to return only those with a SOA_decile of 1,2, 3 or 4 and from all areas other than City of London.
+The parantheses are added for readability in this case but can be required by the SQL interpreter in order to disambiguate formulas.
+
+When you do not know the entire value you are searching for, you can use comparison keywords such as LIKE, IN, BETWEEN...AND, IS NULL. For instance, we can use LIKE in combination with WHERE to search for data that matches a pattern.
+
+For example, using the imd table again, let's SELECT all of the data WHERE the LANAME contains "and":
+
+```{r}
+dbGetQuery (cdrcDB, "SELECT DISTINCT LANAME
+            FROM imd 
+            WHERE LANAME LIKE '%and%'
+            LIMIT 10
+            ")
+```
+You may have noticed the wildcard character %. It is used to match zero to many characters. 
+So in the SQL statement above, it will match zero or more characters before and after 'and'.
+Because of this you will notice matches with names such as Barking and Dagenham and where it is part of a single word, such as Rutland.
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+## Challenge 2
+
+Write a query that returns lsoa11, ah3h_rnk, ah3g_rnk and ah3e_rnk from the ahah table, 
+where ah3h_rnk is below 500 and ah3e_rnk is between 3500 and 4500. Limit responses to 15.
+
+:::::::::::::::  solution
+## Solution
+
+```{r}
+dbGetQuery(cdrcDB, "SELECT lsoa11, ah3h_rnk, ah3g_rnk, ah3e_rnk
+           FROM ahah 
+           WHERE (ah3h_rnk < 500) OR (ah3e_rnk BETWEEN 3500 AND 4500) 
+           LIMIT 15")
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Calculated fields and Aggregation
+
+SQL contains functions which allow you to make calculations on data in your database for reports. 
+Some of the most common functions are MAX, MIN, AVG, COUNT, SUM, and they will: 
+- MAX (find the maximum value in a field), 
+- MIN (find the minimum value in a field), 
+- AVG (find the average value of a field), 
+- COUNT (count the number of values in a field and present the total), 
+- and SUM (add up the values in a field and present the sum).
+
+Let's say we wanted to get the average SOA_decile for each of the LANAMEs. We can use AVG and the GROUP BY clause in a query:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LANAME, AVG(SOA_decile)
+            FROM imd 
+            GROUP BY LANAME
+            LIMIT 10
+            ")
+
+```
+
+GROUP BY is used by SQL to arrange identical data into groups. In this case, we are arranging all the SOA deciles by LANAME. AVG acts on the SOA_decile in parentheses. This process is also called aggregation which allows us to combine results by grouping records based on value and calculating combined values in groups.
+
+As you can see, it is difficult to tell though what LANAME has the highest average SOA decile and the least. We can improve upon the query above by using ORDER BY and DESC.
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LANAME, AVG(SOA_decile)
+            FROM imd 
+            GROUP BY LANAME
+            ORDER BY AVG(SOA_decile) DESC
+            LIMIT 10
+            ")
+
+```
+:::::::::::::::::::::::::::::::::::::::  challenge
+## Challenge 3
+
+Using the imd table, write a query using an aggregate function that returns the number of LANAMEs per SOA_decile, sorted by LANAME count in descending order. Which SOA_decile has the most LANAMEs? (Hint to choosing which aggregate function to use - it is one of the common aggregate functions MAX, MIN, AVG, COUNT, SUM.)
+
+:::::::::::::::  solution
+## Solution
+
+```{r}
+dbGetQuery (cdrcDB, "SELECT SOA_decile, COUNT(LANAME)
+            FROM imd 
+            GROUP BY SOA_decile
+            ORDER BY COUNT(LANAME) DESC
+            LIMIT 10
+            ")
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+### The HAVING keyword
+
+SQL offers a mechanism to filter the results based on aggregate functions, through the HAVING keyword.
+
+For example, we can adapt the last request we wrote to only return information about LANAMEs with an SOA_decile of more than 7:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LANAME, COUNT(*)
+            FROM imd 
+            GROUP BY LANAME
+            HAVING AVG(SOA_decile) > 7
+            LIMIT 10
+            ")
+
+```
+
+The HAVING keyword works exactly like the WHERE keyword, but uses aggregate functions instead of database fields. 
+When you want to filter based on an aggregation like MAX, MIN, AVG, COUNT, SUM, use HAVING; to filter based on the individual values in a database field, use WHERE.
+
+Note that HAVING comes after GROUP BY. One way to think about this is: the data are retrieved (SELECT), can be filtered (WHERE), 
+then joined in groups (GROUP BY); finally, we only select some of these groups (HAVING).
+
+### Calculations
+
+In SQL, we can also perform calculations as we query the database. 
+Also known as computed columns, we can use expressions on a column or multiple columns to get new values during our query. 
+For example, what if we wanted to calculate a new column called Decile_Difference:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT LSOA, LANAME, 
+            SOA_decile - LA_decile as Decile_Difference
+            FROM imd 
+            ORDER BY Decile_Difference DESC
+            LIMIT 10
+            ")
+
+```
+
+In this example we used the calculation and AS to represent that the new column is different from the original SQL table data.
+
+We can use any arithmetic operators (like +, -, *, /, square root SQRT or the modulo operator %) if we would like.
+
+## Joining Data
+
+The SQL JOIN clause allows us to combine columns from one or more tables in a database by using values common to each. 
+It follows the FROM clause in a SQL statement. We also need to tell the computer which columns provide the link between 
+the two tables using the word ON.
+
+Let's start by joining data from the ahah table with the imd table. The LSOA and lsoa11 columns in these tables link them.
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT *
+            FROM ahah 
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            ")
+
+```
+
+ON is similar to WHERE, it filters things out according to a test condition. 
+We use the table.colname format to tell the SQL manager what column in which table we are referring to.
+This is an example of a LEFT join.
+
+The following diagram is a visualisation of the different types of joins. 
+In this image, the A table is the primary table (e.g. FROM), and the B table is the table you are joining in.
+
+![](fig/joins.png){alt='Visualisation of different types of SQL join'}
+
+When joining tables, you can specify the columns you want by using table.colname instead of selecting all the columns using *. 
+
+For example:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT imd.LSOA, imd.LANAME, imd.Rank,
+            ahah.ah3h_rnk, ahah.ah3g_rnk, ahah.ah3e_rnk, ahah.ah3r_rnk
+            FROM ahah  
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            ")
+
+```
+
+Joins can be combined with sorting, filtering, and aggregation. 
+So, if we wanted the average imd rank and ah3h_rnk for each LANAME we would use:
+
+```{r}
+
+dbGetQuery (cdrcDB, "SELECT DISTINCT imd.LANAME, AVG(imd.Rank),
+            AVG(ahah.ah3h_rnk)
+            FROM ahah  
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            GROUP BY imd.LANAME
+            ")
+
+```
+:::::::::::::::::::::::::::::::::::::::  challenge
+## Challenge 4
+
+Write a query that JOINS the imd and aha tables and that returns the LANAME and maximum values of Rank and ah3h_rnk for each LANAME.
+Sorted by RANK in descending order.
+
+:::::::::::::::  solution
+## Solution
+
+```{r}
+dbGetQuery (cdrcDB, "SELECT DISTINCT imd.LANAME, MAX(imd.Rank),
+            MAX(ahah.ah3h_rnk)
+            FROM ahah  
+            JOIN imd
+            ON ahah.lsoa11 = imd.LSOA
+            GROUP BY imd.LANAME
+            ORDER BY MAX(imd.Rank) DESC
+            LIMIT 10
+            ")
+```
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Disconnection
+
+Once we have completed our analysis we need to disconnect from our database:
+
+```{r}
+
+dbDisconnect(cdrcDB)
+
+```
+

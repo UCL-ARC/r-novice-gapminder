@@ -90,7 +90,7 @@ episodes:
   - 24-linear-reg-broom.Rmd
   - 25-linreg-diagnostics.Rmd
   - 26-log-regression.Rmd
-  # 26-r-sql
+  - 27-sql-r.Rmd
   - 27-wrap-up.Rmd
 
 # Information for Learners
