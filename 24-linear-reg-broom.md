@@ -1,25 +1,24 @@
 ---
-title: "Linear Regression and Broom"
+title: "Linear regression and Broom"
 teaching: 80
 exercises: 20
 source: Rmd
+editor_options: 
+  markdown: 
+    wrap: sentence
 ---
 
-::::::::::::::::::::::::::::::::::::::: objectives
+::: objectives
+-   To be able to explore relationships between variables
+-   To be able to calculate predicted variables and residuals
+-   To be able to construct linear regression models
+-   To be able to present model outcomes using Broom
+:::
 
-- To be able to explore relationships between variables
-- To be able to calculate predicted variables and residuals
-- To be able to construct linear regression models
-- To be able to present model outcomes using Broom
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::: questions
-
-- How can I explore relationships between variables in my data?
-- How can I present model outputs in an easier to read way?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+::: questions
+-   How can I explore relationships between variables in my data?
+-   How can I present model outputs in an easier to read way?
+:::
 
 ## Content
 
@@ -46,22 +45,28 @@ We are going to use the data from the Consumer Data Research Centre, specificall
 
 Atribution: Data provided by the Consumer Data Research Centre, an ESRC Data Investment: ES/L011840/1, ES/L011891/1
 
-The statistical unit areas across the country are Lower layer Super Output Areas (LSOAs). We will explore the relationships between the different dimensions of the Indices of Multiple Deprivation.
+The statistical unit areas across the country are Lower layer Super Output Areas (LSOAs).
+We will explore the relationships between the different dimensions of the Indices of Multiple Deprivation.
 
-## Linear Regression
+## Linear regression
 
 Linear Regression enables use to to explore the the linear relationship of the dependent variable Y and independent variable(s) X(s).
 We are going to explore the linear relationship between the Health Deprivation and Disability Domain and the Living Environment Deprivation Domain.
 
-The Health Deprivation and Disability Domain measures the risk of premature death and the impairment of quality of life through poor physical or mental health. The domain measures morbidity, disability and premature mortality but not aspects of behaviour or environment that may be predictive of future health deprivation.
+The Health Deprivation and Disability Domain measures the risk of premature death and the impairment of quality of life through poor physical or mental health.
+The domain measures morbidity, disability and premature mortality but not aspects of behaviour or environment that may be predictive of future health deprivation.
 
-The Living Environment Deprivation Domain measures the quality of the local environment. The indicators fall into two sub-domains. The ‘indoors’ living environment measures the quality of housing; while the ‘outdoors’ living environment contains measures of air quality and road traffic accidents.
+The Living Environment Deprivation Domain measures the quality of the local environment.
+The indicators fall into two sub-domains.
+The ‘indoors’ living environment measures the quality of housing; while the ‘outdoors’ living environment contains measures of air quality and road traffic accidents.
 
-Reference:
-  McLennan, David et al. The English Indices of Deprivation 2019 : Technical Report. Ministry of Housing, Communities and Local Government, 2019. Print.
+Reference: McLennan, David et al.
+The English Indices of Deprivation 2019 : Technical Report.
+Ministry of Housing, Communities and Local Government, 2019.
+Print.
 
+### Simple linear regression
 
-### Simple Linear Regression
 In the simple linear regression example we have only one dependent variable (health_london_rank) and one independent variable (livingEnv_london_rank).
 
 
@@ -94,15 +99,18 @@ Multiple R-squared:  0.06225,	Adjusted R-squared:  0.06205
 F-statistic: 320.8 on 1 and 4833 DF,  p-value: < 2.2e-16
 ```
 
-From the result of this analysis, we can see that the Living Environment Deprivation Domain rank has a significant(small p-value, general rule of thumb <0.05) and positive relationship(positive coefficient) with the Health Deprivation and Disability Domain rank.
+From the result of this analysis, we can see that the Living Environment Deprivation Domain rank has a significant(small p-value, general rule of thumb \<0.05) and positive relationship(positive coefficient) with the Health Deprivation and Disability Domain rank.
 
 One way of interpreting the result is: One unit increase in the Living Environment rank is related to around 0.343 (3.430e-01) points increase of the Health Deprivation and Disability rank.
 
-R-square shows the amount of variance of Y explained by X. In this case the Living Environment rank explains 6.225% of the variance in the Health Deprivation and Disability rank. Adj R2(6.205%) shows the same as R2 but adjusted by the # of cases and # of variables. When the # of variables is small and the # of cases is very large then Adj R2 is closer to R2.
+R-square shows the amount of variance of Y explained by X.
+In this case the Living Environment rank explains 6.225% of the variance in the Health Deprivation and Disability rank.
+Adj R2(6.205%) shows the same as R2 but adjusted by the \# of cases and \# of variables.
+When the \# of variables is small and the \# of cases is very large then Adj R2 is closer to R2.
 
 ### Log transform
 
-If your data is skwewed, it can be useful to transform a variable to it's log form when doing the regression.
+If your data is skewed, it can be useful to transform a variable to it's log form when doing the regression.
 You can either transform the variable beforehand or do so in the equation.
 
 
@@ -133,17 +141,29 @@ Residual standard error: 7319 on 4833 degrees of freedom
 Multiple R-squared:  0.1361,	Adjusted R-squared:  0.1359 
 F-statistic: 761.1 on 1 and 4833 DF,  p-value: < 2.2e-16
 ```
+
 The interpretation of the log-transformed variable is a bit different.
 In this example only the predictor variable is log tranformed, therefore to interpret the slope coefficient we divide it by 100 (2917.0/100=29.170).
 
-If the dependent/response variable is solely log-transformed. Exponentiate the coefficient. This gives the multiplicative factor for every one-unit increase in the independent variable. Example: the coefficient is 0.198. exp(0.198) = 1.218962. For every one-unit increase in the independent variable, our dependent variable increases by a factor of about 1.22, or 22%. Recall that multiplying a number by 1.22 is the same as increasing the number by 22%. Likewise, multiplying a number by, say 0.84, is the same as decreasing the number by 1 – 0.84 = 0.16, or 16%.
+If the dependent/response variable is solely log-transformed, exponentiate the coefficient.
+This gives the multiplicative factor for every one-unit increase in the independent variable.
+Example: the coefficient is 0.198.
+exp(0.198) = 1.218962.
+For every one-unit increase in the independent variable, our dependent variable increases by a factor of about 1.22, or 22%.
+Recall that multiplying a number by 1.22 is the same as increasing the number by 22%.
+Likewise, multiplying a number by, say 0.84, is the same as decreasing the number by 1 – 0.84 = 0.16, or 16%.
 
-If both are transformed. nterpret the coefficient as the percent increase in the dependent variable for every 1% increase in the independent variable. Example: the coefficient is 0.198. For every 1% increase in the independent variable, our dependent variable increases by about 0.20%. For x percent increase, calculate 1.x to the power of the coefficient, subtract 1, and multiply by 100. Example: For every 20% increase in the independent variable, our dependent variable increases by about (1.20 0.198 - 1) * 100 = 3.7 percent.
+If both are transformed, interpret the coefficient as the percent increase in the dependent variable for every 1% increase in the independent variable.
+Example: the coefficient is 0.198.
+For every 1% increase in the independent variable, our dependent variable increases by about 0.20%.
+For x percent increase, calculate 1.x to the power of the coefficient, subtract 1, and multiply by 100.
+Example: For every 20% increase in the independent variable, our dependent variable increases by about (1.20 0.198 - 1) \* 100 = 3.7 percent.
 
-### Predicted values and Residuals
+### Predicted values and residuals
 
 We can expand our simple linear regression example to incorporate the Barriers to Housing and Services Domain rank.
-The Barriers to Housing and Services Domain measures the physical and financial accessibility of housing and local services. The indicators fall into two sub-domains: ‘geographical barriers’, which relate to the physical proximity of local services, and ‘wider barriers’ which includes issues relating to access to housing, such as affordability.
+The Barriers to Housing and Services Domain measures the physical and financial accessibility of housing and local services.
+The indicators fall into two sub-domains: ‘geographical barriers’, which relate to the physical proximity of local services, and ‘wider barriers’ which includes issues relating to access to housing, such as affordability.
 
 
 ``` r
@@ -210,7 +230,7 @@ head(health_rank_pred)
 View(health_rank_pred)
 ```
 
-### Robust Regression
+### Robust regression
 
 We can run the robust standard error regressions(control for heteroskedasticity, meaning unequal variances):
 
@@ -232,7 +252,7 @@ barriers_london_rank  2.5085e+00 6.4394e-02  38.955 < 2.2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-In addition,  we can access the cluster-robust standard errors regression results:
+In addition, we can access the cluster-robust standard errors regression results:
 
 
 ``` r
@@ -252,17 +272,15 @@ barriers_london_rank  2.5085e+00 7.0588e-02  35.537 < 2.2e-16 ***
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-::::::::::::::::::::::::::::::::::::::: challenge
-
+::: challenge
 ## Challenge 1
 
 Use the `gapminder` data to create a linear model between two continuous variables.
 
 Discuss your question and your findings.
+:::
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
-
-### Regression with Categorical independent variables
+### Regression with categorical independent variables
 
 We will explore the use of categorical independent variables in linear regression in this episode.
 When the dependent variable is a categorical variable, you may consider the alternatives of linear regression like logit regression and multinomial regression.
@@ -398,6 +416,7 @@ Residual standard error: 5362 on 4800 degrees of freedom
 Multiple R-squared:  0.9407,	Adjusted R-squared:  0.9403 
 F-statistic:  2177 on 35 and 4800 DF,  p-value: < 2.2e-16
 ```
+
 ### Categorical variables with interaction terms
 
 Sometimes we are interested in how a variable interacts with another variable.
@@ -629,15 +648,13 @@ Multiple R-squared:  0.5789,	Adjusted R-squared:  0.5702
 F-statistic: 66.45 on 98 and 4736 DF,  p-value: < 2.2e-16
 ```
 
-:::::::::::::::::::::::::::::::::::::::  challenge
-
+::: challenge
 ## Challenge 2
 
 Using the `gapminder` data to create a linear model between a categorical and a continuous variable .
 
 Discuss your question and your findings.
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ## Broom
 
@@ -645,12 +662,13 @@ The 'broom' package offers an alternative way of presenting the output of statis
 It centers around three S3 methods, each of which take common objects produced by R statistical functions (lm, t.test, nls, etc) and convert them into a tibble.
 
 These are:
-* tidy: constructs a tibble that summarizes the model’s statistical findings. This includes coefficients and p-values for each term in a regression, per-cluster information in clustering applications, or per-test information for multtest functions.
-* augment: add columns to the original data that was modeled. This includes predictions, residuals, and cluster assignments.
-* glance: construct a concise one-row summary of the model. This typically contains values such as R^2, adjusted R^2, and residual standard error that are computed once for the entire model.
 
+-   tidy: constructs a tibble that summarizes the model’s statistical findings. This includes coefficients and p-values for each term in a regression, per-cluster information in clustering applications, or per-test information for multtest functions.
+-   augment: add columns to the original data that was modeled. This includes predictions, residuals, and cluster assignments.
+-   glance: construct a concise one-row summary of the model. This typically contains values such as R\^2, adjusted R\^2, and residual standard error that are computed once for the entire model.
 
 Let's revisit our initial linear model:
+
 
 ``` r
 reg_LivEnv_health <- lm(health_london_rank ~ livingEnv_london_rank, data = lon_dims_imd_2019)
@@ -694,11 +712,11 @@ tidy(reg_LivEnv_health)
 1 (Intercept)           16916.     227.          74.4 0       
 2 livingEnv_london_rank     0.343    0.0192      17.9 1.63e-69
 ```
-The row names have been moved into a column called term, and the column names are simple and consistent (and can be accessed using $).
 
-Information about the model can be explored with 'augment'. The function augments the original data with information from the model,
-such as the fitted values and residuals for each of the original points in the regression.
+The row names have been moved into a column called term, and the column names are simple and consistent (and can be accessed using \$).
 
+Information about the model can be explored with 'augment'.
+The function augments the original data with information from the model, such as the fitted values and residuals for each of the original points in the regression.
 
 
 ``` r
@@ -725,8 +743,7 @@ augment(reg_LivEnv_health)
 
 Some of the data presented by 'augment' will be discussed in the episode Linear Regression Diagnostics.
 
-Summary statistics are computed for the entire regression, such as R^2 and the F-statistic can be accessed with the 'glance' function:
-
+Summary statistics are computed for the entire regression, such as R\^2 and the F-statistic can be accessed with the 'glance' function:
 
 
 ``` r
@@ -740,6 +757,7 @@ glance(reg_LivEnv_health)
 1    0.0622        0.0621 7625.      321. 1.63e-69     1 -50081. 100167. 100187.
 # ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
+
 ### Generalised linear models
 
 We can also use the 'broom' functions to present data from Generalised linear and non-linear models.
@@ -779,6 +797,7 @@ Number of Fisher Scoring iterations: 10
 
 Use of 'tidy':
 
+
 ``` r
 tidy(glmlondims)
 ```
@@ -792,6 +811,7 @@ tidy(glmlondims)
 ```
 
 Use of 'augment':
+
 
 ``` r
 augment(glmlondims)
@@ -816,6 +836,7 @@ augment(glmlondims)
 
 Use of 'glance':
 
+
 ``` r
 glance(glmlondims)
 ```
@@ -826,13 +847,15 @@ glance(glmlondims)
           <dbl>   <int>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 1          92.3    4834  -45.0  94.1  107.     90.1        4833  4835
 ```
-You will notice that the statistics computed by 'glance' are different for glm objects than for lm (e.g. deviance rather than R^2).
 
-### Hypothesis Testing
+You will notice that the statistics computed by 'glance' are different for glm objects than for lm (e.g. deviance rather than R\^2).
+
+### Hypothesis testing
 
 The tidy function can also be applied a range of hypotheses tests, such as built-in functions like t.test, cor.test, and wilcox.test.
 
 ### t-test
+
 
 ``` r
 tt <- t.test(Income_london_rank ~ city, lon_dims_imd_2019)
@@ -846,9 +869,11 @@ tidy(tt)
 1   -5344.    14456.    19800.     -1.24   0.270      5.01  -16407.     5719.
 # ℹ 2 more variables: method <chr>, alternative <chr>
 ```
+
 Some cases might have fewer columns (for example, no confidence interval).
 
 Wilcox test:
+
 
 ``` r
 wt <- wilcox.test(Income_london_rank ~ city, lon_dims_imd_2019)
@@ -863,6 +888,7 @@ tidy(wt)
 ```
 
 Since the 'tidy' output is already only one row, glance returns the same output:
+
 
 ``` r
 # t-test
@@ -888,10 +914,10 @@ glance(wt)
       <dbl>   <dbl> <chr>                                            <chr>      
 1     9836.   0.174 Wilcoxon rank sum test with continuity correcti… two.sided  
 ```
+
 The chisq.test enables use to investigate whether changes in one categorical variable are related to changes in another categorical variable.
 
-The 'augment' method is defined only for chi-squared tests, since there is no meaningful sense, for other tests,
-in which a hypothesis test produces output about each initial data point.
+The 'augment' method is defined only for chi-squared tests, since there is no meaningful sense, for other tests, in which a hypothesis test produces output about each initial data point.
 
 
 ``` r
@@ -940,27 +966,30 @@ augment(chit)
 # ℹ 320 more rows
 # ℹ 2 more variables: .resid <dbl>, .std.resid <dbl>
 ```
+
 There are a number of underlying assumptions of a Chi-Square test, these are:
-* Independence: The Chi-Square test assumes that the observations in the data are independent of each other. This means that the outcome of one observation should not influence the outcome of another.
-* Random Sampling: The data should be obtained through random sampling to ensure that it is representative of the population from which it was drawn.
-* Expected Frequency: The Chi-Square test assumes that the expected frequency count for each cell in the contingency table should be at least 5. If this assumption is not met, the test results may not be reliable.
 
-As we have received a warning about the reliability of our test, it is likely that one of these assumptions has not been met,
-and that this is not a suitable test for this data.
+-   Independence: The Chi-Square test assumes that the observations in the data are independent of each other.
+    This means that the outcome of one observation should not influence the outcome of another.
 
+-   Random sampling: The data should be obtained through random sampling to ensure that it is representative of the population from which it was drawn.
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+-   Expected frequency: The Chi-Square test assumes that the expected frequency count for each cell in the contingency table should be at least 5.
+    If this assumption is not met, the test results may not be reliable.
 
+As we have received a warning about the reliability of our test, it is likely that one of these assumptions has not been met, and that this is not a suitable test for this data.
+
+::: challenge
 ## Challenge 3
 
 Use broom to amend the display of your model outputs.
 
 Which function(s) did you use and why?
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::
 
 ### Conventions
-There are some conventions that enable consistency across the broom functions, these are:
-* The output of the tidy, augment and glance functions is always a tibble.
-* The output never has rownames. This ensures that you can combine it with other tidy outputs without fear of losing information (since rownames in R cannot contain duplicates).
-* Some column names are kept consistent, so that they can be combined across different models and so that you know what to expect (in contrast to asking “is it pval or PValue?” every time).
+
+There are some conventions that enable consistency across the broom functions, these are: \* The output of the tidy, augment and glance functions is always a tibble.
+
+-   The output never has rownames. This ensures that you can combine it with other tidy outputs without fear of losing information (since rownames in R cannot contain duplicates).
+-   Some column names are kept consistent, so that they can be combined across different models and so that you know what to expect (in contrast to asking “is it pval or PValue?” every time).
