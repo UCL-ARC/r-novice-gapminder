@@ -127,7 +127,7 @@ Older participants and male participants have higher log-odds of Coamoxicalv res
 We can check to see that our indicators sex_male and age_years_sd are independent:
 ```{r}
 # check VIF for no perfect multicollinearity assumption
-car::vif(coamox4_logit)
+car::vif(coamox_logit)
 ```
 We can also check the linearity of the variable age_years_sd
 
