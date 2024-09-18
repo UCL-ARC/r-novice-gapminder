@@ -228,11 +228,12 @@ We can check to see that our indicators sex_male and age_years_sd are independen
 
 ``` r
 # check VIF for no perfect multicollinearity assumption
-car::vif(coamox4_logit)
+car::vif(coamox_logit)
 ```
 
-``` error
-Error in eval(expr, envir, enclos): object 'coamox4_logit' not found
+``` output
+age_years_sd     sex_male 
+    1.000015     1.000015 
 ```
 We can also check the linearity of the variable age_years_sd
 
