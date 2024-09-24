@@ -89,7 +89,7 @@ cdrcDB
 
 ``` output
 <SQLiteConnection>
-  Path: cdrcDB.sqlite
+  Path: /home/runner/work/r-amr-epidemiology/r-amr-epidemiology/site/built/cdrcDB.sqlite
   Extensions: TRUE
 ```
 
@@ -100,8 +100,21 @@ and start adding our tables:
 #create tables
 
 dbWriteTable(cdrcDB, "ahah", ahah_2022)
-dbWriteTable(cdrcDB, "imd", imd_2019)
+```
 
+``` error
+Error: Table ahah exists in database, and both overwrite and append are FALSE
+```
+
+``` r
+dbWriteTable(cdrcDB, "imd", imd_2019)
+```
+
+``` error
+Error: Table imd exists in database, and both overwrite and append are FALSE
+```
+
+``` r
 dbListTables(cdrcDB)
 ```
 
