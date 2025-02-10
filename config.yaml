@@ -12,7 +12,7 @@
 carpentry: "swc"
 
 # Overall title for pages.
-title: "R for AMR Epidemiology"
+title: "Introduction to R, databases and reproducibility for AMR Epidemiologists"
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
 created: "2015-04-18"
@@ -64,32 +64,32 @@ episodes:
   - 02-project-intro.Rmd
   - 03-seeking-help.Rmd
   - 04-data-structures-part1.Rmd
-  - 05-data-structures-part2.Rmd
-  - 06-filedir.md
-  - 07-basics.md
-  - 08-setup.md
-  - 09-create.md
-  - 10-changes.md
-  - 11-history.md
-  - 12-ignore.md
-  - 13-supplemental-rstudio.md
+  - 05-data-structures-part2.Rmd 
   - 14-data-subsetting.Rmd
   # - 07-control-flow.Rmd
   - 15-plot-ggplot2.Rmd
   # - 09-vectorization.Rmd
   # - 10-functions.Rmd
   - 16-writing-data.Rmd
-  - 17-github.md
-  - 18-collab.md
-  - 19-conflict.md
+
   - 20-dplyr.Rmd
   - 21-tidyr.Rmd
   # basic stats
   - 22-quarto.md
   - 23-statistics.Rmd
-  - 24-linear-reg-broom.Rmd
-  - 25-linreg-diagnostics.Rmd
-  - 26-log-regression.Rmd
+ # - 25-linreg-diagnostics.Rmd
+  - 26-log-regression.Rmd # content to be redcued to be an intro
+  - 24-linear-reg-broom.Rmd # to be modified to ba an intro broom
+ # - 07-basics.md Git/GH content to be rewritten to be done via RStudio only
+ # - 08-setup.md
+ # - 09-create.md
+ # - 10-changes.md
+ # - 11-history.md
+ # - 12-ignore.md
+#  - 13-supplemental-rstudio.md
+#  - 17-github.md
+#  - 18-collab.md
+#  - 19-conflict.md
   - 27-sql-r.Rmd
   - 27-wrap-up.Rmd
 
