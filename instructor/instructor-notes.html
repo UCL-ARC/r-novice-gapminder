@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>R for AMR Epidemiology: Instructor Notes</title>
+<title>Introduction to R, databases and reproducibility for AMR Epidemiologists: Instructor Notes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
 <script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config">
@@ -85,7 +85,7 @@
       <img class="small-logo" alt="Software Carpentry" src="../assets/images/software-logo-sm.svg">
 </div>
     <div class="lesson-title-md">
-      R for AMR Epidemiology
+      Introduction to R, databases and reproducibility for AMR Epidemiologists
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -96,7 +96,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            R for AMR Epidemiology
+            Introduction to R, databases and reproducibility for AMR Epidemiologists
           </span>
         </li>
         <li class="nav-item">
@@ -134,7 +134,7 @@
   </div>
 <!--/div.container-fluid -->
 </nav><div class="col-md-12 mobile-title">
-  R for AMR Epidemiology
+  Introduction to R, databases and reproducibility for AMR Epidemiologists
 </div>
 
 <aside class="col-md-12 lesson-progress"><div style="width: %" class="percentage">
@@ -296,7 +296,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06-filedir.html">6. Navigating Files and Directories</a>
+        <a href="14-data-subsetting.html">6. Subsetting Data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -308,7 +308,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="07-basics.html">7. Automated Version Control</a>
+        <a href="15-plot-ggplot2.html">7. Creating Publication-Quality Graphics with ggplot2</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -320,7 +320,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="08-setup.html">8. Setting Up Git</a>
+        <a href="16-writing-data.html">8. Writing Data</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -332,7 +332,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="09-create.html">9. Creating a Repository</a>
+        <a href="20-dplyr.html">9. Data Frame Manipulation with dplyr</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -344,7 +344,7 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="10-changes.html">10. Tracking Changes</a>
+        <a href="21-tidyr.html">10. Data Frame Manipulation with tidyr</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -356,7 +356,7 @@
 <div class="accordion accordion-flush" id="accordionFlush12">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading12">
-        <a href="11-history.html">11. Exploring History</a>
+        <a href="22-quarto.html">11. Producing Reports With Quarto</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -368,7 +368,7 @@
 <div class="accordion accordion-flush" id="accordionFlush13">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading13">
-        <a href="12-ignore.html">12. Ignoring Things</a>
+        <a href="23-statistics.html">12. Basic Statistics: describing, modelling and reporting</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -380,7 +380,7 @@
 <div class="accordion accordion-flush" id="accordionFlush14">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading14">
-        <a href="13-supplemental-rstudio.html">13. Supplemental: Using Git from RStudio</a>
+        <a href="26-log-regression.html">13. Logistic Regression</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -392,7 +392,7 @@
 <div class="accordion accordion-flush" id="accordionFlush15">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading15">
-        <a href="14-data-subsetting.html">14. Subsetting Data</a>
+        <a href="24-linear-reg-broom.html">14. Linear regression and Broom</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -404,7 +404,7 @@
 <div class="accordion accordion-flush" id="accordionFlush16">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading16">
-        <a href="15-plot-ggplot2.html">15. Creating Publication-Quality Graphics with ggplot2</a>
+        <a href="27-sql-r.html">15. SQL and R</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -416,151 +416,7 @@
 <div class="accordion accordion-flush" id="accordionFlush17">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading17">
-        <a href="16-writing-data.html">16. Writing Data</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush18">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading18">
-        <a href="17-github.html">17. Remotes in GitHub</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush19">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading19">
-        <a href="18-collab.html">18. Collaborating</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush20">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading20">
-        <a href="19-conflict.html">19. Conflicts</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush21">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading21">
-        <a href="20-dplyr.html">20. Data Frame Manipulation with dplyr</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush22">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading22">
-        <a href="21-tidyr.html">21. Data Frame Manipulation with tidyr</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush23">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading23">
-        <a href="22-quarto.html">22. Producing Reports With Quarto</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush24">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading24">
-        <a href="23-statistics.html">23. Basic Statistics: describing, modelling and reporting</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush25">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading25">
-        <a href="24-linear-reg-broom.html">24. Linear regression and Broom</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush26">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading26">
-        <a href="25-linreg-diagnostics.html">25. Assumption Diagnostics and Regression Trouble Shooting</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush27">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading27">
-        <a href="26-log-regression.html">26. Logistic Regression</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush28">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading28">
-        <a href="27-sql-r.html">27. SQL and R</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush29">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading29">
-        <a href="27-wrap-up.html">28. Writing Good Software</a>
+        <a href="27-wrap-up.html">16. Writing Good Software</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -792,29 +648,9 @@ occurences of errors identified through delivery of this workshop:</p>
 <hr class="half-width"></section><section id="03-seeking-help"><h2 class="section-heading"><a href="03-seeking-help.html">Seeking Help</a></h2>
 <hr class="half-width"></section><section id="04-data-structures-part1"><h2 class="section-heading"><a href="04-data-structures-part1.html">Data Structures</a></h2>
 <hr class="half-width"></section><section id="05-data-structures-part2"><h2 class="section-heading"><a href="05-data-structures-part2.html">Exploring Data Frames</a></h2>
-<hr class="half-width"></section><section id="06-filedir"><h2 class="section-heading"><a href="06-filedir.html">Navigating Files and Directories</a></h2>
-<hr class="half-width">
-<h3 id="06-filedir-headingInstructor1">
-<a href="06-filedir.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#06-filedir-headingInstructor1"></a>
-</h3>
-<p>Introducing and navigating the filesystem in the shell (covered in <a href="06-filedir.html">Navigating Files and Directories</a> section) can
-be confusing. You may have both terminal and GUI file explorer open side
-by side so learners can see the content and file structure while they’re
-using terminal to navigate the system.</p>
-<hr>
-<br></section><section id="07-basics"><h2 class="section-heading"><a href="07-basics.html">Automated Version Control</a></h2>
-<hr class="half-width"></section><section id="08-setup"><h2 class="section-heading"><a href="08-setup.html">Setting Up Git</a></h2>
-<hr class="half-width"></section><section id="09-create"><h2 class="section-heading"><a href="09-create.html">Creating a Repository</a></h2>
-<hr class="half-width"></section><section id="10-changes"><h2 class="section-heading"><a href="10-changes.html">Tracking Changes</a></h2>
-<hr class="half-width"></section><section id="11-history"><h2 class="section-heading"><a href="11-history.html">Exploring History</a></h2>
-<hr class="half-width"></section><section id="12-ignore"><h2 class="section-heading"><a href="12-ignore.html">Ignoring Things</a></h2>
-<hr class="half-width"></section><section id="13-supplemental-rstudio"><h2 class="section-heading"><a href="13-supplemental-rstudio.html">Supplemental: Using Git from RStudio</a></h2>
 <hr class="half-width"></section><section id="14-data-subsetting"><h2 class="section-heading"><a href="14-data-subsetting.html">Subsetting Data</a></h2>
 <hr class="half-width"></section><section id="15-plot-ggplot2"><h2 class="section-heading"><a href="15-plot-ggplot2.html">Creating Publication-Quality Graphics with ggplot2</a></h2>
 <hr class="half-width"></section><section id="16-writing-data"><h2 class="section-heading"><a href="16-writing-data.html">Writing Data</a></h2>
-<hr class="half-width"></section><section id="17-github"><h2 class="section-heading"><a href="17-github.html">Remotes in GitHub</a></h2>
-<hr class="half-width"></section><section id="18-collab"><h2 class="section-heading"><a href="18-collab.html">Collaborating</a></h2>
-<hr class="half-width"></section><section id="19-conflict"><h2 class="section-heading"><a href="19-conflict.html">Conflicts</a></h2>
 <hr class="half-width"></section><section id="20-dplyr"><h2 class="section-heading"><a href="20-dplyr.html">Data Frame Manipulation with dplyr</a></h2>
 <hr class="half-width"></section><section id="21-tidyr"><h2 class="section-heading"><a href="21-tidyr.html">Data Frame Manipulation with tidyr</a></h2>
 <hr class="half-width"></section><section id="22-quarto"><h2 class="section-heading"><a href="22-quarto.html">Producing Reports With Quarto</a></h2>
@@ -831,9 +667,8 @@ using terminal to navigate the system.</p>
 <p>Get them to plot the graphs. Explain that we are generating random
 data from different distributions and plotting them.</p>
 <hr>
-<br></section><section id="24-linear-reg-broom"><h2 class="section-heading"><a href="24-linear-reg-broom.html">Linear regression and Broom</a></h2>
-<hr class="half-width"></section><section id="25-linreg-diagnostics"><h2 class="section-heading"><a href="25-linreg-diagnostics.html">Assumption Diagnostics and Regression Trouble Shooting</a></h2>
-<hr class="half-width"></section><section id="26-log-regression"><h2 class="section-heading"><a href="26-log-regression.html">Logistic Regression</a></h2>
+<br></section><section id="26-log-regression"><h2 class="section-heading"><a href="26-log-regression.html">Logistic Regression</a></h2>
+<hr class="half-width"></section><section id="24-linear-reg-broom"><h2 class="section-heading"><a href="24-linear-reg-broom.html">Linear regression and Broom</a></h2>
 <hr class="half-width"></section><section id="27-sql-r"><h2 class="section-heading"><a href="27-sql-r.html">SQL and R</a></h2>
 <hr class="half-width"></section><section id="27-wrap-up"><h2 class="section-heading"><a href="27-wrap-up.html">Writing Good Software</a></h2>
 <hr class="half-width"></section></section>
