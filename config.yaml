@@ -90,6 +90,12 @@ episodes:
 #  - 17-github.md
 #  - 18-collab.md
 #  - 19-conflict.md
+ - 01-git-basics.md
+ - 02-git-setup.md
+ - 03-git-create.md
+ - 04-git-changes.md
+ - 05-git-history.md
+ - 06-git-ignore.md
   - 27-sql-r.Rmd
   - 27-wrap-up.Rmd
 
